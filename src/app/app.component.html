@@ -1,4 +1,19 @@
-<app-top-bar></app-top-bar>
+<!-- <app-top-bar></app-top-bar> -->
 
-<div class="container">
-</div>
+<!-- Routing is causing an issue -->
+
+<app-layout>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-navigation></app-navigation>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</app-layout>
+
+
+

@@ -103,6 +103,14 @@
     color: #1976d2;
     padding-right: 4px;
   }
+
+  /* Side nav*/
+  /* for sidenav to take a whole page */
+  /*  Check this okay?? */
+  html, body { 
+    margin: 0;
+    height: 100%;
+  }
   
   /* Top Bar*/
 
@@ -137,3 +145,5 @@
     border-radius: 2px;
     background-color: #EEEEEE;
   } */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
