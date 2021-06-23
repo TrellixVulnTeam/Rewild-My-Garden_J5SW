@@ -1,35 +1,35 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming & https://material.angular.io/guide/theming#defining-a-custom-theme
 // Available color palettes: https://material.io/design/color/
 // A theme consists of configurations for individual theming systems such as "color" or "typography".
+
 @use '~@angular/material' as mat;
 
 @include mat.core();
 
-// Standard theme
-$Rewild-My-Garden-primary: mat.define-palette(mat.$indigo-palette);
-$Rewild-My-Garden-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$Rewild-My-Garden-warn: mat.define-palette(mat.$red-palette);
-$Rewild-My-Garden-theme: mat.define-light-theme((
-  color: (
-    primary: $Rewild-My-Garden-primary,
-    accent: $Rewild-My-Garden-accent,
-    warn: $Rewild-My-Garden-warn,
-  )
-));
-
-// Accent theme
-$my-green: mat.define-palette(mat.$green-palette, A700);
-$Green-theme: mat.define-dark-theme((
+$my-primary: mat.define-palette(mat.$green-palette, A700);
+$my-accent: mat.define-palette(mat.$green-palette, A700);
+$my-tabs-theme: mat.define-light-theme((
  color: (
-   primary: $my-green,
-   accent: $my-green,
+   primary: $my-primary,
+   accent: $my-accent,
  )
 ));
 
-@include mat.all-component-themes($Rewild-My-Garden-theme);
-// .mat-tab-label{
-//   background: mat.get-color-from-palette($Green-theme, 'darker');
-//   color: mat.get-color-from-palette($Green-theme, 'darker-contrast');
-// }
+$my-toolbar-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ )
+));
+
+$my-sidenav-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ )
+));
+
+@include mat.tabs-theme($my-tabs-theme);
+@include mat.toolbar-theme($my-toolbar-theme);
+@include mat.sidenav-theme($my-sidenav-theme);
