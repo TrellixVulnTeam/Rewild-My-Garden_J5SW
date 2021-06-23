@@ -1,14 +1,16 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming & https://material.angular.io/guide/theming#defining-a-custom-theme
-// Available color palettes: https://material.io/design/color/
-// A theme consists of configurations for individual theming systems such as "color" or "typography".
+// // Custom Theming for Angular Material
+// // For more information: https://material.angular.io/guide/theming & https://material.angular.io/guide/theming#defining-a-custom-theme
+// // Available color palettes: https://material.io/design/color/
+// // A theme consists of configurations for individual theming systems such as "color" or "typography".
 
 @use '~@angular/material' as mat;
-
 @include mat.core();
 
-$my-primary: mat.define-palette(mat.$green-palette, A700);
-$my-accent: mat.define-palette(mat.$green-palette, A700);
+@import "~@angular/material/theming";
+
+$my-primary: mat.define-palette(mat.$green-palette, 900);
+$my-accent: mat.define-palette(mat.$green-palette, 600);
+
 $my-tabs-theme: mat.define-light-theme((
  color: (
    primary: $my-primary,
@@ -16,20 +18,9 @@ $my-tabs-theme: mat.define-light-theme((
  )
 ));
 
-$my-toolbar-theme: mat.define-light-theme((
- color: (
-   primary: $my-primary,
-   accent: $my-accent,
- )
-));
-
-$my-sidenav-theme: mat.define-light-theme((
- color: (
-   primary: $my-primary,
-   accent: $my-accent,
- )
-));
-
 @include mat.tabs-theme($my-tabs-theme);
-@include mat.toolbar-theme($my-toolbar-theme);
-@include mat.sidenav-theme($my-sidenav-theme);
+@include mat.toolbar-theme($my-tabs-theme);
+@include mat.icon-theme($my-tabs-theme);
+@include mat.sidenav-theme($my-tabs-theme);
+@include mat.button-theme($my-tabs-theme);
+

@@ -1,11 +1,12 @@
-// @import './custom-theme';
-// @import '../node_modules/@angular/material/theming';
-// @import 'custom-theme.scss';
-   
+@import 'custom-theme.scss';
+@import '~@angular/material/theming';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
    /* Global Styles */
 
 * {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #000000;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -15,35 +16,37 @@
   router-outlet + *  {
     padding: 0 16px;
   }
-  
+
   /* Text */
   
-  h1 {
-    font-size: 32px;
+  .Subheader{
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: 601px) {
+    .Subheader {
+      font-size: 30px;
+    }
   }
   
-  h2 {
-    font-size: 20px;
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 600px) {
+    .Subheader {
+      font-size: 20px;
+    }
   }
-  
-  h1, h2 {
-    font-weight: lighter;
-  }
-  
-  p {
-    font-size: 14px;
-  }
-  
+
   /* Hyperlink */
   
   a {
     cursor: pointer;
-    color: #150a72;
+    color: white;
     text-decoration: none;
   }
   
   a:hover {
-    color: #2715c4;
+    color: light-grey;
     opacity: 0.8;
   }
 

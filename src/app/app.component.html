@@ -5,9 +5,9 @@
     <mat-sidenav #sidenav role="navigation">
       <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content >
       <app-navigation (sidenavToggle)="sidenav.toggle()"></app-navigation>
-      <main>
+      <main >
         <router-outlet></router-outlet>
       </main>
     </mat-sidenav-content>
