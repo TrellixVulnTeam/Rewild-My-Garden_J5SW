@@ -1,20 +1,11 @@
-/* Global Styles */
+    /* Global Styles */
 
 * {
     font-family: 'Roboto', Arial, sans-serif;
-    color: #616161;
+    color: #000000;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  
-  body {
-    margin: 0;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: row;
   }
   
   router-outlet + *  {
@@ -43,65 +34,13 @@
   
   a {
     cursor: pointer;
-    color: #1976d2;
+    color: #150a72;
     text-decoration: none;
   }
   
   a:hover {
+    color: #2715c4;
     opacity: 0.8;
-  }
-  
-  /* Input */
-  
-  input {
-    font-size: 14px;
-    border-radius: 2px;
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #BDBDBD;
-  }
-  
-  label {
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 4px;
-    display: block;
-    text-transform: uppercase;
-  }
-  
-  /* Button */
-  .button, button {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 16px;
-    border-radius: 2px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #1976d2;
-    color: white;
-    border: none;
-  }
-  
-  .button:hover, button:hover {
-    opacity: 0.8;
-    font-weight: normal;
-  }
-  
-  .button:disabled, button:disabled {
-    opacity: 0.5;
-    cursor: auto;
-  }
-  
-  /* Fancy Button */
-  
-  .fancy-button {
-    background-color: white;
-    color: #1976d2;
-  }
-  
-  .fancy-button i.material-icons {
-    color: #1976d2;
-    padding-right: 4px;
   }
 
   /* Side nav*/
@@ -111,6 +50,12 @@
     margin: 0;
     height: 100%;
   }
+
+  body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+  }
+
   
   /* Top Bar*/
 
@@ -130,6 +75,8 @@
     color: white;
     margin: 0;
   } */
+
+
   
   /* Checkout Cart, Shipping Prices
   
@@ -145,5 +92,61 @@
     border-radius: 2px;
     background-color: #EEEEEE;
   } */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+  /* Fancy Button */
+  
+  /* .fancy-button {
+    background-color: white;
+    color: #1976d2;
+  }
+  
+  .fancy-button i.material-icons {
+    color: #1976d2;
+    padding-right: 4px;
+  } */
+
+
+
+    /* Button */
+
+  /* .button, button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+  }
+  
+  .button:hover, button:hover {
+    opacity: 0.8;
+    font-weight: normal;
+  }
+  
+  .button:disabled, button:disabled {
+    opacity: 0.5;
+    cursor: auto;
+  } */
+
+
+
+    /* Input */
+  
+  /* input {
+    font-size: 14px;
+    border-radius: 2px;
+    padding: 8px;
+    margin-bottom: 16px;
+  }
+  
+  label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: block;
+    text-transform: uppercase;
+  } */

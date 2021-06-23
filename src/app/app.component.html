@@ -1,13 +1,12 @@
-<!-- <app-top-bar></app-top-bar> -->
-
-<!-- Routing is causing an issue -->
+<app-top-bar></app-top-bar>
 
 <app-layout>
   <mat-sidenav-container>
     <mat-sidenav #sidenav role="navigation">
+      <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <app-navigation></app-navigation>
+      <app-navigation (sidenavToggle)="sidenav.toggle()"></app-navigation>
       <main>
         <router-outlet></router-outlet>
       </main>
