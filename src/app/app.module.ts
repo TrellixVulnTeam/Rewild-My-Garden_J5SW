@@ -3,25 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AppRoutingModule } from './app-routing.module';
+/* Our Components */
 import { HomeComponent } from './home/home.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { TopBarComponent } from './top-bar/top-bar.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { AppRoutingModule } from './app-routing.module';
-import { MatListModule } from '@angular/material/list';
 import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
-import { MatMenuModule } from '@angular/material/menu';
+/* All material modules we are using */
+import { MatModule } from './materials.module';
+import { TextBoxComponent } from './text-box/text-box.component';
 
 @NgModule({
   imports: [
+    MatModule,
     RouterModule.forRoot([
       {
         path: 'home',
@@ -31,28 +29,19 @@ import { MatMenuModule } from '@angular/material/menu';
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    //Below imports might be better imported in a different 
-    //module (see: https://code-maze.com/get-started-angular-material/)
     CommonModule,
     FlexLayoutModule,
-    MatTabsModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
     AppRoutingModule,
-    MatListModule,
-    MatMenuModule
   ],
   declarations: [
+    HomeComponent,
     AppComponent,
     TopBarComponent,
-    HomeComponent,
     LayoutComponent,
     NavigationComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    TextBoxComponent
     ],
-  // WORK OUT WHAT THIS IS DOING
   providers: [
     HomeComponent
   ],

@@ -3,14 +3,17 @@
       <p class='Subheader'>Welcome to Rewild My Garden</p>
     </div>
     <mat-tab-group mat-align-tabs="center">
-      <mat-tab label="Things to Grow"> 
+      <mat-tab> 
+        <ng-template mat-tab-label>
+          Things To Grow
+        </ng-template>
         <p class="content">Lots of flowering plants!</p> 
       </mat-tab>
-      <mat-tab label="Animals in Your Neighbourhood">
-         <p class="content">There are lots of cute animals.</p>
-        </mat-tab>
-      <mat-tab label="Community Projects">
-         <p class="content">You can help out other people too!</p>
+      <mat-tab> 
+        <ng-template mat-tab-label>
+          Community Projects
+        </ng-template>
+        <p class="content">People are doing stuff near you!</p> 
       </mat-tab>
     </mat-tab-group>
   </section>
