@@ -1,0 +1,1 @@
+- improve the look of tabs on mobile if they're kept
