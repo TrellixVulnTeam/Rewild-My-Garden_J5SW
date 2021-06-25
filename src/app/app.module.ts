@@ -8,14 +8,14 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 /* Our Components */
-import { HomeComponent } from './home/home.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { LayoutComponent } from './layout/layout.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
+import { HomeComponent } from './home-page/home/home.component';
+import { TopBarComponent } from './top-display/top-bar/top-bar.component';
+import { LayoutComponent } from './display/layout/layout.component';
+import { NavigationComponent } from './top-display/navigation/navigation.component';
+import { SidenavListComponent } from './top-display/sidenav-list/sidenav-list.component';
 /* All material modules we are using */
 import { MatModule } from './materials.module';
-import { TextBoxComponent } from './text-box/text-box.component';
+import { TextBoxComponent } from './form-page/text-box/text-box.component';
 
 @NgModule({
   imports: [
