@@ -1,5 +1,8 @@
 <app-top-bar></app-top-bar>
 
+<app-text-box (formInputCreated)="onPostAdded($event)"></app-text-box>
+<app-text-output [posts]="storedPosts"></app-text-output>
+
 <app-layout>
   <mat-sidenav-container>
     <mat-sidenav #sidenav role="navigation">

@@ -1,4 +1,7 @@
-<mat-form-field appearance="outline">
-    <mat-label>User Name</mat-label>
-  <input matInput>
-</mat-form-field>
+<mat-card>
+  <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Please input some text</mat-label>
+      <textarea matInput [(ngModel)]="formInput" ></textarea>
+  </mat-form-field>
+  <button (click)="saveInfo()">Save</button>
+</mat-card>
