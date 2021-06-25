@@ -1,7 +1,6 @@
-import { Output } from '@angular/core';
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Post } from '../post.model';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-text-box',
@@ -10,8 +9,9 @@ import { NgForm } from "@angular/forms";
 })
 export class TextBoxComponent implements OnInit {
   formInput = '';
-  @Output() formInputCreated = new EventEmitter<Post>();
-  constructor() { }
+
+  constructor(public postsService: PostsService) { }
+
   ngOnInit(): void {}
 
   saveForm(form: NgForm){
@@ -20,9 +20,7 @@ export class TextBoxComponent implements OnInit {
       return;
     }
     //A post can be composed of the results from mutliple text bozes!
-    const post: Post = { 
-      ourInput: form.value.ourInput
-    };
-    this.formInputCreated.emit(post);
+    this.postsService.addPost(form.value.ourInput);
+    form.resetForm();
   }
 }

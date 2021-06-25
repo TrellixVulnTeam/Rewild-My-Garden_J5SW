@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Post } from './form-page/post.model';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +8,5 @@ import { Post } from './form-page/post.model';
 
 export class AppComponent {
   title = 'Rewild-My-Garden';
-
-  storedPosts: Post[] = [];
-
-  onPostAdded(post: Post){
-    this.storedPosts.push(post);
-  }
 }
 

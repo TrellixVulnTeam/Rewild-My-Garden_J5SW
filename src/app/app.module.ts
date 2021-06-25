@@ -47,6 +47,7 @@ import { MatModule } from './materials.module';
     TextBoxComponent,
     TextOutputComponent
     ],
+  // "providers" is used for services
   providers: [
     HomeComponent
   ],
