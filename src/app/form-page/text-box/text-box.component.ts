@@ -1,6 +1,7 @@
 import { Output } from '@angular/core';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Post } from '../post.model';
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-text-box',
@@ -13,12 +14,15 @@ export class TextBoxComponent implements OnInit {
   constructor() { }
   ngOnInit(): void {}
 
-  saveInfo(){
+  saveForm(form: NgForm){
+    //If the entered content is invalid, don't submit
+    if(form.invalid){
+      return;
+    }
     //A post can be composed of the results from mutliple text bozes!
     const post: Post = { 
-      ourInput: this.formInput 
+      ourInput: form.value.ourInput
     };
-
     this.formInputCreated.emit(post);
   }
 }

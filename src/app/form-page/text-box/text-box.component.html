@@ -1,7 +1,21 @@
 <mat-card>
-  <mat-form-field appearance="outline" floatLabel="always">
-      <mat-label>Please input some text</mat-label>
-      <textarea matInput [(ngModel)]="formInput" ></textarea>
-  </mat-form-field>
-  <button (click)="saveInfo()">Save</button>
+  <form (submit)="saveForm(postForm)" #postForm="ngForm">
+    <mat-form-field 
+      appearance="outline" 
+      floatLabel="always">
+        <mat-label>Please input some text</mat-label>
+        <textarea 
+          matInput 
+          name="ourInput"
+          ngModel
+          required
+          minlength="3"
+          #ourInput="ngModel"></textarea>
+          <!-- #ourInput="ngModel us to pass the input to mat-error to check if it's invalid -->
+          <!-- Error message html, for if something is wrong -->
+          <mat-error *ngIf="ourInput.invalid">Please enter a valid post.</mat-error>
+    </mat-form-field>
+    <button 
+      type="submit">Save</button>
+  </form>
 </mat-card>
