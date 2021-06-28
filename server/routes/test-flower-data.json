@@ -1,0 +1,14 @@
+{
+    "flowers": [
+        {
+            "name":"petunia",
+            "commonness":"common",
+            "prettiness":"very pretty"
+        },
+        {
+            "name":"orchid",
+            "commonness":"less common",
+            "prettiness":"yes"
+        }
+    ]
+}
