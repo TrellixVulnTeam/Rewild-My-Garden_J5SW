@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server",
-    "dev": "nodemon server",
+    "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -33,7 +33,6 @@
     "install": "^0.13.0",
     "moment": "^2.29.1",
     "mongoose": "^5.12.15",
-    "nodemon": "^2.0.7",
     "npm": "^7.17.0",
     "rrweb": "^0.9.14",
     "rxjs": "~6.6.0",
