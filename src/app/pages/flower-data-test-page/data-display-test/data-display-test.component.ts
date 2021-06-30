@@ -7,10 +7,9 @@ import { DataService } from '../../../data.service';
   styleUrls: ['./data-display-test.component.scss']
 })
 export class DataDisplayTestComponent implements OnInit {
-public flowerName = '';
-public flowerCommonness = '';
-public flowerAttractiveness = '';
-flowers: any = [];
+public flowerOne = {name: 'noName', commonness: 'noCommon', prettiness: 'noPretty'};
+// var ourData;
+public string = 'placeholder';
 
 constructor(private dataService: DataService) { }
 
@@ -21,13 +20,20 @@ ngOnInit() {
 retrieveData() {
   this.dataService.getAll().subscribe(
       data => {
-        this.flowers = data;
-        this.flowerName = this.flowers.name;
-        this.flowerCommonness = this.flowers.commonness;
-        this.flowerAttractiveness = this.flowers.prettiness;
+          this.string = getStringData(data);
       },
       error => {
         console.log(error);
       });
 }
+}
+
+var getStringData = function(obj: Object){
+  var tempString = '';
+  let prop: keyof Object;
+  for(prop in obj) {
+      tempString += prop + ':  ' + obj[prop];
+      tempString += "\n";
+}
+return tempString
 }

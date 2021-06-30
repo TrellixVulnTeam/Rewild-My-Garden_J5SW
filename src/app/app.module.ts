@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -28,27 +28,6 @@ import { MatModule } from './materials.module';
 @NgModule({
   imports: [
     MatModule,
-    RouterModule.forRoot([
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path: 'account',
-        component: AccountInfoComponent
-      },
-      {
-        path: 'form-page',
-        component: FormInputOutputComponent
-      },
-      {
-        path: 'data-page',
-        component: DataDisplayTestComponent
-      },
-      {
-        path: '**',
-        component: NotFoundComponent
-      }]),
     BrowserModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -56,7 +35,8 @@ import { MatModule } from './materials.module';
     CommonModule,
     FlexLayoutModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   declarations: [
     HomeComponent,
@@ -69,11 +49,11 @@ import { MatModule } from './materials.module';
     TextOutputComponent,
     DataDisplayTestComponent,
     NotFoundComponent,
-    FormInputOutputComponent
+    FormInputOutputComponent,
+    AccountInfoComponent
     ],
   // "providers" is used for services
   providers: [
-    HomeComponent,
     DataService
   ],
   bootstrap: [

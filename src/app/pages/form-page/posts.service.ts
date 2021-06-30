@@ -10,7 +10,7 @@ export class PostsService{
     private postsUpdated = new Subject<Post[]>();
 
     getPost(){
-        // This sytax allows us to remove the elements from posts and add them 
+        // This syntax allows us to remove the elements from posts and add them 
         // to a new array- we are not sending the array itself
         // We need the concept of 'observables' in conjunction with this, because
         // when create the copy of the array, we would naturally copy the 'original' array-
