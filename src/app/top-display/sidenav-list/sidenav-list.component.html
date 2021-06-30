@@ -2,10 +2,10 @@
     <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
         <mat-icon color="primary" >home</mat-icon> <span class="nav-caption">Home</span>
     </a>
-    <a mat-list-item routerLink="/owner" (click)="onSidenavClose()">
-        <mat-icon color="primary">filter_vintage</mat-icon> <span class="nav-caption">About</span>   
+    <a mat-list-item routerLink="/data-page" (click)="onSidenavClose()">
+        <mat-icon color="primary">filter_vintage</mat-icon> <span class="nav-caption">Data</span>   
     </a>
-    <a mat-list-item routerLink="#" (click)="onSidenavClose()">
+    <a mat-list-item routerLink="/account" (click)="onSidenavClose()">
         <mat-icon color="primary">perm_identity</mat-icon><span class="nav-caption">Account</span>
     </a>
     <mat-list-item [matMenuTriggerFor]="menu">
@@ -13,7 +13,7 @@
         <a matline>Example</a>
     </mat-list-item>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="onSidenavClose()">Extra Thing!</button>
+      <button mat-menu-item routerLink="/form-page" (click)="onSidenavClose()">Form Page</button>
       <button mat-menu-item (click)="onSidenavClose()">Another Extra!</button>
     </mat-menu>
 </mat-nav-list>
