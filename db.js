@@ -1,7 +1,3 @@
-// //??????
-// const dotenv = require("dotenv")
-// dotenv.config();
-
 //This file is used to establish our database
 
 const mongoose = require('mongoose');
@@ -30,9 +26,4 @@ mongoose.connect(url, options).then(function () {
     console.log(err);
   });
 
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
-//    console.log('MongoDB connected!');
-//   // we're connected!
-// });
+
