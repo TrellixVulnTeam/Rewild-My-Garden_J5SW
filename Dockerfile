@@ -1,5 +1,5 @@
 # We use the official image as a parent image.
-FROM node:10-alpine
+FROM node:14-alpine
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
@@ -16,6 +16,13 @@ USER node
 RUN npm install
 
 COPY --chown=node:node . .
+
+#building website
+#RUN ./node_modules/.bin/ng build
+
+#RUN wget -O wait-for.sh https://raw.githubusercontent.com/eficode/wait-for/master/wait-for
+
+#RUN chmod +x wait-for.sh
 
 # Add metadata to the image to describe which port the container is listening on at runtime.
 EXPOSE 3000
