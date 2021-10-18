@@ -3,17 +3,23 @@
         <mat-icon color="primary" >home</mat-icon> <span class="nav-caption">Home</span>
     </a>
     <a mat-list-item routerLink="/data-page" (click)="onSidenavClose()">
-        <mat-icon color="primary">filter_vintage</mat-icon> <span class="nav-caption">Data</span>   
+        <mat-icon color="primary">filter_vintage</mat-icon> <span class="nav-caption">About</span>   
+    </a>
+    <a mat-list-item routerLink="/form-page" (click)="onSidenavClose()">
+        <mat-icon color="primary">filter_vintage</mat-icon> <span class="nav-caption">Rate My Garden</span>   
+    </a>
+    <a mat-list-item routerLink="/form-page" (click)="onSidenavClose()">
+        <mat-icon color="primary">filter_vintage</mat-icon> <span class="nav-caption">Begin Rewilding</span>   
     </a>
     <a mat-list-item routerLink="/account" (click)="onSidenavClose()">
         <mat-icon color="primary">perm_identity</mat-icon><span class="nav-caption">Account</span>
     </a>
-    <mat-list-item [matMenuTriggerFor]="menu">
+    <!-- <mat-list-item [matMenuTriggerFor]="menu">
         <mat-icon color="primary" >unfold_more</mat-icon>
         <a matline>Example</a>
     </mat-list-item>
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/form-page" (click)="onSidenavClose()">Form Page</button>
       <button mat-menu-item (click)="onSidenavClose()">Another Extra!</button>
-    </mat-menu>
+    </mat-menu> -->
 </mat-nav-list>
