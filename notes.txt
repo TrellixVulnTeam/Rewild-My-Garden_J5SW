@@ -1,2 +1,0 @@
-- improve the look of tabs on mobile if they're kept
-- using forms allows you to easily add navigation

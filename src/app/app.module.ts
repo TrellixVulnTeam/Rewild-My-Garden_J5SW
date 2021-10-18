@@ -13,13 +13,12 @@ import { HomeComponent } from './pages/home-page/home/home.component';
 import { NotFoundComponent } from './pages/not-found-page/not-found/not-found.component';
 import { AccountInfoComponent } from './pages/account-page/account-info/account-info.component';
 import { FormInputOutputComponent } from './pages/form-page/form-input-output/form-input-output.component';
-import { TopBarComponent } from './top-display/top-bar/top-bar.component';
 import { LayoutComponent } from './display/layout/layout.component';
 import { NavigationComponent } from './top-display/navigation/navigation.component';
 import { SidenavListComponent } from './top-display/sidenav-list/sidenav-list.component';
 import { TextBoxComponent } from './pages/form-page/text-box/text-box.component';
 import { TextOutputComponent } from './pages/form-page/text-output/text-output.component';
-import { DataDisplayTestComponent } from './pages/flower-data-test-page/data-display-test/data-display-test.component';
+import { AboutTextComponent } from './pages/about-page/about-text/about-text.component';
 /* Data Service */
 import {DataService} from './data.service';
 /* All material modules we are using */
@@ -41,13 +40,12 @@ import { MatModule } from './materials.module';
   declarations: [
     HomeComponent,
     AppComponent,
-    TopBarComponent,
     LayoutComponent,
     NavigationComponent,
     SidenavListComponent,
     TextBoxComponent,
     TextOutputComponent,
-    DataDisplayTestComponent,
+    AboutTextComponent,
     NotFoundComponent,
     FormInputOutputComponent,
     AccountInfoComponent
