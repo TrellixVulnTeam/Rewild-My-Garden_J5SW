@@ -3,6 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+// Within this project:
+// -wide screen is 960px plus (white space either side of central)
+// -medium screen is 600px to 960px (no white space, but still nav bar)
+// -narrow screen is 350px to 600px (side bar comes in)
+// -ultra narrow screen is 350px minus (top bar in smaller)
+
+
    /* Global Styles */
 
 * {
@@ -18,16 +25,9 @@
   }
 
   /* Text */
-  
   .Subheader{
     font-family: 'Playfair Display', serif;
     font-size: 30px;
-  }
-
-  @media screen and (min-width: 601px) {
-    .Subheader {
-      font-size: 30px;
-    }
   }
   
   /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */

@@ -7,7 +7,13 @@
 .navigation-text{
     color: black;
     font-size: 17px;
-    // vertical-align: middle; 
+}
+
+// If the screen size is 600px wide or less, make the nav test smaller
+@media screen and (max-width: 960px) {
+    .navigation-text{
+        font-size: 15px;
+    }
 }
 
 .login-text{
@@ -17,23 +23,26 @@
     padding-top: 10px;
 }
 
+// Determines the size of main image top left
 .toolbar-image{
     padding-left: 10px;
-    // vertical-align: middle; 
     width: 600px;
     max-width: 98%;
 }
 
+// Determines the height of main navigation row
 .menu-row{
     height: 100px;
 }
 
-.login-row{
-    height: 22px;
-}
-
-@media(max-width: 959px){
-    mat-toolbar{
-        border-radius: 0px;
+// If the screen size is 350px wide or less, make the top bar less tall
+@media screen and (max-width: 350px) {
+    .menu-row {
+        height: 60px;
     }
+  }
+
+// Determines the height of 'log in' row
+.login-row{
+    height: 26px;
 }

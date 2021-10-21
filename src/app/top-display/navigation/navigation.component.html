@@ -1,6 +1,7 @@
 <mat-toolbar color="accent">
 
-    <mat-toolbar-row class="login-row">
+    <!-- fxHide.xs means 'hide if screen width is xs', i.e. on mobile -->
+    <mat-toolbar-row class="login-row" fxHide.xs>
         <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
             <a class="login-text" routerLink="/account">Log in</a>
         </div>
@@ -16,12 +17,12 @@
             </a>
         </div>
         <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-            <ul fxLayout fxLayoutGap="18px" class="navigation-items">
+            <ul fxLayout fxLayoutGap="23px" class="navigation-items">
                 <li>
-                    <a class="navigation-text" routerLink="/form-page">Rate My Garden</a>
+                    <a class="navigation-text" routerLink="/wildlife-advice-page">Make My Garden Wild</a>
                 </li>
                 <li>
-                    <a class="navigation-text" routerLink="/form-page">Begin Rewilding</a>
+                    <a class="navigation-text" routerLink="/form-page">Rate My Garden</a>
                 </li>
                 <li>
                     <a class="navigation-text" routerLink="/about-page">About</a>

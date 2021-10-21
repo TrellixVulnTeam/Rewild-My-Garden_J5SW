@@ -19,6 +19,7 @@ import { SidenavListComponent } from './top-display/sidenav-list/sidenav-list.co
 import { TextBoxComponent } from './pages/form-page/text-box/text-box.component';
 import { TextOutputComponent } from './pages/form-page/text-output/text-output.component';
 import { AboutTextComponent } from './pages/about-page/about-text/about-text.component';
+import { WildlifeAdviceComponent } from './pages/wildlife-advice-page/wildlife-advice/wildlife-advice.component';
 /* Data Service */
 import {DataService} from './data.service';
 /* All material modules we are using */
@@ -48,7 +49,8 @@ import { MatModule } from './materials.module';
     AboutTextComponent,
     NotFoundComponent,
     FormInputOutputComponent,
-    AccountInfoComponent
+    AccountInfoComponent,
+    WildlifeAdviceComponent
     ],
   // "providers" is used for services
   providers: [
