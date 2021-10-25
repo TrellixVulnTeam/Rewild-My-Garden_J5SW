@@ -19,7 +19,7 @@ export class TextBoxComponent implements OnInit {
     if(form.invalid){
       return;
     }
-    //A post can be composed of the results from mutliple text bozes!
+    //A post can be composed of the results from mutliple text boxes!
     this.postsService.addPost(form.value.ourInput);
     form.resetForm();
   }

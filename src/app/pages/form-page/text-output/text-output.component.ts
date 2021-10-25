@@ -28,7 +28,7 @@ export class TextOutputComponent implements OnInit, OnDestroy {
   //    }
   constructor(public postsService: PostsService){}
 
-  // This function is automatically executed by agular when this compenent is created
+  // This function is automatically executed by angular when this compenent is created
   // It is where you should do basic initialisation tasks
   ngOnInit() {
     this.posts = this.postsService.getPost();

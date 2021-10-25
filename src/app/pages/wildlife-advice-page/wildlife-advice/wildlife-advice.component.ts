@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../data.service';
+import { PlantData } from '../../../plantdata.model';  
 
 @Component({
   selector: 'app-wildlife-advice',
@@ -8,48 +9,28 @@ import { DataService } from '../../../data.service';
 })
 export class WildlifeAdviceComponent implements OnInit {
 
-
-  // public gardenData = { Name: 'Latin Name',
-// CommonName: 'Common Name',
-// Habit: 'Habit',
-// Height: 'Height',
-// Hardiness: 'Hardiness',
-// Growth: 'Growth',
-// Soil: 'Soil',
-// Shade: 'Shade',
-// Moisture: 'Moisture',
-// PH: 'PH',
-// FloweringStart: 'Flowering Start',
-// FloweringEnd: 'Flowering End',
-// Edible: 'Edible',
-// Medicinal: 'Medicinal',
-// Other: 'Other'}; 
-
 public string = 'placeholder';
+public plantData: PlantData[] = [];
 
 constructor(private dataService: DataService) { }
 
+// When this class is instantiated, the data is retrieved
 ngOnInit() {
   this.retrieveData();
 }
 
+// This gets the data from dataservice and calls our stringify method or an error
 retrieveData() {
-  this.dataService.getAll().subscribe(
-      data => {
-          this.string = getStringData(data);
-      },
-      error => {
-        console.log(error);
-      });
-}
+  this.plantData = this.dataService.getAll();
 }
 
-var getStringData = function(obj: Object){
-  var tempString = '';
-  let prop: keyof Object;
-  for(prop in obj) {
-      tempString += prop + ':  ' + obj[prop];
-      tempString += "\n";
-}
-return tempString
+// This turns the data into a nice string object for display
+// var getStringData = function(obj: Object){
+//   var tempString = '';
+//   let prop: keyof Object;
+//   for(prop in obj) {
+//       tempString += prop + ':  ' + obj[prop];
+//       tempString += "\n";
+// }
+// return tempString
 }
