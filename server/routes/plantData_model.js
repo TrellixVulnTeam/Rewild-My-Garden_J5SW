@@ -5,8 +5,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var plantDataSchema = new Schema({
-        id: { type: String },     
-        Latin_Name: { type: String }, 
+        _id: mongoose.Schema.Types.ObjectId,
+        LatinName: { type: String }, 
         CommonName: { type: String }, 
         Habit: { type: String }, 
         Height: { type: String }, 
@@ -23,4 +23,4 @@ var plantDataSchema = new Schema({
         Other: { type: String }, 
 });
 
-module.exports = mongoose.model('plantData', plantDataSchema );
+module.exports = mongoose.model("plantData", plantDataSchema, "plantData");

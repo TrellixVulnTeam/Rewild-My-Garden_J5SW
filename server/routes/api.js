@@ -1,78 +1,27 @@
-// const express = require('express');
-// const bodyParser = require("body-parser");
-// const mongoose = require('mongoose');  
-// const app = express();
-// const router = express.Router();
-// const gardenDataModel = require('./plantData_model.js');
-
+const bodyParser = require("body-parser");
 const express = require('express');
 const router = express.Router();
+const plantData = require('./plantData_model.js');
 
-const gardenData =
-[
-  {
-    "Latin Name": "Abelia triflora",
-    "Common Name": "Indian Abelia",
-    "Habit": "Shrub",
-    "Height": 3.5,
-    "Hardiness": "5-9",
-    "Growth": "M",
-    "Soil": "LM",
-    "Shade": "SN",
-    "Moisture": "DM",
-    "PH": "NB",
-    "Flowering Start": "6",
-    "Flowering End": "6",
-    "Edible": 0,
-    "Medicinal": 0,
-    "Other": 1
-  },
-  {
-    "Latin Name": "Abelmoschus esculentus",
-    "Common Name": "Okra",
-    "Habit": "Annual",
-    "Height": 1,
-    "Hardiness": "5-11",
-    "Growth": "",
-    "Soil": "LMH",
-    "Shade": "N",
-    "Moisture": "M",
-    "PH": "ANB",
-    "Flowering Start": "7",
-    "Flowering End": "9",
-    "Edible": 4,
-    "Medicinal": 3,
-    "Other": 2
-  }];
+router.use(bodyParser.json());
 
-// app.use(bodyParser.json());
-
-// app.use((req, res, next)=>{
-//   res.setHeader("Access-Control-Allow-Origin", "*");  
-//   res.setHeader(  
-//     "Access-Control-Allow-Headers",  
-//     "Origin, X-Requested-With, Content-Type, Accept"); 
-//   res.setHeader("Access-Control-Allow-Methods",  
-//   "GET, POST, PATCH, DELETE, OPTIONS");  
-//   next();
-// });
-
-/* GET api listing. */
-router.get('/ourPlantData', function (req, res) {
-  res.header("Content-Type",'application/json');
-  res.send(JSON.stringify(gardenData));
-  // res.send(gardenData);
-})
-
-// app.get('/ourPlantData', (req, res, next) =>{  
-//   gardenDataModel.find()  
-//   .then((documents)=>{  
-//     console.log(documents);  
-//     res.status(200).json({  
-//       plantData: documents
-//     });  
+//This didn't work because it inserted a 'documents:' before the array
+// router.get('/plantData', (req, res, next) =>{  
+//   plantData.find()  
+//   .then(function(plantData)=>{  
+//     // res.status(200).json({  
+//     //   documents
+//     // });  
+//     res.send(plantData);
 //   });  
 // });  
+
+//Get all data entries
+router.get('/plantData', function (req, res, next) {
+  plantData.find().then(function(plantData){
+    res.send(plantData);
+  });
+});
 
 module.exports = router;
 

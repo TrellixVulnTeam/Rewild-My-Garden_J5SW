@@ -1,10 +1,13 @@
 <p>We are nice! We like planting plants like:</p>
-<div style="text-align:center" [innerText]="plantData"></div> 
 
-<!-- This gives a response 'undefined' -->
-<div style="text-align:center" [innerText]="plantData[1].Soil"></div> 
-<div *ngFor="let singlePlantData of plantData">
+<!-- <div *ngFor="let singlePlantData of plantData">
     <p class="responses">
-        {{ singlePlantData.Soil }}
+        {{ singlePlantData }}
     <p>
+</div> -->
+
+<div *ngFor="let data of plantData" style="text-align:center">
+    <p>
+       {{ data.Soil }}
+    </p>
 </div>
