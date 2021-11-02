@@ -1,13 +1,8 @@
 <p>We are nice! We like planting plants like:</p>
 
-<!-- <div *ngFor="let singlePlantData of plantData">
-    <p class="responses">
-        {{ singlePlantData }}
+<div *ngFor="let data of minimalTestData" style="text-align:center">
     <p>
-</div> -->
-
-<div *ngFor="let data of plantData" style="text-align:center">
-    <p>
-       {{ data.Soil }}
+        {{ data.LatinName }}
     </p>
+    <img width="200" alt="plantImage" [src]="data.Pathname">
 </div>

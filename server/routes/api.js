@@ -2,24 +2,21 @@ const bodyParser = require("body-parser");
 const express = require('express');
 const router = express.Router();
 const plantData = require('./plantData_model.js');
+const minimalTestData = require('./minimalTestData_model.js');
 
 router.use(bodyParser.json());
 
-//This didn't work because it inserted a 'documents:' before the array
-// router.get('/plantData', (req, res, next) =>{  
-//   plantData.find()  
-//   .then(function(plantData)=>{  
-//     // res.status(200).json({  
-//     //   documents
-//     // });  
-//     res.send(plantData);
-//   });  
-// });  
-
-//Get all data entries
+//Get all data entries for PlantData
 router.get('/plantData', function (req, res, next) {
   plantData.find().then(function(plantData){
     res.send(plantData);
+  });
+});
+
+//Get data entries for PFAF-TestDataMinimal
+router.get('/minimalTestData', function (req, res, next) {
+  minimalTestData.find().then(function(minimalTestData){
+    res.send(minimalTestData);
   });
 });
 
@@ -120,6 +117,17 @@ module.exports = router;
 //   }
 // });
 
+//This didn't work because it inserted a 'documents:' before the array
+// router.get('/plantData', (req, res, next) =>{  
+//   plantData.find()  
+//   .then(function(plantData)=>{  
+//     // res.status(200).json({  
+//     //   documents
+//     // });  
+//     res.send(plantData);
+//   });  
+// });  
+
 
 // A SIMPLER WAY OF GOING ABOUT THIS IS USING EXPRESS HANDLEBARS
 
@@ -131,3 +139,5 @@ module.exports = router;
 // https://www.youtube.com/watch?v=L72fhGm1tfE&ab_channel=TraversyMedia
 
 //You can create a data 'schema'- see https://www.youtube.com/watch?v=vjf774RKrLc&ab_channel=DevEd 23:00
+
+

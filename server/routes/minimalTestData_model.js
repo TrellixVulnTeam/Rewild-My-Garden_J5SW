@@ -1,0 +1,60 @@
+//Require Mongoose
+var mongoose = require('mongoose');
+
+//Define a schema
+var Schema = mongoose.Schema;
+
+var minimalTestDataSchema = new Schema({
+        _id: mongoose.Schema.Types.ObjectId,
+        "LatinName": { type: String },
+        "CommonName": { type: String },
+        "Habit": { type: String },
+        "Height": { type: String },
+        "Hardiness-0": { type: String },
+        "Hardiness-1": { type: String },
+        "Hardiness-2": { type: String },
+        "Hardiness-3": { type: String },
+        "Hardiness-4": { type: String },
+        "Hardiness-5": { type: String },
+        "Hardiness-6": { type: String },
+        "Hardiness-7": { type: String },
+        "Hardiness-8": { type: String },
+        "Hardiness-9": { type: String },
+        "Hardiness-10": { type: String },
+        "Hardiness-11": { type: String },
+        "Hardiness-12": { type: String },
+        "Growth": { type: String },
+        "Soil-Light": { type: String },
+        "Soil-Medium": { type: String },
+        "Soil-Heavy": { type: String },
+        "Shade-Full": { type: String },
+        "Shade-Semi": { type: String },
+        "Shade-None": { type: String },
+        "Moisture-Dry": { type: String },
+        "Moisture-Moist": { type: String },
+        "Moisture-Wet": { type: String },
+        "Moisture-Water": { type: String },
+        "PH-Acid": { type: String },
+        "PH-Neutral": { type: String },
+        "PH-Basic-Alkaline": { type: String },
+        "Flowering-Jan": { type: String },
+        "Flowering-Feb": { type: String },
+        "Flowering-March": { type: String },
+        "Flowering-April": { type: String },
+        "Flowering-May": { type: String },
+        "Flowering-June": { type: String },
+        "Flowering-July": { type: String },
+        "Flowering-August": { type: String },
+        "Flowering-Sept": { type: String },
+        "Flowering-Oct": { type: String },
+        "Flowering-Nov": { type: String },
+        "Flowering-Dec": { type: String },
+        "Native": { type: String },
+        "Pathname": { type: String },
+        "Name": { type: String },
+        "Username": { type: String },
+        "Copyright": { type: String },
+        "Link": { type: String }
+});
+
+module.exports = mongoose.model("minimalTestData", minimalTestDataSchema, "minimalTestData");
