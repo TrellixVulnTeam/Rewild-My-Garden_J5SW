@@ -3,6 +3,17 @@ const express = require('express');
 const router = express.Router();
 const plantData = require('./plantData_model.js');
 const minimalTestData = require('./minimalTestData_model.js');
+const cors = require("cors");
+
+//Options to stop this API from being accessible by everyone one is live
+//WHEN LIVE CHANGE ORIGIN FROM * TO SITE DOMAIN
+const corsOptions = {
+	origin: "*",
+  methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+router.use(cors(corsOptions));
 
 router.use(bodyParser.json());
 
@@ -18,6 +29,19 @@ router.get('/minimalTestData', function (req, res, next) {
   minimalTestData.find().then(function(minimalTestData){
     res.send(minimalTestData);
   });
+});
+
+//Get filtered entries from PFAF-TestDataMinimal
+router.get('/minimalTestDataFilter', function (req, res, next) {
+  if(typeof req.query.Habit != 'undefined'){
+    minimalTestData.find({ "Habit" : req.query.Habit }).then(function(minimalTestData){
+      res.send(minimalTestData);
+    }); 
+  } else {
+    //Check if this way of throwing errors properly works
+    const error = new createHttpError.BadRequest(`Invalid filter parameter`);
+    return next(error);
+  }
 });
 
 module.exports = router;

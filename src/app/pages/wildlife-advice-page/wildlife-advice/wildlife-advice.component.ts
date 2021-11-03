@@ -17,7 +17,9 @@ public minimalTestData: MinimalTestData[] = [];
 
   // This pulls data from our ourPlantData api page
   // private REST_API_SERVER = "http://localhost:3000/api/plantData";
-  private REST_API_SERVER = "http://localhost:3000/api/minimalTestData";
+  // private REST_API_SERVER = "http://localhost:3000/api/minimalTestData";
+  private REST_API_SERVER = "http://localhost:3000/api/minimalTestDataFilter?Habit=Shrub";
+
 
   constructor(private httpClient: HttpClient) { 
   }

@@ -1,10 +1,9 @@
-<p>We are nice! We like planting plants like:</p>
-
-<div *ngFor="let data of minimalTestData" style="text-align:center">
-    <p>
-        {{ data.LatinName }}
-    </p>
-    <div class="crop">
+<p class='Subheader'>Plant recommendations:</p>
+<div *ngFor="let data of minimalTestData" class="grid">
+    <div class="grid-item">
+        <p>
+           {{ data.LatinName }}
+        </p>
         <img alt="plantImage" [src]="data.Pathname">
     </div>
 </div>
