@@ -1,8 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require('express');
 const router = express.Router();
-const plantData = require('./plantData_model.js');
-const minimalTestData = require('./minimalTestData_model.js');
+const noSpaceMinimalTestData = require('./noSpaceMinimalTestData_model.js');
 const cors = require("cors");
 
 //Options to stop this API from being accessible by everyone one is live
@@ -14,35 +13,26 @@ const corsOptions = {
 };
 
 router.use(cors(corsOptions));
-
 router.use(bodyParser.json());
 
-//Get all data entries for PlantData
-router.get('/plantData', function (req, res, next) {
-  plantData.find().then(function(plantData){
-    res.send(plantData);
-  });
-});
-
-//Get data entries for PFAF-TestDataMinimal
-router.get('/minimalTestData', function (req, res, next) {
-  minimalTestData.find().then(function(minimalTestData){
-    res.send(minimalTestData);
-  });
-});
-
-//Get filtered entries from PFAF-TestDataMinimal
+// Get filtered entries from PFAF-TestDataMinimal
 router.get('/minimalTestDataFilter', function (req, res, next) {
-  if(typeof req.query.Habit != 'undefined'){
-    minimalTestData.find({ "Habit" : req.query.Habit }).then(function(minimalTestData){
-      res.send(minimalTestData);
+  //We are relying on the fact that all requests will be emitted by the front end, and therefore shouldn't
+  //need parsing. However, providing some checking might be worth thinking about?
+  //Because the column we're querying changes, the name of the column is also part of the request
+    noSpaceMinimalTestData.find({"Habit" : req.query.Habit, 
+                  [req.query.SoilQueryType] : req.query.Soil, 
+                  [req.query.ShadeQueryType] : req.query.Shade, 
+                  [req.query.PHQueryType] : req.query.PH, 
+                  [req.query.FloweringQueryType] : req.query.Flowering}).then(function(result, err){
+      if(result){
+        res.send(result);
+      }
+      if(err){
+        console.log(err);
+      }
     }); 
-  } else {
-    //Check if this way of throwing errors properly works
-    const error = new createHttpError.BadRequest(`Invalid filter parameter`);
-    return next(error);
-  }
-});
+  });
 
 module.exports = router;
 
