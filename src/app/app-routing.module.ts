@@ -5,7 +5,7 @@ import { NotFoundComponent } from './pages/not-found-page/not-found/not-found.co
 import { AccountInfoComponent } from './pages/account-page/account-info/account-info.component';
 import { FormInputOutputComponent } from './pages/form-page/form-input-output/form-input-output.component';
 import { AboutTextComponent } from './pages/about-page/about-text/about-text.component';
-import { WildlifeAdviceComponent } from './pages/wildlife-advice-page/wildlife-advice/wildlife-advice.component';
+import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-layout/wildlife-layout.component';
 
 const routes: Routes = [
         { 
@@ -30,7 +30,7 @@ const routes: Routes = [
         },
         {
           path: 'wildlife-advice-page',
-          component: WildlifeAdviceComponent
+          component: WildlifeLayoutComponent
         },
         {
           path: '**',

@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../data.service';
-import { PlantData } from '../../../plantdata.model';  
-import { MinimalTestData } from '../../../minimalTestData.model';  
 import { NoSpaceMinimalTestData } from '../../../noSpaceMinimalTestData.model'; 
-import { map, filter, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -12,10 +8,31 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./wildlife-advice.component.scss']
 })
 export class WildlifeAdviceComponent implements OnInit {
-public noSpaceMinimalTestData: NoSpaceMinimalTestData[] = [];
 
-  // This pulls data from our ourPlantData api page
-  private REST_API_SERVER = "http://localhost:3000/api/minimalTestDataFilter?Habit=Shrub&SoilQueryType=Hardiness6&Soil=Y&ShadeQueryType=SoilLight&Shade=Y&PHQueryType=PHNeutral&PH=Y&FloweringQueryType=FloweringMay&Flowering=N";
+  public noSpaceMinimalTestData: NoSpaceMinimalTestData[] = [];
+  //These variables are set so that we can query our api and filter data according to users' specifications
+  private reqHabit = "Shrub";
+  private reqSoilQueryType = "Hardiness6";
+  private reqSoil = "Y";
+  private reqShadeQueryType = "SoilLight";
+  private reqShade = "Y";
+  private reqPHQueryType = "PHNeutral";
+  private reqPH = "Y";
+  private reqFloweringQueryType = "FloweringMay";
+  private reqFlowering = "N";
+
+  // This pulls data from our minimalTestDataFilter api page
+  private REST_API_SERVER = 
+  "http://localhost:3000/api/minimalTestDataFilter?" + 
+  "Habit=" + this.reqHabit + 
+  "&SoilQueryType=" + this.reqSoilQueryType + 
+  "&Soil=" + this.reqSoil +
+  "&ShadeQueryType=" + this.reqShadeQueryType +
+  "&Shade=" + this.reqShade +
+  "&PHQueryType=" + this.reqPHQueryType +
+  "&PH=" + this.reqPH + 
+  "&FloweringQueryType=" + this.reqFloweringQueryType +
+  "&Flowering=" + this.reqFlowering;
 
   constructor(private httpClient: HttpClient) { 
   }
@@ -25,5 +42,5 @@ public noSpaceMinimalTestData: NoSpaceMinimalTestData[] = [];
   this.httpClient.get<any>(this.REST_API_SERVER).subscribe((response)=>{
     this.noSpaceMinimalTestData = response;
   });
-}
+  }
 }

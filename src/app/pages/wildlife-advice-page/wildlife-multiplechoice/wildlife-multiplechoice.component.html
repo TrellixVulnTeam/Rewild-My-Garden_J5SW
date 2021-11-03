@@ -1,0 +1,35 @@
+
+    
+<label id="multiplechoice-label">What soil type do you have?</label>
+<!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
+<mat-radio-group aria-labelledby="soil-question" class="radio-question" [(ngModel)]="chosenSoilType">
+  <mat-radio-button class="radio-button" *ngFor="let soilType of soilTypes" [value]="soilType">
+    {{soilType}}
+  </mat-radio-button>
+</mat-radio-group>
+<div>Your choice is: {{chosenSoilType}}</div>
+
+<br>
+
+<label id="multiplechoice-label">What soil PH do you have?</label>
+<!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
+<mat-radio-group aria-labelledby="PH-question" class="radio-question" [(ngModel)]="chosenPHType">
+  <mat-radio-button class="radio-button" *ngFor="let PHType of PHTypes" [value]="PHType">
+    {{PHType}}
+  </mat-radio-button>
+</mat-radio-group>
+<div>Your choice is: {{chosenPHType}}</div>
+
+<br>
+
+<label id="multiplechoice-label">How shady is your garden?</label>
+<!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
+<mat-radio-group aria-labelledby="shade-question" class="radio-question" [(ngModel)]="chosenShadeType">
+  <mat-radio-button class="radio-button" *ngFor="let shadeType of shadeTypes" [value]="shadeType">
+    {{shadeType}}
+  </mat-radio-button>
+</mat-radio-group>
+<div>Your choice is: {{chosenShadeType}}</div>
+
+<br>
+

@@ -24,6 +24,8 @@ import { WildlifeAdviceComponent } from './pages/wildlife-advice-page/wildlife-a
 import {DataService} from './data.service';
 /* All material modules we are using */
 import { MatModule } from './materials.module';
+import { WildlifeMultiplechoiceComponent } from './pages/wildlife-advice-page/wildlife-multiplechoice/wildlife-multiplechoice.component';
+import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-layout/wildlife-layout.component';
 
 @NgModule({
   imports: [
@@ -50,7 +52,9 @@ import { MatModule } from './materials.module';
     NotFoundComponent,
     FormInputOutputComponent,
     AccountInfoComponent,
-    WildlifeAdviceComponent
+    WildlifeAdviceComponent,
+    WildlifeMultiplechoiceComponent,
+    WildlifeLayoutComponent
     ],
   // "providers" is used for services
   providers: [
