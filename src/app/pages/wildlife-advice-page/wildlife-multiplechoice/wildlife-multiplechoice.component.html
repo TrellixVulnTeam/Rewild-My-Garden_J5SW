@@ -1,5 +1,5 @@
+<div class="MC-question-container">
 
-    
 <label id="multiplechoice-label">What soil type do you have?</label>
 <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
 <mat-radio-group aria-labelledby="soil-question" class="radio-question" [(ngModel)]="chosenSoilType">
@@ -31,8 +31,10 @@
 
 <br>
 
-<button (click)="saveForm()">Save</button>
+<button mat-stroked-button color="primary" (click)="saveForm()">Save</button>
 <p id="errMessage"></p>
 
 <br>
+
+</div>
 

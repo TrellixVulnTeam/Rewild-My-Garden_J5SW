@@ -1,8 +1,13 @@
 <div *ngFor="let data of noSpaceMinimalTestData" class="grid">
-    <div class="grid-item">
-        <p>
+    <mat-card class="grid-item">
+
+        <p class= "plantName">
            {{ data.LatinName }}
         </p>
-        <img alt="plantImage" [src]="data.Pathname">
-    </div>
+
+        <div class="imageDiv">
+            <img alt="plantImage" [src]="data.Pathname">
+        </div>
+        
+    </mat-card>
 </div>

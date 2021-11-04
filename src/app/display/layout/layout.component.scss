@@ -1,8 +1,20 @@
-.layout-wrapper{
-    height: 100%;
-    color: white;
+.blockForHeader{
+    height: 120px;
 }
+
+// If the screen size is 350px wide or less, make the top bar less tall
+@media screen and (max-width: 350px) {
+    .blockForHeader {
+        height: 60px;
+    }
+  }
 
 .flex-wrapper{
     height: 100%;
+    //setting colour of central square
+    background-color: rgb(234, 243, 236);
+    //central square is minimum 550px high
+    min-height: 600px;
+    //rounding corners of square
+    border-radius: 10px;
 }

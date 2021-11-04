@@ -3,6 +3,12 @@
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     height: 100%;
 }
+
+//This unsets the backgroun color put there by the sidenav
+mat-sidenav-container{
+    background-color: white;
+}
+
 mat-sidenav {
     width: 250px;
 }

@@ -1,20 +1,18 @@
-<!--Commented out as we no longer want top header in basic layout-->
-<!-- <app-top-bar></app-top-bar> -->
-
-<app-layout>
   <mat-sidenav-container>
     <mat-sidenav #sidenav role="navigation">
       <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
     </mat-sidenav>
-    <mat-sidenav-content >
+    <mat-sidenav-content>
       <app-navigation (sidenavToggle)="sidenav.toggle()"></app-navigation>
-      <main >
-        <!-- The component associated with the current route will be rendered here -->
-        <router-outlet></router-outlet>
-      </main>
+      <app-layout>
+        <main>
+          <!-- The component associated with the current route will be rendered here -->
+          <router-outlet></router-outlet>
+        </main>
+      </app-layout>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</app-layout>
+
 
 
 
