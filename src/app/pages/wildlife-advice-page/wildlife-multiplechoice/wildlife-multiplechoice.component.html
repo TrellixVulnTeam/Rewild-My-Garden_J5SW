@@ -7,7 +7,6 @@
     {{soilType}}
   </mat-radio-button>
 </mat-radio-group>
-<div>Your choice is: {{chosenSoilType}}</div>
 
 <br>
 
@@ -18,7 +17,6 @@
     {{PHType}}
   </mat-radio-button>
 </mat-radio-group>
-<div>Your choice is: {{chosenPHType}}</div>
 
 <br>
 
@@ -29,7 +27,12 @@
     {{shadeType}}
   </mat-radio-button>
 </mat-radio-group>
-<div>Your choice is: {{chosenShadeType}}</div>
+<!-- <div>Your choice is: {{chosenShadeType}}</div> -->
+
+<br>
+
+<button (click)="saveForm()">Save</button>
+<p id="errMessage"></p>
 
 <br>
 

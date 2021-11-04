@@ -6,17 +6,34 @@ import { WildlifeAnswers } from '../wildlife-answers.service';
   templateUrl: './wildlife-multiplechoice.component.html',
   styleUrls: ['./wildlife-multiplechoice.component.scss']
 })
+
 export class WildlifeMultiplechoiceComponent implements OnInit {
-  chosenSoilType: string = "";
-  soilTypes: string[] = ['Light Soil', 'Medium Heavy Soil', 'Heavy Clay Soil'];
-  chosenPHType: string = "";
-  PHTypes: string[] = ['Acid', 'Neutral', 'Alkaline'];
-  chosenShadeType: string = "";
-  shadeTypes: string[] = ['Bright, not shady', 'Semi-shady', 'Full shade'];
+  chosenSoilType: String = "";
+  soilTypes: String[] = ['SoilLight', 'SoilMedium', 'SoilHeavy'];
+  chosenPHType: String = "";
+  PHTypes: String[] = ['PHAcid', 'PHNeutral', 'PHBasicAlkaline'];
+  chosenShadeType: String = "";
+  shadeTypes: String[] = ['ShadeNone', 'ShadeSemi', 'ShadeFull'];
+
+  errMessage: String = "";
+
+  constructor(public wildlifeAnswersService: WildlifeAnswers) { }
 
   //Create 'multiple choice answers object' and send that to wildlife answers service
+  async saveForm(){
+    if(this.chosenSoilType == "" || this.chosenPHType == "" || this.chosenShadeType == ""){
+      //If unsuccessful, set error message, do not send data
+      document.getElementById('errMessage')!.innerHTML = "Please answer all questions to get your result!";
+      return;
+    }
+    else{
+      //If successful, clear error message
+      document.getElementById("errMessage")!.innerHTML = "";
+      //A response is composed of the results from mutliple tick boxes!
+      this.wildlifeAnswersService.addAnswerSet(this.chosenSoilType, this.chosenPHType, this.chosenShadeType);
+    }
+  }
 
-  constructor() { }
   ngOnInit(): void {
   }
 }

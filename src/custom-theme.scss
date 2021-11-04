@@ -52,9 +52,19 @@ $my-tabs-theme: mat.define-light-theme((
  )
 ));
 
+//I wanted the radio accents to be green rather than white, so this is my lazy temporary
+//fix for that - see @include mat.radio-theme($my-radio-theme), which uses this theme
+$my-radio-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-primary,
+ )
+));
+
 @include mat.tabs-theme($my-tabs-theme);
 @include mat.toolbar-theme($my-tabs-theme);
 @include mat.icon-theme($my-tabs-theme);
 @include mat.sidenav-theme($my-tabs-theme);
 @include mat.button-theme($my-tabs-theme);
+@include mat.radio-theme($my-radio-theme);
 

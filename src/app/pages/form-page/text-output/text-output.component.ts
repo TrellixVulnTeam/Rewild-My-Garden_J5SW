@@ -13,11 +13,7 @@ export class TextOutputComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   //The subscription object is used to manage the subscription- when we have multiple pages
   // &c, we want to make sure that we're not holding data when we're not putting anything
-  // on the DOM, as otherwise this could cause a memeory leak. This is when Subscription
-  // helps manage
-  //The subscription object is used to manage the subscription- when we have multiple pages
-  // &c, we want to make sure that we're not holding data when we're not putting anything
-  // on the DOM, as otherwise this could cause a memeory leak. This is when Subscription
+  // on the DOM, as otherwise this could cause a memory leak. This is when Subscription
   // helps manage
   private postsSub: Subscription = new Subscription;
 
