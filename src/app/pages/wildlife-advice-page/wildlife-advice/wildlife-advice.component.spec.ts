@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WildlifeAdviceComponent } from './wildlife-advice.component';
 
 describe('WildlifeAdviceComponent', () => {
@@ -8,7 +8,8 @@ describe('WildlifeAdviceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WildlifeAdviceComponent ]
+      declarations: [ WildlifeAdviceComponent ],
+      imports: [NgbModule]
     })
     .compileComponents();
   });

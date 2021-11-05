@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 /* Our Components */
 import { HomeComponent } from './pages/home-page/home/home.component';
 import { NotFoundComponent } from './pages/not-found-page/not-found/not-found.component';
@@ -38,7 +39,8 @@ import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-l
     FlexLayoutModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule, 
+    NgbModule
   ],
   declarations: [
     HomeComponent,

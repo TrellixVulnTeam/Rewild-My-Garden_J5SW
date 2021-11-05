@@ -1,30 +1,23 @@
 .grid { 
     display: inline-grid;
-    // align-content: space-evenly;
-    // justify-content: center;
+    padding: 3px;
 }
 
-.grid-item{
-    width: 180px;
+.card{
+    width: 160px;
     height: 220px;
-    position: relative;
-    padding: 10px;
-}
-
-//This being used to push the image to the bottom of their cell of the grid
-.imageDiv{
-    position: absolute; 
-    bottom: 0;
+    // position: relative;
 }
 
 //This sets image size + centers the image within the element. Object-fit stops the image stretching
-.grid img {
+.card img {
     object-fit: none;
     object-position: center; 
-    height: 165px;
-    width: 165px;
+    height: 160px;
+    width: 160px;
 }
 
-.plantName{
+.card-title{
     text-align: center;
+    font-size: 10px;
 }
