@@ -21,14 +21,25 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
-  router-outlet + *  {
+  router-outlet {
     padding: 0 16px;
   }
 
-  /* Text */
+  .PageHeader{
+    text-align: center;
+    padding-left: 30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+  }
+
   .Subheader{
     font-family: 'Playfair Display', serif;
     font-size: 30px;
+  }
+
+  .PageBody{
+    padding-top: 30px;
+    padding-left: 30px;
   }
   
   /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */

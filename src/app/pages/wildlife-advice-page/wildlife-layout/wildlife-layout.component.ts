@@ -9,10 +9,13 @@ import { WildlifeAnswers } from '../wildlife-answers.service';
 })
 export class WildlifeLayoutComponent implements OnInit {
 
+  public show: boolean = true;
+
   constructor(public wildlifeAnswersService: WildlifeAnswers) {
-    //here we are subscribing to the listener
+    //When the advice set is produced, create advice Title and hide questions
     this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet[]) => {
       document.getElementById("adviceTitle")!.innerHTML = "Plants Recommended for Your Garden";
+      this.show = false;
     });
   }
 

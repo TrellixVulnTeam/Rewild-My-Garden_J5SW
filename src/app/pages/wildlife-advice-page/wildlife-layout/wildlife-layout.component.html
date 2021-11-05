@@ -1,7 +1,12 @@
-<p class='Subheader'>Advice to Rewild your Garden</p>
+<p class="PageHeader">Make My Garden Wild</p>
 
-<app-wildlife-multiplechoice></app-wildlife-multiplechoice>
+<div class="PageBody">
 
+<!-- Multiple choice is hidden if 'save' is clicked -->
+<app-wildlife-multiplechoice *ngIf="show"></app-wildlife-multiplechoice>
+
+<!-- Subheader and advice grid only appear if 'save' is clicked -->
 <p id="adviceTitle" class="Subheader"></p>
-
 <app-wildlife-advice class="adviceGrid"></app-wildlife-advice>
+
+</div>
