@@ -1,0 +1,36 @@
+.Section{
+    padding-left: 30px;
+    padding-right: 30px;
+    min-height: 470px;
+}
+
+.instagramImage{
+    //This puts a section between the image and text
+    padding-right: 30px;
+    float: left;
+}
+
+.instagramImageRight{
+    //This puts a section between the image and text
+    padding-left: 30px;
+    float: right;
+}
+
+/* If the screen size is 600px wide or less, reduce padding */
+@media screen and (max-width: 600px) {
+    .Section {
+        padding-left: 0px;
+        padding-right: 0px;    
+    }
+
+    .instagramImage{
+        padding-right: 0px;
+        float: right;
+    }
+    
+    .instagramImageRight{
+        padding-left: 0px;
+        float: right;
+    }
+  }
+

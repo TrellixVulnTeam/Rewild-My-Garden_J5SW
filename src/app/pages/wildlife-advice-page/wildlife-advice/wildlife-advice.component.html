@@ -1,12 +1,13 @@
 <div class="gridBlock">
-<mat-grid-list *ngFor="let data of noSpaceMinimalTestData" class="grid">
-    <mat-grid-tile>
+<grid *ngFor="let data of monthsUsed" class="plantGrid">
     <mat-card class="card">
+        <mat-card-content>
+            <p class="BodySubtitle"> {{ data.Title }} </p>
+        </mat-card-content>
         <img mat-card-image alt="plantImage" [src]="data.Pathname" class="card-img-top">
         <mat-card-content>
             <p> {{ data.LatinName }} </p>
         </mat-card-content>
     </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+</grid>
 </div>

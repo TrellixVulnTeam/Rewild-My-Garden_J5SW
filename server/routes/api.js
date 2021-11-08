@@ -1,7 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require('express');
 const router = express.Router();
-const noSpaceMinimalTestData = require('./noSpaceMinimalTestData_model.js');
+const unfinishedPollinatorData = require('./unfinishedPollinatorData_model.js');
 const cors = require("cors");
 
 //Options to stop this API from being accessible by everyone one is live
@@ -20,7 +20,8 @@ router.get('/minimalTestDataFilter', function (req, res, next) {
   //We are relying on the fact that all requests will be emitted by the front end, and therefore shouldn't
   //need parsing. However, providing some checking might be worth thinking about?
   //Because the column we're querying changes, the name of the column is also part of the request
-    noSpaceMinimalTestData.find({"Habit" : req.query.Habit, 
+  //"Habit" is commented out because we ultimately decided to split the database by habit- it therefore isn't useful
+      unfinishedPollinatorData.find({/*"Habit" : req.query.Habit,*/
                   [req.query.SoilQueryType] : req.query.Soil, 
                   [req.query.ShadeQueryType] : req.query.Shade, 
                   [req.query.PHQueryType] : req.query.PH, 

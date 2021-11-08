@@ -10,15 +10,6 @@ export class WildlifeAnswers{
     private ourAnswers: WildlifeAnswerSet[] = [];
     private updatedAnswers = new Subject<WildlifeAnswerSet[]>();
 
-    // getAnswer(){
-    //     // This syntax allows us to remove the elements from posts and add them 
-    //     // to a new array- we are not sending the array itself
-    //     // We need the concept of 'observables' in conjunction with this, because
-    //     // when create the copy of the array, we would naturally copy the 'original' array-
-    //     // i.e the one that is empty
-    //     return [...this.ourAnswers];
-    // }
-
     getAnswerUpdateListener(): Observable<any>{
         return this.updatedAnswers.asObservable();
     }

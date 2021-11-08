@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { MatRadioModule } from '@angular/material/radio';
       MatMenuModule,
       MatInputModule,
       MatCardModule,
-      MatRadioModule
+      MatRadioModule,
+      MatGridListModule
     ],
     exports: [
         MatTabsModule,
@@ -33,7 +35,8 @@ import { MatRadioModule } from '@angular/material/radio';
         MatMenuModule,
         MatInputModule,
         MatCardModule,
-        MatRadioModule
+        MatRadioModule,
+        MatGridListModule
     ]
   })
 

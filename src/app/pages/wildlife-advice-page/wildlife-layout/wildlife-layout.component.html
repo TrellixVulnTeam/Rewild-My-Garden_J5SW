@@ -1,12 +1,11 @@
 <p class="PageHeader">Make My Garden Wild</p>
-
 <div class="PageBody">
+    <!-- Multiple choice is hidden if 'save' is clicked -->
+    <app-wildlife-multiplechoice *ngIf="show"></app-wildlife-multiplechoice>
 
-<!-- Multiple choice is hidden if 'save' is clicked -->
-<app-wildlife-multiplechoice *ngIf="show"></app-wildlife-multiplechoice>
-
-<!-- Subheader and advice grid only appear if 'save' is clicked -->
-<p id="adviceTitle" class="Subheader"></p>
-<app-wildlife-advice class="adviceGrid"></app-wildlife-advice>
+    <!-- Subheader and advice grid only appear if 'save' is clicked -->
+    <p id="adviceTitle" class="Subheader"></p>
+    <p id="adviceText"></p>
+    <app-wildlife-advice class="adviceGrid"></app-wildlife-advice>
 
 </div>

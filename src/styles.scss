@@ -27,7 +27,6 @@
 
   .PageHeader{
     text-align: center;
-    padding-left: 30px;
     font-family: 'Playfair Display', serif;
     font-size: 30px;
   }
@@ -41,11 +40,21 @@
     padding-top: 30px;
     padding-left: 30px;
   }
+
+  .BodySubtitle{
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-style: italic;
+  }
   
   /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
   @media screen and (max-width: 600px) {
     .Subheader {
       font-size: 20px;
+    }
+
+    .PageHeader{
+      font-size: 26px;
     }
   }
 
@@ -62,15 +71,14 @@
     opacity: 0.8;
   }
 
-  /* Side nav*/
-  /* for sidenav to take a whole page */
-  /*  Check this okay?? */
-  html, body { 
-    margin: 0;
+  html {
     height: 100%;
+    margin: 0;
   }
 
-  body { 
+  body {
+    height: 100%;
     margin: 0; 
+    padding: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif; 
   }

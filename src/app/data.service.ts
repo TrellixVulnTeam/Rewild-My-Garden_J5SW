@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { map, filter, switchMap } from 'rxjs/operators';
-import { PlantData } from './plantdata.model';
+// import { PlantData } from './plantdata.model';
 
 @Injectable({providedIn: 'root'})
 export class DataService implements OnInit{
@@ -16,13 +16,13 @@ export class DataService implements OnInit{
   }
 
   ngOnInit() {
-    this.getData();
+    // this.getData();
   }
   
-  getData(){
-    return this.httpClient.get<{plantData: PlantData[]}>(this.REST_API_SERVER).subscribe((res)=>{
-      // this.plantData = res
-      // console.log(this.plantData);
-    })
-  }
+  // getData(){
+  //   // return this.httpClient.get<{plantData: PlantData[]}>(this.REST_API_SERVER).subscribe((res)=>{
+  //     // this.plantData = res
+  //     // console.log(this.plantData);
+  //   })
+  // }
 }

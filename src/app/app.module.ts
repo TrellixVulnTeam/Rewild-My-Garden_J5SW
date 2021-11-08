@@ -12,21 +12,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 /* Our Components */
 import { HomeComponent } from './pages/home-page/home/home.component';
 import { NotFoundComponent } from './pages/not-found-page/not-found/not-found.component';
-import { AccountInfoComponent } from './pages/account-page/account-info/account-info.component';
-import { FormInputOutputComponent } from './pages/form-page/form-input-output/form-input-output.component';
 import { LayoutComponent } from './display/layout/layout.component';
 import { NavigationComponent } from './top-display/navigation/navigation.component';
 import { SidenavListComponent } from './top-display/sidenav-list/sidenav-list.component';
-import { TextBoxComponent } from './pages/form-page/text-box/text-box.component';
-import { TextOutputComponent } from './pages/form-page/text-output/text-output.component';
 import { AboutTextComponent } from './pages/about-page/about-text/about-text.component';
 import { WildlifeAdviceComponent } from './pages/wildlife-advice-page/wildlife-advice/wildlife-advice.component';
+import { WildlifeMultiplechoiceComponent } from './pages/wildlife-advice-page/wildlife-multiplechoice/wildlife-multiplechoice.component';
+import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-layout/wildlife-layout.component';
+import { ExampleGardensBodyComponent } from './pages/example-gardens-page/example-gardens-body/example-gardens-body.component';
 /* Data Service */
 import {DataService} from './data.service';
 /* All material modules we are using */
 import { MatModule } from './materials.module';
-import { WildlifeMultiplechoiceComponent } from './pages/wildlife-advice-page/wildlife-multiplechoice/wildlife-multiplechoice.component';
-import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-layout/wildlife-layout.component';
 
 @NgModule({
   imports: [
@@ -48,15 +45,12 @@ import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-l
     LayoutComponent,
     NavigationComponent,
     SidenavListComponent,
-    TextBoxComponent,
-    TextOutputComponent,
     AboutTextComponent,
     NotFoundComponent,
-    FormInputOutputComponent,
-    AccountInfoComponent,
     WildlifeAdviceComponent,
     WildlifeMultiplechoiceComponent,
-    WildlifeLayoutComponent
+    WildlifeLayoutComponent,
+    ExampleGardensBodyComponent
     ],
   // "providers" is used for services
   providers: [

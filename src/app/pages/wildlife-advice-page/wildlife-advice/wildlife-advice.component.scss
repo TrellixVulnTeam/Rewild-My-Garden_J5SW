@@ -1,12 +1,12 @@
-.grid { 
+.plantGrid { 
     display: inline-grid;
+    //This padding actually spaces out the cards
     padding: 3px;
 }
 
 .card{
     width: 160px;
-    height: 220px;
-    // position: relative;
+    height: 280px;
 }
 
 //This sets image size + centers the image within the element. Object-fit stops the image stretching
