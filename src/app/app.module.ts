@@ -24,6 +24,8 @@ import { ExampleGardensBodyComponent } from './pages/example-gardens-page/exampl
 import {DataService} from './data.service';
 /* All material modules we are using */
 import { MatModule } from './materials.module';
+import { WildlifeAnswers } from './pages/wildlife-advice-page/wildlife-answers.service';
+import { WildlifeResponse } from './pages/wildlife-advice-page/wildlife-response.service';
 
 @NgModule({
   imports: [
@@ -54,7 +56,9 @@ import { MatModule } from './materials.module';
     ],
   // "providers" is used for services
   providers: [
-    DataService
+    DataService,
+    WildlifeAnswers,
+    WildlifeResponse
   ],
   bootstrap: [
     AppComponent

@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { WildlifeAnswerSet } from './wildlife-answers.model';
 import { Observable, Subject } from 'rxjs';
 
-// This syntax is a shortcut equivalent of adding postsService to the 'providers' 
-// section of app.module.ts
 @Injectable({providedIn: 'root'})
 export class WildlifeAnswers{
 
