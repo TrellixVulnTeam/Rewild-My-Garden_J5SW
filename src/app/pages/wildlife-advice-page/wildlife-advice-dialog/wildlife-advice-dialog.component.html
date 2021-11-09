@@ -1,15 +1,18 @@
 <p class="PageHeader">Plant Info</p>
 
 <mat-dialog-content>
-    <div *ngFor="let ourData of data">
-        <p>Latin name : {{ourData.LatinName}}</p>
-        <p>Common name : {{ourData.CommonName}}</p>
-        <p>Type : {{ourData.Habit}}</p>
-        <p>Height : {{ourData.Height}}</p>
-        <p>Native : {{ourData.Native}}</p>
+    <div>
+        <img mat-card-image alt="plantImage" [src]="data.Pathname" class="img-dialog">
+        <div class="Section">
+            <p><b>Latin name :</b> {{data.LatinName}}</p>
+            <p><b>Common name :</b> {{data.CommonName}}</p>
+            <p><b>Type :</b> {{data.Habit}}</p>
+            <p><b>Height :</b> {{data.Height}}m</p>
+            <p><b>Native :</b> {{data.Native}}</p>
+        </div>
     </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>

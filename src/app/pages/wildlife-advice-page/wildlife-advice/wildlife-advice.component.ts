@@ -45,9 +45,9 @@ export class WildlifeAdviceComponent implements OnInit {
   //this function is passed the correct month data through the HTML
   openDialog(thisMonthData: GridResponse) {
     const dialogRef = this.dialog.open(WildlifeAdviceDialogComponent, {
-      height: '400px',
+      height: '300px',
       width: '600px',
-      data: thisMonthData
+      data: thisMonthData,
     });
 
     dialogRef.afterClosed().subscribe(result => {

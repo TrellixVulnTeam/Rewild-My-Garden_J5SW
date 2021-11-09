@@ -7,11 +7,11 @@ import { GridResponse } from '../grid-response.model';
   templateUrl: './wildlife-advice-dialog.component.html',
   styleUrls: ['./wildlife-advice-dialog.component.scss',],
   //check if this is correct
-  template: 'passed in {{ data.name }}'
+  // template: 'passed in {{ data.name }}'
 })
 export class WildlifeAdviceDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {monthData: GridResponse}) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: GridResponse) {
   }
 
   ngOnInit(): void {
