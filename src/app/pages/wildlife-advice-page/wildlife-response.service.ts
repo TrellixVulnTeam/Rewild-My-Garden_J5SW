@@ -20,7 +20,6 @@ export class WildlifeResponse{
     private reqPHQueryType : String = "";
     private reqShadeQueryType : String = "";
   
-    //Response object that will be displayed in our html
     private marchGridResponse: GridResponse =  {Title: "March", Month: "FloweringMarch", "LatinName": "", "CommonName": "", "Habit": "", "Height": "", "Growth": "", "Native": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
     private aprilGridResponse: GridResponse =  {Title: "April", Month: "FloweringApril", "LatinName": "", "CommonName": "", "Habit": "", "Height": "", "Growth": "", "Native": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
     private mayGridResponse: GridResponse =  {Title: "May", Month: "FloweringMay", "LatinName": "", "CommonName": "", "Habit": "", "Height": "", "Growth": "", "Native": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
@@ -39,7 +38,7 @@ export class WildlifeResponse{
     private updatedPollinatorData = new Subject<UnfinishedPollinatorData[]>();
     private updatedMonthsUsed = new Subject<GridResponse[]>();
 
-    
+
   
     constructor(private httpClient: HttpClient, public wildlifeAnswersService: WildlifeAnswers) {
       //here we are subscribing to the listener
@@ -53,9 +52,9 @@ export class WildlifeResponse{
       });
     }
 
-    public getPollinatorDataListener(): Observable<any>{
-        return this.updatedPollinatorData.asObservable();
-    }
+    // public getPollinatorDataListener(): Observable<any>{
+    //     return this.updatedPollinatorData.asObservable();
+    // }
 
     public getMonthsUsedListener(): Observable<any>{
         return this.updatedMonthsUsed.asObservable();

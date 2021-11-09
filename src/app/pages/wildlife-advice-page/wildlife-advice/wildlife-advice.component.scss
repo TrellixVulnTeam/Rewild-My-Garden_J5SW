@@ -1,12 +1,16 @@
-.plantGrid { 
-    display: inline-grid;
-    //This padding actually spaces out the cards
-    padding: 3px;
+.grid-container { 
+    // display: inline-grid;
+    // grid-auto-flow: column;
+    // // grid-template-columns: auto auto auto auto;
+    // grid-row-gap: 6px;
+    // grid-column-gap: 6px;
+    display: grid;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(auto-fill, 166px);
 }
 
 .card{
     width: 160px;
-    height: 280px;
 }
 
 //This sets image size + centers the image within the element. Object-fit stops the image stretching
@@ -22,7 +26,15 @@
     font-size: 10px;
 }
 
+.plantName{
+    height: 30px;
+}
+
 .gridBlock{
     padding-left: 30px;
     padding-right: 30px;
+}
+
+.dialogButton{
+    padding: 3px; 
 }

@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
     imports: [
@@ -23,7 +25,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
       MatInputModule,
       MatCardModule,
       MatRadioModule,
-      MatGridListModule
+      MatGridListModule,
+      MatDialogModule
     ],
     exports: [
         MatTabsModule,
@@ -36,7 +39,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
         MatInputModule,
         MatCardModule,
         MatRadioModule,
-        MatGridListModule
+        MatGridListModule,
+        MatDialogModule
     ]
   })
 

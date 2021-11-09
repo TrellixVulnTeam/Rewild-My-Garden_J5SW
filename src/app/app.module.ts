@@ -26,6 +26,8 @@ import {DataService} from './data.service';
 import { MatModule } from './materials.module';
 import { WildlifeAnswers } from './pages/wildlife-advice-page/wildlife-answers.service';
 import { WildlifeResponse } from './pages/wildlife-advice-page/wildlife-response.service';
+import { WildlifeAdviceDialogComponent } from './pages/wildlife-advice-page/wildlife-advice-dialog/wildlife-advice-dialog.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -52,13 +54,17 @@ import { WildlifeResponse } from './pages/wildlife-advice-page/wildlife-response
     WildlifeAdviceComponent,
     WildlifeMultiplechoiceComponent,
     WildlifeLayoutComponent,
-    ExampleGardensBodyComponent
+    ExampleGardensBodyComponent,
+    WildlifeAdviceDialogComponent
+    ],
+  entryComponents: [
+      WildlifeAdviceDialogComponent
     ],
   // "providers" is used for services
   providers: [
     DataService,
     WildlifeAnswers,
-    WildlifeResponse
+    WildlifeResponse,
   ],
   bootstrap: [
     AppComponent

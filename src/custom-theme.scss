@@ -70,4 +70,5 @@ $my-radio-theme: mat.define-light-theme((
 @include mat.sidenav-theme($my-tabs-theme);
 @include mat.button-theme($my-tabs-theme);
 @include mat.radio-theme($my-radio-theme);
+@include mat.dialog-theme($my-radio-theme);
 

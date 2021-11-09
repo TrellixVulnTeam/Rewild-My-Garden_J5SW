@@ -1,0 +1,15 @@
+<p class="PageHeader">Plant Info</p>
+
+<mat-dialog-content>
+    <div *ngFor="let ourData of data">
+        <p>Latin name : {{ourData.LatinName}}</p>
+        <p>Common name : {{ourData.CommonName}}</p>
+        <p>Type : {{ourData.Habit}}</p>
+        <p>Height : {{ourData.Height}}</p>
+        <p>Native : {{ourData.Native}}</p>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
