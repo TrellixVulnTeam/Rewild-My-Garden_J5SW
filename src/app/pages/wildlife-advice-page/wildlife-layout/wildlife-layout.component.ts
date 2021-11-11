@@ -19,8 +19,8 @@ export class WildlifeLayoutComponent implements OnInit {
       document.getElementById("adviceTitle")!.innerHTML = "Plants Recommended for Your Garden";
       document.getElementById("adviceText")!.innerHTML = "It is helpful to have plants flowering in your garden from spring to autumn. Each plant blooms in the month specified and suits your garden, so you can make your garden a home to pollinators all year.";
       //Here we are toggling the visibility of the grid using css
-      document.getElementById('adviceGridID')!.classList.toggle('adviceGrid');
-      //Here we are using ngIf to toggle visibility of multichoice Q
+      document.getElementById('adviceGridID')!.classList.remove('adviceGrid');
+      // Here we are using ngIf to toggle visibility of multichoice Q
       this.multichoiceShow = false;
     });
   }

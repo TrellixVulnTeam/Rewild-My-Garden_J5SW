@@ -1,128 +1,16 @@
 <div class="gridBlock">
-<div class="grid-container">
+<div *ngFor="let month of ourMonths" class="grid-container">
 <div>
     <mat-card class="card">
         <mat-card-title>
-            <p class="BodySubtitle"> {{ marchGridResponse.Title }} </p>
+            <p class="BodySubtitle"> {{ month.Title }} </p>
         </mat-card-title>
-        <img mat-card-image alt="Plant_Image" [src]="marchGridResponse.Pathname" class="card-img-top">
+        <img mat-card-image alt="Plant_Image" [src]="month.Pathname" class="card-img-top">
         <mat-card-content class="plantName">
-            <p> {{ marchGridResponse.LatinName }} </p>
+            <p> {{ month.LatinName }} </p>
         </mat-card-content>
         <mat-card-actions align="end">
-            <button mat-stroked-button color="primary" mat-button (click)="openDialog(marchGridResponse)">See info</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div>
-    <mat-card class="card">
-        <mat-card-title>
-            <p class="BodySubtitle"> {{ aprilGridResponse.Title }} </p>
-        </mat-card-title>
-        <img mat-card-image alt="Plant_Image" [src]="aprilGridResponse.Pathname" class="card-img-top">
-        <mat-card-content class="plantName">
-            <p> {{ aprilGridResponse.LatinName }} </p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-stroked-button color="primary" mat-button (click)="openDialog(aprilGridResponse)">See info</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div>
-    <mat-card class="card">
-        <mat-card-title>
-            <p class="BodySubtitle"> {{ mayGridResponse.Title }} </p>
-        </mat-card-title>
-        <img mat-card-image alt="Plant_Image" [src]="mayGridResponse.Pathname" class="card-img-top">
-        <mat-card-content class="plantName">
-            <p> {{ mayGridResponse.LatinName }} </p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-stroked-button color="primary" mat-button (click)="openDialog(mayGridResponse)">See info</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div>
-    <mat-card class="card">
-        <mat-card-title>
-            <p class="BodySubtitle"> {{ juneGridResponse.Title }} </p>
-        </mat-card-title>
-        <img mat-card-image alt="Plant_Image" [src]="juneGridResponse.Pathname" class="card-img-top">
-        <mat-card-content class="plantName">
-            <p> {{ juneGridResponse.LatinName }} </p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-stroked-button color="primary" mat-button (click)="openDialog(juneGridResponse)">See info</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div>
-    <mat-card class="card">
-        <mat-card-title>
-            <p class="BodySubtitle"> {{ julyGridResponse.Title }} </p>
-        </mat-card-title>
-        <img mat-card-image alt="Plant_Image" [src]="julyGridResponse.Pathname" class="card-img-top">
-        <mat-card-content class="plantName">
-            <p> {{ julyGridResponse.LatinName }} </p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-stroked-button color="primary" mat-button (click)="openDialog(julyGridResponse)">See info</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div>
-    <mat-card class="card">
-        <mat-card-title>
-            <p class="BodySubtitle"> {{ augustGridResponse.Title }} </p>
-        </mat-card-title>
-        <img mat-card-image alt="Plant_Image" [src]="augustGridResponse.Pathname" class="card-img-top">
-        <mat-card-content class="plantName">
-            <p> {{ augustGridResponse.LatinName }} </p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-stroked-button color="primary" mat-button (click)="openDialog(augustGridResponse)">See info</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div>
-    <mat-card class="card">
-        <mat-card-title>
-            <p class="BodySubtitle"> {{ septGridResponse.Title }} </p>
-        </mat-card-title>
-        <img mat-card-image alt="Plant_Image" [src]="septGridResponse.Pathname" class="card-img-top">
-        <mat-card-content class="plantName">
-            <p> {{ septGridResponse.LatinName }} </p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-stroked-button color="primary" mat-button (click)="openDialog(septGridResponse)">See info</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div>
-    <mat-card class="card">
-        <mat-card-title>
-            <p class="BodySubtitle"> {{ octGridResponse.Title }} </p>
-        </mat-card-title>
-        <img mat-card-image alt="Plant_Image" [src]="octGridResponse.Pathname" class="card-img-top">
-        <mat-card-content class="plantName">
-            <p> {{ octGridResponse.LatinName }} </p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-stroked-button color="primary" mat-button (click)="openDialog(octGridResponse)">See info</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div>
-    <mat-card class="card">
-        <mat-card-title>
-            <p class="BodySubtitle"> {{ novGridResponse.Title }} </p>
-        </mat-card-title>
-        <img mat-card-image alt="Plant_Image" [src]="novGridResponse.Pathname" class="card-img-top">
-        <mat-card-content class="plantName">
-            <p> {{ novGridResponse.LatinName }} </p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-stroked-button color="primary" mat-button (click)="openDialog(novGridResponse)">See info</button>
+            <button mat-stroked-button color="primary" mat-button (click)="openDialog(month)">See info</button>
         </mat-card-actions>
     </mat-card>
 </div>
