@@ -1,15 +1,14 @@
 export interface GridResponse { 
-    "Title": string;
-    "Month": string;
-    "LatinName": string;
-    "CommonName": string;
-    "Habit": string;
-    "Height": string;
-    "Growth": string;
-    "Native": string;
-    "Pathname": string;
-    "Name": string;
-    "Username": string;
-    "Copyright": string;
-    "Link": string;
+    "Title": String;
+    "LatinName": String;
+    "CommonName": String;
+    "Habit": String;
+    "Height": String;
+    "Growth": String;
+    "Native": String;
+    "Pathname": String;
+    "Name": String;
+    "Username": String;
+    "Copyright": String;
+    "Link": String;
 }

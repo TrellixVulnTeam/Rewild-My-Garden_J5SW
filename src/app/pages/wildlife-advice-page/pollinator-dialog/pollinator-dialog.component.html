@@ -1,0 +1,41 @@
+<p mat-dialog-title class="PageHeader">Plant Info</p>
+
+<div>
+    <img alt="Plant_Image" [src]="data[0].Pathname" class="img-dialog">
+    <div class="MainSection">
+        <p><b>Latin name :</b> {{data[0].LatinName}}</p>
+        <p><b>Common name :</b> {{data[0].CommonName}}</p>
+        <p><b>Type :</b> {{data[0].Habit}}</p>
+        <p><b>Height :</b> {{data[0].Height}}m</p>
+        <p><b>Native :</b> {{data[0].Native}}</p>
+    </div>
+    <div>
+        <p class="CopyRightText">&copy; Data by <a href="https://pfaf.org/user/Default.aspx">"Plants For A Future"</a>, licensed under a Creative Commons Attribution 4.0 License.
+            <br>&copy; Image <a href="{{data[0].Link}}">"{{data[0].Name}}"</a> by {{data[0].Username}}, distributed under {{data[0].Copyright}} license.</p>
+    </div>
+</div>
+
+<br>
+<br>
+
+<p class="PageHeader">Other {{data[0].Title}} Plants for your Garden</p>
+
+<br>
+
+<div *ngFor="let extraFlowers of data  | slice:1" >
+    <img alt="Plant_Image" [src]="extraFlowers.Pathname" class="img-dialog">
+    <div class="MainSection-extra">
+        <p><b>Latin name :</b> {{extraFlowers.LatinName}}</p>
+        <p><b>Common name :</b> {{extraFlowers.CommonName}}</p>
+        <p><b>Type :</b> {{extraFlowers.Habit}}</p>
+        <p><b>Height :</b> {{extraFlowers.Height}}m</p>
+        <p><b>Native :</b> {{extraFlowers.Native}}</p>
+    </div>
+    <div>
+        <p class="CopyRightText">&copy; Image <a href="{{extraFlowers.Link}}">"{{extraFlowers.Name}}"</a> by {{extraFlowers.Username}}, distributed under {{extraFlowers.Copyright}} license.</p>
+    </div>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" mat-dialog-close><b class="button-text">Close</b></button>
+</mat-dialog-actions>

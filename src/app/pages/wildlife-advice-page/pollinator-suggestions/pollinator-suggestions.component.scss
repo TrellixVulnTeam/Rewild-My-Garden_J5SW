@@ -1,0 +1,35 @@
+.grid-container { 
+    display: inline-grid;
+    grid-row-gap: 4px;
+    grid-template-columns: repeat(auto-fill, 166px);
+}
+
+.card{
+    width: 160px;
+}
+
+//This sets image size + centers the image within the element. Object-fit stops the image stretching
+.card img {
+    object-fit: none;
+    object-position: center; 
+    height: 160px;
+    width: 160px;
+}
+
+.card-title{
+    text-align: center;
+    font-size: 10px;
+}
+
+.plantName{
+    height: 30px;
+}
+
+.gridBlock{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.dialogButton{
+    padding: 3px; 
+}

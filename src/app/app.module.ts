@@ -16,7 +16,6 @@ import { LayoutComponent } from './display/layout/layout.component';
 import { NavigationComponent } from './top-display/navigation/navigation.component';
 import { SidenavListComponent } from './top-display/sidenav-list/sidenav-list.component';
 import { AboutTextComponent } from './pages/about-page/about-text/about-text.component';
-import { WildlifeAdviceComponent } from './pages/wildlife-advice-page/wildlife-advice/wildlife-advice.component';
 import { WildlifeMultiplechoiceComponent } from './pages/wildlife-advice-page/wildlife-multiplechoice/wildlife-multiplechoice.component';
 import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-layout/wildlife-layout.component';
 import { ExampleGardensBodyComponent } from './pages/example-gardens-page/example-gardens-body/example-gardens-body.component';
@@ -26,8 +25,10 @@ import {DataService} from './data.service';
 import { MatModule } from './materials.module';
 import { WildlifeAnswers } from './pages/wildlife-advice-page/wildlife-answers.service';
 import { WildlifeResponse } from './pages/wildlife-advice-page/wildlife-response.service';
-import { WildlifeAdviceDialogComponent } from './pages/wildlife-advice-page/wildlife-advice-dialog/wildlife-advice-dialog.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { WildlifeInfoGenericComponent } from './pages/wildlife-advice-page/wildlife-info-generic/wildlife-info-generic.component';
+import { PollinatorSuggestionsComponent } from './pages/wildlife-advice-page/pollinator-suggestions/pollinator-suggestions.component';
+import { PollinatorDialogComponent } from './pages/wildlife-advice-page/pollinator-dialog/pollinator-dialog.component';
 
 @NgModule({
   imports: [
@@ -51,14 +52,15 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
     SidenavListComponent,
     AboutTextComponent,
     NotFoundComponent,
-    WildlifeAdviceComponent,
     WildlifeMultiplechoiceComponent,
     WildlifeLayoutComponent,
     ExampleGardensBodyComponent,
-    WildlifeAdviceDialogComponent
+    WildlifeInfoGenericComponent,
+    PollinatorDialogComponent,
+    PollinatorSuggestionsComponent,
     ],
   entryComponents: [
-      WildlifeAdviceDialogComponent
+      PollinatorDialogComponent,
     ],
   // "providers" is used for services
   providers: [

@@ -16,13 +16,6 @@ export class DataService implements OnInit{
   }
 
   ngOnInit() {
-    // this.getData();
   }
-  
-  // getData(){
-  //   // return this.httpClient.get<{plantData: PlantData[]}>(this.REST_API_SERVER).subscribe((res)=>{
-  //     // this.plantData = res
-  //     // console.log(this.plantData);
-  //   })
-  // }
+
 }
