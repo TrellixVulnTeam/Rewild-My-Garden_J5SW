@@ -19,16 +19,19 @@ import { AboutTextComponent } from './pages/about-page/about-text/about-text.com
 import { WildlifeMultiplechoiceComponent } from './pages/wildlife-advice-page/wildlife-multiplechoice/wildlife-multiplechoice.component';
 import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-layout/wildlife-layout.component';
 import { ExampleGardensBodyComponent } from './pages/example-gardens-page/example-gardens-body/example-gardens-body.component';
+import { WildlifeAdviceGenericComponent } from './pages/wildlife-advice-page/wildlife-advice-generic/wildlife-advice-generic.component';
+import { WildlifeInfoGenericComponent } from './pages/wildlife-advice-page/wildlife-info-generic/wildlife-info-generic.component';
+import { PollinatorSuggestionsComponent } from './pages/wildlife-advice-page/pollinator-suggestions/pollinator-suggestions.component';
+import { PollinatorDialogComponent } from './pages/wildlife-advice-page/pollinator-dialog/pollinator-dialog.component';
+/* Our Services */
+import { WildlifeAnswers } from './pages/wildlife-advice-page/services/multichoice-answers.service';
+import { WildlifeResponse } from './pages/wildlife-advice-page/services/pollinator-suggestions.service';
+import { AdviceService } from './pages/wildlife-advice-page/services/advice-boxes.service';
+import { InfoService } from './pages/wildlife-advice-page/services/info-boxes.service';
 /* Data Service */
 import {DataService} from './data.service';
 /* All material modules we are using */
 import { MatModule } from './materials.module';
-import { WildlifeAnswers } from './pages/wildlife-advice-page/wildlife-answers.service';
-import { WildlifeResponse } from './pages/wildlife-advice-page/wildlife-response.service';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import { WildlifeInfoGenericComponent } from './pages/wildlife-advice-page/wildlife-info-generic/wildlife-info-generic.component';
-import { PollinatorSuggestionsComponent } from './pages/wildlife-advice-page/pollinator-suggestions/pollinator-suggestions.component';
-import { PollinatorDialogComponent } from './pages/wildlife-advice-page/pollinator-dialog/pollinator-dialog.component';
 
 @NgModule({
   imports: [
@@ -56,17 +59,20 @@ import { PollinatorDialogComponent } from './pages/wildlife-advice-page/pollinat
     WildlifeLayoutComponent,
     ExampleGardensBodyComponent,
     WildlifeInfoGenericComponent,
+    WildlifeAdviceGenericComponent,
     PollinatorDialogComponent,
     PollinatorSuggestionsComponent,
     ],
   entryComponents: [
-      PollinatorDialogComponent,
-    ],
+    PollinatorDialogComponent,
+  ],
   // "providers" is used for services
   providers: [
     DataService,
     WildlifeAnswers,
     WildlifeResponse,
+    AdviceService,
+    InfoService
   ],
   bootstrap: [
     AppComponent

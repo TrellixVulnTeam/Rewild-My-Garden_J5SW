@@ -1,6 +1,74 @@
+// import { HttpClient } from '@angular/common/http';
+// import { Component, Input, OnInit } from '@angular/core';
+// import { Subscription } from 'rxjs';
+// import { AdviceGeneric } from '../models/advice.model';
+// import { InfoGeneric } from '../models/info.model';
+// import { WildlifeAnswerSet } from '../models/multichoice-answers.model';
+// import { WildlifeAnswers } from '../services/multichoice-answers.service';
+// import { AdviceService } from '../services/advice-boxes.service';
+// import { InfoService } from '../services/info-boxes.service';
+
+// @Component({
+//   selector: 'app-wildlife-layout',
+//   templateUrl: './wildlife-layout.component.html',
+//   styleUrls: ['./wildlife-layout.component.scss']
+// })
+// export class WildlifeLayoutComponent implements OnInit {
+
+//   //Subscriptions to wildlife answers data
+//   private answersSub: Subscription = new Subscription();
+//   private adviceSub: Subscription = new Subscription();
+//   private infoSub: Subscription = new Subscription();
+
+//   private allAdvice: AdviceGeneric[] = [];
+//   private allInfo: InfoGeneric[] = [];
+
+//   public adviceOne: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+//   public adviceTwo: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+//   public adviceThree: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+
+//   public multichoiceShow: boolean = true;
+
+//   constructor(private httpClient: HttpClient, public wildlifeAnswersService: WildlifeAnswers, public infoService: InfoService, public adviceService: AdviceService) {
+//     //here we are subscribing to the listener
+//     //Find a better way of triggering elements hiding/unhiding !!!!!
+//     this.answersSub = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet[]) => {
+//       //When the advice set is produced, hide questions and show answers
+//       //Here we are using ngIf to toggle visibility of multichoice Q
+//       this.multichoiceShow = false;
+//       //Here we are toggling the visibility of the grid using css
+//       document.getElementById('adviceGridID')!.classList.remove('hiddenElem');
+//       document.getElementById('genericAdviceID')!.classList.remove('hiddenElem');
+//     });
+//     // this.adviceSub = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
+//     //   this.adviceOne = retrievedAdvice[0];
+//     //   this.adviceTwo = retrievedAdvice[0];
+//     //   this.adviceThree = retrievedAdvice[0];
+//     // });
+//     // this.infoSub = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
+//     // });
+//   }
+
+//   //This is called whenever this component is about to be removed from the DOM
+//   ngOnDestroy() {
+//     //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
+//     this.answersSub.unsubscribe();
+//     // this.adviceSub.unsubscribe();
+//     // this.infoSub.unsubscribe();
+//   }
+
+//   ngOnInit(): void {
+//   }
+
+// }
+
 import { Component, OnInit } from '@angular/core';
-import { WildlifeAnswerSet } from '../wildlife-answers.model';
-import { WildlifeAnswers } from '../wildlife-answers.service';
+import { Subscription } from 'rxjs';
+import { AdviceGeneric } from '../models/advice.model';
+import { InfoGeneric } from '../models/info.model';
+import { WildlifeAnswerSet } from '../models/multichoice-answers.model';
+import { AdviceService } from '../services/advice-boxes.service';
+import { WildlifeAnswers } from '../services/multichoice-answers.service';
 
 @Component({
   selector: 'app-wildlife-layout',
@@ -11,21 +79,43 @@ export class WildlifeLayoutComponent implements OnInit {
 
   public multichoiceShow: boolean = true;
 
-  constructor(public wildlifeAnswersService: WildlifeAnswers) {
+  private allAdvice: AdviceGeneric[] = [];
+  private allInfo: InfoGeneric[] = [];
+
+  private ourPollinatorsService: Subscription = new Subscription();
+  private ourAdviceService: Subscription = new Subscription();
+
+  public adviceOne: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public adviceTwo: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public adviceThree: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+
+  constructor(public wildlifeAnswersService: WildlifeAnswers, public adviceService: AdviceService) {
     //When the advice set is produced, create advice Title and hide questions
-    this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet[]) => {
+    //Find a better way of triggering elements hiding/unhiding !!!!!
+    this.ourPollinatorsService = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet[]) => {
       //We are using 'subscribe' to detect when 'save' has been clicked and data emitted
-      //Here we are adding explanatory text by adding to innerHTML
-      document.getElementById("adviceTitle")!.innerHTML = "Plants Recommended for Your Garden";
-      document.getElementById("adviceText")!.innerHTML = "It is helpful to have plants flowering in your garden from spring to autumn. Each plant blooms in the month specified and suits your garden, so you can make your garden a home to pollinators all year.";
       //Here we are toggling the visibility of the grid using css
-      document.getElementById('adviceGridID')!.classList.remove('adviceGrid');
+      document.getElementById('adviceGridID')!.classList.remove('hiddenElem');
       // Here we are using ngIf to toggle visibility of multichoice Q
       this.multichoiceShow = false;
+    });
+
+    this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
+      this.adviceOne = retrievedAdvice[0];
+      this.adviceTwo = retrievedAdvice[1];
+      this.adviceThree = retrievedAdvice[2];
+      document.getElementById('genericAdviceID1')!.classList.remove('hiddenElem');
+      document.getElementById('genericAdviceID2')!.classList.remove('hiddenElem');
+      document.getElementById('genericAdviceID3')!.classList.remove('hiddenElem');
     });
   }
 
   ngOnInit(): void {
   }
 
+  ngOnDestroy() {
+    this.ourPollinatorsService.unsubscribe();
+    this.ourAdviceService.unsubscribe();
+    // this.infoSub.unsubscribe();
+  }
 }

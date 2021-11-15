@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AdviceGeneric } from '../models/advice.model';
 
 @Component({
   selector: 'app-wildlife-info-generic',

@@ -2,6 +2,8 @@ const bodyParser = require("body-parser");
 const express = require('express');
 const router = express.Router();
 const unfinishedPollinatorData = require('./unfinishedPollinatorData_model.js');
+const adviceData = require('./adviceData_model.js');
+const infoData = require('./infoData_model.js');
 const cors = require("cors");
 
 //Options to stop this API from being accessible by everyone one is live
@@ -34,6 +36,30 @@ router.get('/minimalTestDataFilter', function (req, res, next) {
       }
     }); 
   });
+
+//Get advice box data
+router.get('/adviceData', function (req, res, next) {
+    adviceData.find().then(function(result, err){
+    if(result){
+      res.send(result);
+    }
+    if(err){
+      console.log(err);
+    }
+  }); 
+});
+
+//Get info box data
+router.get('/infoData', function (req, res, next) {
+  infoData.find().then(function(result, err){
+  if(result){
+    res.send(result);
+  }
+  if(err){
+    console.log(err);
+  }
+}); 
+});
 
 module.exports = router;
 

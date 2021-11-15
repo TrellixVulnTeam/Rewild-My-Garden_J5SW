@@ -1,1 +1,20 @@
-<p>wildlife-advice-generic works!</p>
+<br>
+<p class="Subheader">{{ adviceGenericObject.Header }}</p>
+<p> {{ adviceGenericObject.Justification }}</p>
+
+<div class="CardHolder">
+  <mat-card class="card">
+    <mat-card-title-group>
+    <img
+      mat-card-lg-image
+      alt="Advice_Image"
+      [src]="adviceGenericObject.Pathname"
+    />
+    <mat-card-subtitle> {{ adviceGenericObject.BodyText }} </mat-card-subtitle>
+    <!-- <mat-card-content class="BodyContent">
+      <p>{{ adviceGenericObject.BodyText }}</p>
+    </mat-card-content> -->
+    </mat-card-title-group>
+  </mat-card>
+</div>
+<br>

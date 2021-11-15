@@ -27,7 +27,16 @@
     {{shadeType}}
   </mat-radio-button>
 </mat-radio-group>
-<!-- <div>Your choice is: {{chosenShadeType}}</div> -->
+
+<br>
+
+<label id="multiplechoice-label">What size is your outdoor space?</label>
+<!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
+<mat-radio-group aria-labelledby="space-question" class="radio-question" [(ngModel)]="chosenSize">
+  <mat-radio-button class="radio-button" *ngFor="let size of sizes" [value]="size">
+    {{size}}
+  </mat-radio-button>
+</mat-radio-group>
 
 <br>
 

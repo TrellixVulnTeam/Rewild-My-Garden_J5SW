@@ -1,0 +1,13 @@
+//This sets image size + centers the image within the element. Object-fit stops the image stretching
+.card img {
+    object-fit: none;
+    // object-position: center; 
+    height: 200px;
+    width: 200px;
+}
+
+// .BodyContent {
+//     display: flex;
+//     justify-content: space-between;
+//     flex-direction: column;
+// }
