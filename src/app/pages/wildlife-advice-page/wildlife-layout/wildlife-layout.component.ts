@@ -68,6 +68,7 @@ import { AdviceGeneric } from '../models/advice.model';
 import { InfoGeneric } from '../models/info.model';
 import { WildlifeAnswerSet } from '../models/multichoice-answers.model';
 import { AdviceService } from '../services/advice-boxes.service';
+import { InfoService } from '../services/info-boxes.service';
 import { WildlifeAnswers } from '../services/multichoice-answers.service';
 
 @Component({
@@ -84,12 +85,16 @@ export class WildlifeLayoutComponent implements OnInit {
 
   private ourPollinatorsService: Subscription = new Subscription();
   private ourAdviceService: Subscription = new Subscription();
+  private ourInfoService: Subscription = new Subscription();
 
   public adviceOne: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public adviceTwo: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public adviceThree: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public infoOne: InfoGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "BodyText": ""};
+  public infoTwo: InfoGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "BodyText": ""};
+  public infoThree: InfoGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "BodyText": ""};
 
-  constructor(public wildlifeAnswersService: WildlifeAnswers, public adviceService: AdviceService) {
+  constructor(public wildlifeAnswersService: WildlifeAnswers, public adviceService: AdviceService, public infoService: InfoService) {
     //When the advice set is produced, create advice Title and hide questions
     //Find a better way of triggering elements hiding/unhiding !!!!!
     this.ourPollinatorsService = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet[]) => {
@@ -106,7 +111,16 @@ export class WildlifeLayoutComponent implements OnInit {
       this.adviceThree = retrievedAdvice[2];
       document.getElementById('genericAdviceID1')!.classList.remove('hiddenElem');
       document.getElementById('genericAdviceID2')!.classList.remove('hiddenElem');
-      document.getElementById('genericAdviceID3')!.classList.remove('hiddenElem');
+      // document.getElementById('genericAdviceID3')!.classList.remove('hiddenElem');
+    });
+
+    this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
+      this.infoOne = retrievedInfo[0];
+      this.infoTwo = retrievedInfo[1];
+      this.infoThree = retrievedInfo[2];
+      document.getElementById('genericInfoID1')!.classList.remove('hiddenElem');
+      document.getElementById('genericInfoID2')!.classList.remove('hiddenElem');
+      document.getElementById('genericInfoID3')!.classList.remove('hiddenElem');
     });
   }
 

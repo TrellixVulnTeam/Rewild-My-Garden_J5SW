@@ -39,7 +39,7 @@ router.get('/minimalTestDataFilter', function (req, res, next) {
 
 //Get advice box data
 router.get('/adviceData', function (req, res, next) {
-    adviceData.find().then(function(result, err){
+    adviceData.find({[req.query.SizeQueryType] : req.query.Size}).then(function(result, err){
     if(result){
       res.send(result);
     }
@@ -51,7 +51,7 @@ router.get('/adviceData', function (req, res, next) {
 
 //Get info box data
 router.get('/infoData', function (req, res, next) {
-  infoData.find().then(function(result, err){
+  infoData.find({[req.query.SizeQueryType] : req.query.Size}).then(function(result, err){
   if(result){
     res.send(result);
   }

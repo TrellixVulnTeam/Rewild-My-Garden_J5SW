@@ -8,27 +8,25 @@ import { WildlifeAnswers } from './multichoice-answers.service';
 @Injectable({providedIn: 'root'})
 export class InfoService{
 
-
-    private updatedAdvice = new Subject<InfoGeneric[]>();
+    private updatedInfo = new Subject<InfoGeneric[]>();
     //Subscriptions to wildlife answers data
     private answersSub: Subscription = new Subscription();
     public ourAnswer: WildlifeAnswerSet = { soil: "", ph: "", shade: "", gardenSize: ""};
 
     constructor(private httpClient: HttpClient, public wildlifeAnswersService: WildlifeAnswers){
         //here we are subscribing to the listener
-        this.answersSub = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet[]) => {
-            this.ourAnswer = retrievedAnswers.pop()!;
-            var gardenSize = this.ourAnswer.gardenSize;
+        this.answersSub = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet) => {
+            var ourGardenSize = retrievedAnswers.gardenSize;
             //Then use that data to filter API data for display
-            this.httpClient.get<InfoGeneric[]>("http://localhost:3000/api/adviceData").subscribe(
+            this.httpClient.get<InfoGeneric[]>("http://localhost:3000/api/infoData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(
                 response => {
-                this.updatedAdvice.next(response);
+                this.updatedInfo.next(response);
             });
         });
     }
 
     getAnswerUpdateListener(): Observable<any>{
-        return this.updatedAdvice.asObservable();
+        return this.updatedInfo.asObservable();
     }
 
     //This is called whenever this component is about to be removed from the DOM

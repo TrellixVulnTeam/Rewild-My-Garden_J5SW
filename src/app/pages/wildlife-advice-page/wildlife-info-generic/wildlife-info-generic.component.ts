@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AdviceGeneric } from '../models/advice.model';
+import { InfoGeneric } from '../models/info.model';
 
 @Component({
   selector: 'app-wildlife-info-generic',
@@ -7,6 +7,8 @@ import { AdviceGeneric } from '../models/advice.model';
   styleUrls: ['./wildlife-info-generic.component.scss']
 })
 export class WildlifeInfoGenericComponent implements OnInit {
+
+  @Input() infoGenericObject: InfoGeneric = {"Header": "", WindoxBox: "", OutdoorPlantPots: "", SmallGarden: "", LargeGarden: "", Allotment: "", FieldFields: "", "BodyText": ""}; 
 
   constructor() { }
 
