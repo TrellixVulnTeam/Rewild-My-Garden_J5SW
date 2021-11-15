@@ -1,67 +1,3 @@
-// import { HttpClient } from '@angular/common/http';
-// import { Component, Input, OnInit } from '@angular/core';
-// import { Subscription } from 'rxjs';
-// import { AdviceGeneric } from '../models/advice.model';
-// import { InfoGeneric } from '../models/info.model';
-// import { WildlifeAnswerSet } from '../models/multichoice-answers.model';
-// import { WildlifeAnswers } from '../services/multichoice-answers.service';
-// import { AdviceService } from '../services/advice-boxes.service';
-// import { InfoService } from '../services/info-boxes.service';
-
-// @Component({
-//   selector: 'app-wildlife-layout',
-//   templateUrl: './wildlife-layout.component.html',
-//   styleUrls: ['./wildlife-layout.component.scss']
-// })
-// export class WildlifeLayoutComponent implements OnInit {
-
-//   //Subscriptions to wildlife answers data
-//   private answersSub: Subscription = new Subscription();
-//   private adviceSub: Subscription = new Subscription();
-//   private infoSub: Subscription = new Subscription();
-
-//   private allAdvice: AdviceGeneric[] = [];
-//   private allInfo: InfoGeneric[] = [];
-
-//   public adviceOne: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-//   public adviceTwo: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-//   public adviceThree: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-
-//   public multichoiceShow: boolean = true;
-
-//   constructor(private httpClient: HttpClient, public wildlifeAnswersService: WildlifeAnswers, public infoService: InfoService, public adviceService: AdviceService) {
-//     //here we are subscribing to the listener
-//     //Find a better way of triggering elements hiding/unhiding !!!!!
-//     this.answersSub = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet[]) => {
-//       //When the advice set is produced, hide questions and show answers
-//       //Here we are using ngIf to toggle visibility of multichoice Q
-//       this.multichoiceShow = false;
-//       //Here we are toggling the visibility of the grid using css
-//       document.getElementById('adviceGridID')!.classList.remove('hiddenElem');
-//       document.getElementById('genericAdviceID')!.classList.remove('hiddenElem');
-//     });
-//     // this.adviceSub = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
-//     //   this.adviceOne = retrievedAdvice[0];
-//     //   this.adviceTwo = retrievedAdvice[0];
-//     //   this.adviceThree = retrievedAdvice[0];
-//     // });
-//     // this.infoSub = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
-//     // });
-//   }
-
-//   //This is called whenever this component is about to be removed from the DOM
-//   ngOnDestroy() {
-//     //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
-//     this.answersSub.unsubscribe();
-//     // this.adviceSub.unsubscribe();
-//     // this.infoSub.unsubscribe();
-//   }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AdviceGeneric } from '../models/advice.model';
@@ -80,9 +16,6 @@ export class WildlifeLayoutComponent implements OnInit {
 
   public multichoiceShow: boolean = true;
 
-  private allAdvice: AdviceGeneric[] = [];
-  private allInfo: InfoGeneric[] = [];
-
   private ourPollinatorsService: Subscription = new Subscription();
   private ourAdviceService: Subscription = new Subscription();
   private ourInfoService: Subscription = new Subscription();
@@ -90,9 +23,15 @@ export class WildlifeLayoutComponent implements OnInit {
   public adviceOne: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public adviceTwo: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public adviceThree: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public ourAdvice: AdviceGeneric[] = [this.adviceOne, this.adviceTwo, this.adviceThree];
+
   public infoOne: InfoGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "BodyText": ""};
   public infoTwo: InfoGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "BodyText": ""};
   public infoThree: InfoGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "BodyText": ""};
+  public ourInfo: InfoGeneric[] = [this.infoOne, this.infoTwo, this.infoThree];
+
+  private randRecordAdvice: Number[] = [];
+  private randRecordInfo: Number[] = [];
 
   constructor(public wildlifeAnswersService: WildlifeAnswers, public adviceService: AdviceService, public infoService: InfoService) {
     //When the advice set is produced, create advice Title and hide questions
@@ -106,22 +45,89 @@ export class WildlifeLayoutComponent implements OnInit {
     });
 
     this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
-      this.adviceOne = retrievedAdvice[0];
-      this.adviceTwo = retrievedAdvice[1];
-      this.adviceThree = retrievedAdvice[2];
-      document.getElementById('genericAdviceID1')!.classList.remove('hiddenElem');
-      document.getElementById('genericAdviceID2')!.classList.remove('hiddenElem');
-      // document.getElementById('genericAdviceID3')!.classList.remove('hiddenElem');
+      //find number of pieces of advice
+      var noAdvice = retrievedAdvice.length;
+      //If there isn't three pieces of advice for this garden, display the advice we do have
+      if(noAdvice < 3){
+        for(var i = 0; i < noAdvice; i++){
+          this.ourAdvice[i] = retrievedAdvice[i];
+          document.getElementById('genericAdviceID' + i)!.classList.remove('hiddenElem');
+        }
+      }
+      //If there is enough advice, choose three random pieces of advice
+      else{
+        for(var j = 0; j < 3; j++){
+          var flag = "setCard"
+          var rand = Math.floor( Math.random() * noAdvice);
+          console.log(rand);
+          //Compare our random number with previous random
+          //numbers to ensure no repeated cards
+          for(var m = 0; m < this.randRecordAdvice.length; m++){
+            if(this.randRecordAdvice[m] == rand){
+              flag = "dontSet"
+            }
+          }
+          if(flag == "setCard"){
+            console.log("setting " + j + ": " + rand);
+            this.ourAdvice[j] = retrievedAdvice[rand];
+            this.randRecordAdvice.push(rand);
+            document.getElementById('genericAdviceID' + j)!.classList.remove('hiddenElem');
+          }
+          //If we've found a repeat card, j-- to try again
+          else{
+            console.log("not setting " + j + ": " + rand);
+            j--;
+          }
+        }
+      }
     });
 
     this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
-      this.infoOne = retrievedInfo[0];
-      this.infoTwo = retrievedInfo[1];
-      this.infoThree = retrievedInfo[2];
-      document.getElementById('genericInfoID1')!.classList.remove('hiddenElem');
-      document.getElementById('genericInfoID2')!.classList.remove('hiddenElem');
-      document.getElementById('genericInfoID3')!.classList.remove('hiddenElem');
+      //find number of pieces of info
+      var noInfo = retrievedInfo.length;
+      //If there isn't three pieces of info for this garden, display the info we do have
+      if(noInfo < 3){
+        for(var x = 0; x < noInfo; x++){
+          this.ourInfo[x] = retrievedInfo[x];
+          document.getElementById('genericInfoID' + x)!.classList.remove('hiddenElem');
+        }
+      }
+      //If there is enough info, choose three random pieces of info
+      else{
+        for(var y = 0; y < 3; y++){
+          var infoFlag = "setCard"
+          var infoRand = Math.floor( Math.random() * noInfo);
+          console.log("INFO :" + infoRand);
+          //Compare our random number with previous random
+          //numbers to ensure no repeated cards
+          for(var n = 0; n < this.randRecordInfo.length; n++){
+            if(this.randRecordInfo[n] == infoRand){
+              infoFlag = "dontSet"
+            }
+          }
+          if(infoFlag == "setCard"){
+            console.log("setting " + y + ": " + infoRand);
+            this.ourInfo[y] = retrievedInfo[infoRand];
+            this.randRecordInfo.push(infoRand);
+            document.getElementById('genericInfoID' + y)!.classList.remove('hiddenElem');
+          }
+          //If we've found a repeat card, y-- to try again
+          else{
+            console.log("not setting " + y + ": " + infoRand);
+            y--;
+          }
+        }
+      }
     });
+
+    // this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
+    //   this.infoOne = retrievedInfo[0];
+    //   this.infoTwo = retrievedInfo[1];
+    //   this.infoThree = retrievedInfo[2];
+    //   document.getElementById('genericInfoID1')!.classList.remove('hiddenElem');
+    //   document.getElementById('genericInfoID2')!.classList.remove('hiddenElem');
+    //   document.getElementById('genericInfoID3')!.classList.remove('hiddenElem');
+    // });
   }
 
   ngOnInit(): void {

@@ -21,7 +21,8 @@ export class WildlifeResponse {
   private reqShadeQueryType: String = "";
 
   //Our final 2d data array
-  public allMonthsUsed : GridResponse[][] = new Array<Array<GridResponse>>(9);
+  //ALTERED TO DISCLUDE NOVEMBER
+  public allMonthsUsed : GridResponse[][] = new Array<Array<GridResponse>>(8);
 
   private counter = 0;
 
@@ -35,7 +36,7 @@ export class WildlifeResponse {
     { Title: "August", Month: "FloweringAugust" },
     { Title: "September", Month: "FloweringSept" },
     { Title: "October", Month: "FloweringOct" },
-    { Title: "November", Month: "FloweringNov" },
+    // { Title: "November", Month: "FloweringNov" },
   ];
 
   //Our listener objects
@@ -67,8 +68,9 @@ export class WildlifeResponse {
         response => {
         let allDataThisMonth: UnfinishedPollinatorData[] = response;
         this.allMonthsUsed[this.counter] = this.populateMonth(this.counter, allDataThisMonth, this.infoArr[this.counter].Title);
-        //Using recursion to loop through all 9 months
-        if(this.counter == 8){
+        //Using recursion to loop through all 8 months
+        //ALTERED TO DISCLUDE NOVEMBER
+        if(this.counter == 7){
           this.createSubObjects();
           return;
         }
