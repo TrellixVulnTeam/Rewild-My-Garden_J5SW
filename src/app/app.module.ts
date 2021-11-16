@@ -32,6 +32,7 @@ import { InfoService } from './pages/wildlife-advice-page/services/info-boxes.se
 import {DataService} from './data.service';
 /* All material modules we are using */
 import { MatModule } from './materials.module';
+import { WildlifeAdviceDialogComponent } from './pages/wildlife-advice-page/wildlife-advice-dialog/wildlife-advice-dialog.component';
 
 @NgModule({
   imports: [
@@ -62,9 +63,11 @@ import { MatModule } from './materials.module';
     WildlifeAdviceGenericComponent,
     PollinatorDialogComponent,
     PollinatorSuggestionsComponent,
+    WildlifeAdviceDialogComponent,
     ],
   entryComponents: [
     PollinatorDialogComponent,
+    WildlifeAdviceDialogComponent
   ],
   // "providers" is used for services
   providers: [

@@ -71,6 +71,14 @@
     }
   }
 
+  /* If the screen size is 350px wide or less, reduce padding*/
+  @media screen and (max-width: 600px) {
+    .CardHolder{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+  }
+
   /* Hyperlink */
   
   a {

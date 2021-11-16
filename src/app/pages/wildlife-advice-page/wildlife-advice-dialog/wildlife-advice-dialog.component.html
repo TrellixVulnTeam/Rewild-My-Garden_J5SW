@@ -1,0 +1,14 @@
+<p mat-dialog-title class="Subheader"> {{ adviceGenericObject.Header }}</p>
+
+<div>
+    <img class="img-dialog" src="{{ adviceGenericObject.Pathname }}" alt="Advice_Image">
+    <div class="card-body">
+      <p class="card-text">{{ adviceGenericObject.BodyText }}</p>
+    <div>
+        <p class="CopyRightText">&copy; Image <a href="{{adviceGenericObject.Link}}">"{{adviceGenericObject.Name}}"</a> by {{adviceGenericObject.Username}}, distributed under {{adviceGenericObject.Copyright}} license.</p>
+    </div>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button color="primary" mat-dialog-close><b class="button-text">Close</b></button>
+</mat-dialog-actions>

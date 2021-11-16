@@ -3,8 +3,12 @@
     <!-- Multiple choice is hidden if 'save' is clicked -->
     <app-wildlife-multiplechoice *ngIf="multichoiceShow"></app-wildlife-multiplechoice>
 
+
     <!-- These only appear if 'save' is clicked -->
     <app-pollinator-suggestions id="adviceGridID" class="hiddenElem"></app-pollinator-suggestions>
+    <br>
+    <p *ngIf="responseShow" class="Subheader">Ideas for your Garden</p>
+    <p *ngIf="responseShow">Suggestions for things you can do to help wildlife in the garden that you have.</p>
     <app-wildlife-advice-generic id="genericAdviceID0" class="hiddenElem" [adviceGenericObject]="ourAdvice[0]"></app-wildlife-advice-generic>
     <app-wildlife-info-generic id="genericInfoID0" class="hiddenElem" [infoGenericObject]="ourInfo[0]"></app-wildlife-info-generic>
     <app-wildlife-advice-generic id="genericAdviceID1" class="hiddenElem" [adviceGenericObject]="ourAdvice[1]"></app-wildlife-advice-generic>

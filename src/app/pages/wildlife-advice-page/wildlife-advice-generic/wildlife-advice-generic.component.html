@@ -5,8 +5,6 @@
   <div class="card-body">
     <p class="Subheader">{{ adviceGenericObject.Header }}</p>
     <p class="card-text">{{ adviceGenericObject.Justification }}</p>
-    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-    <button mat-stroked-button color="primary" mat-button >See info</button>
-    <!-- (click)="openDialog(adviceGenericObject.BodyText)" -->
+    <button mat-stroked-button (click)="openDialog(adviceGenericObject)" color="primary" mat-button >See info</button>
   </div>
 </div>

@@ -15,6 +15,7 @@ import { WildlifeAnswers } from '../services/multichoice-answers.service';
 export class WildlifeLayoutComponent implements OnInit {
 
   public multichoiceShow: boolean = true;
+  public responseShow: boolean = false;
 
   private ourPollinatorsService: Subscription = new Subscription();
   private ourAdviceService: Subscription = new Subscription();
@@ -42,6 +43,7 @@ export class WildlifeLayoutComponent implements OnInit {
       document.getElementById('adviceGridID')!.classList.remove('hiddenElem');
       // Here we are using ngIf to toggle visibility of multichoice Q
       this.multichoiceShow = false;
+      this.responseShow = true;
     });
 
     this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
