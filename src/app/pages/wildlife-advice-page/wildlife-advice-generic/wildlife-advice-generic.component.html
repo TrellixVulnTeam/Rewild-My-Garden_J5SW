@@ -1,20 +1,12 @@
 <br>
-<p class="Subheader">{{ adviceGenericObject.Header }}</p>
-<p> {{ adviceGenericObject.Justification }}</p>
 
-<div class="CardHolder">
-  <mat-card class="card">
-    <mat-card-title-group>
-    <img
-      mat-card-lg-image
-      alt="Advice_Image"
-      [src]="adviceGenericObject.Pathname"
-    />
-    <mat-card-subtitle> {{ adviceGenericObject.BodyText }} </mat-card-subtitle>
-    <!-- <mat-card-content class="BodyContent">
-      <p>{{ adviceGenericObject.BodyText }}</p>
-    </mat-card-content> -->
-    </mat-card-title-group>
-  </mat-card>
+<div class="card">
+  <img src="{{ adviceGenericObject.Pathname }}" alt="Advice_Image">
+  <div class="card-body">
+    <p class="Subheader">{{ adviceGenericObject.Header }}</p>
+    <p class="card-text">{{ adviceGenericObject.Justification }}</p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    <button mat-stroked-button color="primary" mat-button >See info</button>
+    <!-- (click)="openDialog(adviceGenericObject.BodyText)" -->
+  </div>
 </div>
-<br>

@@ -4,5 +4,9 @@
     // object-position: center; 
     height: 200px;
     width: 200px;
-    padding-left: 20px;
+    padding: 20px;
 }
+
+.card {
+    flex-direction: row;
+  }
