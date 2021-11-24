@@ -5,7 +5,7 @@
             (change)="onTextChange()"
             placeholder="Ex. SW5 7NL">
       <mat-error *ngIf="postcodeFormControl.hasError('postcode') && !postcodeFormControl.hasError('required')">
-        Please enter a valid email address
+        Please enter a valid postcode
       </mat-error>
       <mat-error *ngIf="postcodeFormControl.hasError('required')">
         Postcode is <strong>required</strong>

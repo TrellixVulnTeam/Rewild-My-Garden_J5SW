@@ -61,7 +61,6 @@ export class WildlifeLayoutComponent implements OnInit {
         for(var j = 0; j < 3; j++){
           var flag = "setCard"
           var rand = Math.floor( Math.random() * noAdvice);
-          console.log(rand);
           //Compare our random number with previous random
           //numbers to ensure no repeated cards
           for(var m = 0; m < this.randRecordAdvice.length; m++){
@@ -70,14 +69,12 @@ export class WildlifeLayoutComponent implements OnInit {
             }
           }
           if(flag == "setCard"){
-            console.log("setting " + j + ": " + rand);
             this.ourAdvice[j] = retrievedAdvice[rand];
             this.randRecordAdvice.push(rand);
             document.getElementById('genericAdviceID' + j)!.classList.remove('hiddenElem');
           }
           //If we've found a repeat card, j-- to try again
           else{
-            console.log("not setting " + j + ": " + rand);
             j--;
           }
         }
@@ -99,7 +96,6 @@ export class WildlifeLayoutComponent implements OnInit {
         for(var y = 0; y < 3; y++){
           var infoFlag = "setCard"
           var infoRand = Math.floor( Math.random() * noInfo);
-          console.log("INFO :" + infoRand);
           //Compare our random number with previous random
           //numbers to ensure no repeated cards
           for(var n = 0; n < this.randRecordInfo.length; n++){
@@ -108,28 +104,17 @@ export class WildlifeLayoutComponent implements OnInit {
             }
           }
           if(infoFlag == "setCard"){
-            console.log("setting " + y + ": " + infoRand);
             this.ourInfo[y] = retrievedInfo[infoRand];
             this.randRecordInfo.push(infoRand);
             document.getElementById('genericInfoID' + y)!.classList.remove('hiddenElem');
           }
           //If we've found a repeat card, y-- to try again
           else{
-            console.log("not setting " + y + ": " + infoRand);
             y--;
           }
         }
       }
     });
-
-    // this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
-    //   this.infoOne = retrievedInfo[0];
-    //   this.infoTwo = retrievedInfo[1];
-    //   this.infoThree = retrievedInfo[2];
-    //   document.getElementById('genericInfoID1')!.classList.remove('hiddenElem');
-    //   document.getElementById('genericInfoID2')!.classList.remove('hiddenElem');
-    //   document.getElementById('genericInfoID3')!.classList.remove('hiddenElem');
-    // });
   }
 
   ngOnInit(): void {
