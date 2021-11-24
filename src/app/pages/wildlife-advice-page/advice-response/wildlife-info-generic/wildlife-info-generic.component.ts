@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InfoGeneric } from '../models/info.model';
+import { InfoGeneric } from '../../models/info.model';
 
 @Component({
   selector: 'app-wildlife-info-generic',

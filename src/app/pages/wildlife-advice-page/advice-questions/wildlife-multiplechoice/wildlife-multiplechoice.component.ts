@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WildlifeAnswers } from '../services/multichoice-answers.service';
+import { WildlifeAnswers } from '../../services/multichoice-answers.service';
 
 @Component({
   selector: 'app-wildlife-multiplechoice',

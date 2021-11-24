@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { AdviceGeneric } from "../models/advice.model";
+import { AdviceGeneric } from "../../models/advice.model";
 import { WildlifeAdviceDialogComponent } from "../wildlife-advice-dialog/wildlife-advice-dialog.component";
 
 @Component({

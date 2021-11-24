@@ -16,13 +16,13 @@ import { LayoutComponent } from './display/layout/layout.component';
 import { NavigationComponent } from './top-display/navigation/navigation.component';
 import { SidenavListComponent } from './top-display/sidenav-list/sidenav-list.component';
 import { AboutTextComponent } from './pages/about-page/about-text/about-text.component';
-import { WildlifeMultiplechoiceComponent } from './pages/wildlife-advice-page/wildlife-multiplechoice/wildlife-multiplechoice.component';
+import { WildlifeMultiplechoiceComponent } from './pages/wildlife-advice-page/advice-questions/wildlife-multiplechoice/wildlife-multiplechoice.component';
 import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-layout/wildlife-layout.component';
 import { ExampleGardensBodyComponent } from './pages/example-gardens-page/example-gardens-body/example-gardens-body.component';
-import { WildlifeAdviceGenericComponent } from './pages/wildlife-advice-page/wildlife-advice-generic/wildlife-advice-generic.component';
-import { WildlifeInfoGenericComponent } from './pages/wildlife-advice-page/wildlife-info-generic/wildlife-info-generic.component';
-import { PollinatorSuggestionsComponent } from './pages/wildlife-advice-page/pollinator-suggestions/pollinator-suggestions.component';
-import { PollinatorDialogComponent } from './pages/wildlife-advice-page/pollinator-dialog/pollinator-dialog.component';
+import { WildlifeAdviceGenericComponent } from './pages/wildlife-advice-page/advice-response/wildlife-advice-generic/wildlife-advice-generic.component';
+import { WildlifeInfoGenericComponent } from './pages/wildlife-advice-page/advice-response/wildlife-info-generic/wildlife-info-generic.component';
+import { PollinatorSuggestionsComponent } from './pages/wildlife-advice-page/advice-response/pollinator-suggestions/pollinator-suggestions.component';
+import { PollinatorDialogComponent } from './pages/wildlife-advice-page/advice-response/pollinator-dialog/pollinator-dialog.component';
 /* Our Services */
 import { WildlifeAnswers } from './pages/wildlife-advice-page/services/multichoice-answers.service';
 import { WildlifeResponse } from './pages/wildlife-advice-page/services/pollinator-suggestions.service';
@@ -32,7 +32,8 @@ import { InfoService } from './pages/wildlife-advice-page/services/info-boxes.se
 import {DataService} from './data.service';
 /* All material modules we are using */
 import { MatModule } from './materials.module';
-import { WildlifeAdviceDialogComponent } from './pages/wildlife-advice-page/wildlife-advice-dialog/wildlife-advice-dialog.component';
+import { WildlifeAdviceDialogComponent } from './pages/wildlife-advice-page/advice-response/wildlife-advice-dialog/wildlife-advice-dialog.component';
+import { FindPostcodeComponent } from './pages/wildlife-advice-page/advice-questions/find-postcode/find-postcode.component';
 
 @NgModule({
   imports: [
@@ -64,6 +65,7 @@ import { WildlifeAdviceDialogComponent } from './pages/wildlife-advice-page/wild
     PollinatorDialogComponent,
     PollinatorSuggestionsComponent,
     WildlifeAdviceDialogComponent,
+    FindPostcodeComponent,
     ],
   entryComponents: [
     PollinatorDialogComponent,

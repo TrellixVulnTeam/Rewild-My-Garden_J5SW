@@ -1,0 +1,14 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Postcode</mat-label>
+      <input type="postcode" matInput [formControl]="postcodeFormControl" [errorStateMatcher]="matcher"
+            (change)="onTextChange()"
+            placeholder="Ex. SW5 7NL">
+      <mat-error *ngIf="postcodeFormControl.hasError('postcode') && !postcodeFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="postcodeFormControl.hasError('required')">
+        Postcode is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>

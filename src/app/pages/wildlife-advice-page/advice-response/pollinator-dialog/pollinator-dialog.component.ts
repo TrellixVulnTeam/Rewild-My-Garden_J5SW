@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { GridResponse } from '../models/pollinator-visible.model';
+import { GridResponse } from '../../models/pollinator-visible.model';
 
 @Component({
   selector: 'app-pollinator-dialog',

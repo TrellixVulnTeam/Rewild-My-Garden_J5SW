@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UnfinishedPollinatorData } from '../models/pollinator-data.model'; 
+import { UnfinishedPollinatorData } from '../../models/pollinator-data.model'; 
 import { HttpClient } from '@angular/common/http';
-import { WildlifeResponse } from '../services/pollinator-suggestions.service';
+import { WildlifeResponse } from '../../services/pollinator-suggestions.service';
 import { Subscription } from 'rxjs';
-import { GridResponse } from '../models/pollinator-visible.model';
+import { GridResponse } from '../../models/pollinator-visible.model';
 import { MatDialog } from '@angular/material/dialog';
 import { PollinatorDialogComponent } from '../pollinator-dialog/pollinator-dialog.component';
 
