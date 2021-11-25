@@ -32,6 +32,7 @@ export class FindPostcodeComponent implements OnInit {
     .then( (response) => {
         if(response.data.results[0].GAZETTEER_ENTRY.ID.toUpperCase() === this.postcodeFormControl.value.toUpperCase()){
           document.getElementById('errMessage')!.innerHTML = "";
+
           console.log(JSON.stringify("hello" + response.data.results[0].GAZETTEER_ENTRY.ID, null, 2));
           console.log(JSON.stringify("hello" + response.data.results[0].GAZETTEER_ENTRY.GEOMETRY_X, null, 2));
           console.log(JSON.stringify("hello" + response.data.results[0].GAZETTEER_ENTRY.GEOMETRY_Y, null, 2));

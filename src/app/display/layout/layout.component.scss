@@ -12,12 +12,13 @@
   .layout-wrapper{
     height: 100%;
     bottom:0;
+    height: auto;
   }
 
 .flex-wrapper{
     //setting colour of central square
-    background-color: rgb(248, 252, 249);
+    // background-color: rgb(248, 252, 249);
     border-radius: 10px;
-    height: 100%;
-    // height: auto;
+    // height: 100%;
+    height: auto;
 }

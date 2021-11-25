@@ -4,6 +4,8 @@ const router = express.Router();
 const unfinishedPollinatorData = require('./unfinishedPollinatorData_model.js');
 const adviceData = require('./adviceData_model.js');
 const infoData = require('./infoData_model.js');
+// const minTempDataGeo = require('./minTempGeo_model.js');
+const minTempData = require('./minTemp_model.js');
 const cors = require("cors");
 
 //Options to stop this API from being accessible by everyone one is live
@@ -54,6 +56,46 @@ router.get('/infoData', function (req, res, next) {
   infoData.find({[req.query.SizeQueryType] : req.query.Size}).then(function(result, err){
   if(result){
     res.send(result);
+  }
+  if(err){
+    console.log(err);
+  }
+}); 
+});
+
+//For the moment we are using a normal jile rather than geojson as geojson seems to
+//trigger mongodb to assume we are using longitude and latitude and then throw an out of bounds err
+//Get hardiness data
+// router.get('/minTempData', function (req, res, next) {
+//   minTempDataGeo.find(
+//     {
+//        loc: {
+//          $near: {
+//            $geometry: {
+//               type: "Point" ,
+//               coordinates: [ req.query.x , req.query.y ]
+//            },
+//          }
+//        }
+//     })
+//     //Limit the response to 1
+//     .limit(1)
+//     .then(function(result, err){
+//       if(result){
+//         res.send(result.properties.hardiness);
+//       }
+//       if(err){
+//         console.log(err);
+//       }
+//     }
+//   ); 
+// });
+
+//Get info box data
+router.get('/minTempData', function (req, res, next) {
+  minTempData.find({x : req.query.x, y : req.query.y}).then(function(result, err){
+  if(result){
+    res.send("hello" + result);
   }
   if(err){
     console.log(err);
