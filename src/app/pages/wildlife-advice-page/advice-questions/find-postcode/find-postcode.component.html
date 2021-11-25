@@ -1,14 +1,12 @@
 <form class="example-form">
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Postcode</mat-label>
-      <input type="postcode" matInput [formControl]="postcodeFormControl" [errorStateMatcher]="matcher"
+      <input type="postcode" matInput [formControl]="postcodeFormControl"
             (change)="onTextChange()"
             placeholder="Ex. SW5 7NL">
-      <mat-error *ngIf="postcodeFormControl.hasError('postcode') && !postcodeFormControl.hasError('required')">
-        Please enter a valid postcode
-      </mat-error>
-      <mat-error *ngIf="postcodeFormControl.hasError('required')">
-        Postcode is <strong>required</strong>
-      </mat-error>
+      <!-- mat-hint is being used as err stand in because mat-error couldn't seem to accept custom errors from TS (for our postcode) and 
+      I wanted the error messages to look consistent -->
+      <mat-hint><strong class="errStandin" id="errMessage"></strong></mat-hint>
     </mat-form-field>
   </form>
+
