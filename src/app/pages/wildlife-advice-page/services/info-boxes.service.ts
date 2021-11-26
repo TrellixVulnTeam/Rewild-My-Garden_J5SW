@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
+import { CompleteAnswerSet } from '../models/all-answers.model';
 import { InfoGeneric } from '../models/info.model';
 import { WildlifeAnswerSet } from '../models/multichoice-answers.model';
+import { AllAnswers } from './all-answers.service';
 import { WildlifeAnswers } from './multichoice-answers.service';
 
 @Injectable({providedIn: 'root'})
@@ -11,11 +13,10 @@ export class InfoService{
     private updatedInfo = new Subject<InfoGeneric[]>();
     //Subscriptions to wildlife answers data
     private answersSub: Subscription = new Subscription();
-    public ourAnswer: WildlifeAnswerSet = { soil: "", ph: "", shade: "", gardenSize: ""};
 
-    constructor(private httpClient: HttpClient, public wildlifeAnswersService: WildlifeAnswers){
+    constructor(private httpClient: HttpClient, public allAnswersService: AllAnswers){
         //here we are subscribing to the listener
-        this.answersSub = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet) => {
+        this.answersSub = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
             var ourGardenSize = retrievedAnswers.gardenSize;
             //Then use that data to filter API data for display
             this.httpClient.get<InfoGeneric[]>("http://localhost:3000/api/infoData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(

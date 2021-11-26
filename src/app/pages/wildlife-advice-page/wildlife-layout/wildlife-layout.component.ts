@@ -35,17 +35,6 @@ export class WildlifeLayoutComponent implements OnInit {
   private randRecordInfo: Number[] = [];
 
   constructor(public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService) {
-    // at the moment, it's not displaying elements in a sensible order because the order of services is:
-    //   multichoice answers --> advice service [triggers display advice]
-
-    //   multichoice answers --> info service [triggers display info]
-
-    //   multichoice answers ---> 
-    //                            all answers [triggering multishow hide] [triggers display pollinators] ---> pollinator suggestions
-    //   location answer -------------^ 
-
-    // so when multichoice answers is entered, advice and info open, and all answers is still waiting for location answer.
-    // need an event emitter?
 
     //When the advice set is produced, create advice Title and hide questions
     //Find a better way of triggering elements hiding/unhiding !!!!! ******
