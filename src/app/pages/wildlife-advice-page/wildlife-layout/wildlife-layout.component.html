@@ -11,6 +11,15 @@
     <br>
     <p *ngIf="responseShow" class="Subheader">Ideas for your Garden</p>
     <p *ngIf="responseShow">Suggestions for things you can do to help wildlife in the garden that you have.</p>
+    <!-- We can group advice by species helped by creating the structure here and then populating each section with animal specific arrays
+    i.e. 
+    <p class="Subheader">Hedgehog Advice</p>
+    <app-wildlife-advice-generic id="hedgehogAdviceID0" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[0]"></app-wildlife-advice-generic>
+    <app-wildlife-advice-generic id="hedgehogAdviceID0" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[1]"></app-wildlife-advice-generic>
+    <app-wildlife-advice-generic id="hedgehogAdviceID0" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[2]"></app-wildlife-advice-generic>
+    This becomes unhidden as it is filled/ if see more is clicked
+    -->
+
     <app-wildlife-advice-generic id="genericAdviceID0" class="hiddenElem" [adviceGenericObject]="ourAdvice[0]"></app-wildlife-advice-generic>
     <app-wildlife-info-generic id="genericInfoID0" class="hiddenElem" [infoGenericObject]="ourInfo[0]"></app-wildlife-info-generic>
     <app-wildlife-advice-generic id="genericAdviceID1" class="hiddenElem" [adviceGenericObject]="ourAdvice[1]"></app-wildlife-advice-generic>

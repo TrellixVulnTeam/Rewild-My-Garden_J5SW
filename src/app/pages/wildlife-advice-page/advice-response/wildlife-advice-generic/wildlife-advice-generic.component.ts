@@ -26,6 +26,12 @@ export class WildlifeAdviceGenericComponent implements OnInit {
     Link: "",
   };
 
+  /*
+  saveAdvice(){
+    add relevant information from adviceGenericObject to the array in wildlifeLayout
+  }
+  */
+
   constructor(public dialog: MatDialog) {}
 
   //this function is passed the correct month data through the HTML

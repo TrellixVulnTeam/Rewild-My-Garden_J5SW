@@ -34,6 +34,11 @@ export class WildlifeLayoutComponent implements OnInit {
   private randRecordAdvice: Number[] = [];
   private randRecordInfo: Number[] = [];
 
+  /* An array of saved advice is created and passed to all children. When 'save this advice' is clicked in an advice box, it adds a data entry to this
+  array. When a user submits their email, this array is wrapped up with the email and location (retrieved from CompleteAnswerSet) and added to the database as geojson.
+  Therefore, it may be useful to generate longitude/latitude in locationInfo.
+  We can also create a InYourLocalArea component which takes the user's location and searches the same database for people who are near enough to give advice.*/
+
   constructor(public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService) {
 
     //When the advice set is produced, create advice Title and hide questions
@@ -73,8 +78,11 @@ export class WildlifeLayoutComponent implements OnInit {
             }
           }
           if(flag == "setCard"){
+            //this sets a cell in this.ourAdvice with the random retrievedAdvice
             this.ourAdvice[j] = retrievedAdvice[rand];
+            //this stores which random advice we have used. This info is saved by the advice's position in the retrievedAdvice array (i.e. 1, 2, 7 etc)
             this.randRecordAdvice.push(rand);
+            //this unhides the advice box that's just been populated
             document.getElementById('genericAdviceID' + j)!.classList.remove('hiddenElem');
           }
           //If we've found a repeat card, j-- to try again
