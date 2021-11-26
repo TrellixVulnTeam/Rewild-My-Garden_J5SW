@@ -60,7 +60,6 @@ export class WildlifeResponse {
     this.reqShadeQueryType = retrievedAnswers.shade;
     //The format of the query is "Hardiness1", "Hardiness2" etc, but retrievedAnswers.hardiness is just the number part
     this.reqHardinessQueryType = "Hardiness" + retrievedAnswers.hardiness;
-    console.log(this.reqHardinessQueryType);
   }
 
   private getGridData(){

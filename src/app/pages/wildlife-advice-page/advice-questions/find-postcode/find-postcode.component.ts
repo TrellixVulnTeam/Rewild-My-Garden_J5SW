@@ -63,7 +63,6 @@ export class FindPostcodeComponent implements OnInit {
         if(response.data.results[0].GAZETTEER_ENTRY.ID.toUpperCase() === this.postcodeFormControl.value.toUpperCase()){
           document.getElementById('errMessageForm')!.innerHTML = "";
           //A response is composed of the results from mutliple tick boxes!
-          console.log(response.data.results[0].GAZETTEER_ENTRY.GEOMETRY_X + " - " + response.data.results[0].GAZETTEER_ENTRY.GEOMETRY_Y);
           this.locationAnswersService.addAnswerSet(response.data.results[0].GAZETTEER_ENTRY.GEOMETRY_X, response.data.results[0].GAZETTEER_ENTRY.GEOMETRY_Y);
         }
         else{

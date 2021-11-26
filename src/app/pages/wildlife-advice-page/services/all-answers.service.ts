@@ -27,8 +27,6 @@ export class AllAnswers{
                     y : retrievedLocation.y,
                     hardiness : retrievedLocation.hardiness,
                 };
-                console.log("all answer service : " + allAnswers);
-                console.log("all answer service : " + allAnswers.hardiness);
                 this.updatedAnswers.next(allAnswers);            
             });
         });

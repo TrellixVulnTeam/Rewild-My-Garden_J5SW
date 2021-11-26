@@ -35,9 +35,6 @@ export class WildlifeAdviceGenericComponent implements OnInit {
       width: "750px",
       data: adviceGenericObject,
     });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
   }
 
   ngOnInit(): void {}

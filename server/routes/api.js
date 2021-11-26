@@ -31,7 +31,6 @@ router.get('/minimalTestDataFilter', function (req, res, next) {
                   [req.query.PHQueryType] : req.query.PH, 
                   [req.query.FloweringQueryType] : req.query.Flowering,
                   [req.query.HardinessQueryType] : req.query.Hardiness}).then(function(result, err){
-      console.log(result);
       if(result){
         res.send(result);
       }
@@ -101,13 +100,10 @@ router.get('/minTempData', function (req, res, next) {
   //2500 and -2500 are both coordinates used. 1 would be allocated to 2500, 0 would be allocated to -2500.
   //Similarly 5001 would be allocated to 7500, 5000 would be allocated to 2500.
   //***** Check bottom and top bounds
-  console.log("api : " + req.query.x + " - " + req.query.y);
   var varX = Math.ceil(req.query.x/5000)*5000 - 2500;
   var varY = Math.ceil(req.query.y/5000)*5000 - 2500;
-  console.log("api : " + varX + " - " + varY);
   minTempData.find({x : varX, y : varY}).then(function(result, err){
     if(result){
-      console.log("api : " + result);
       res.send(result);
     }
     if(err){

@@ -24,11 +24,8 @@ export class LocationAnswers{
         //This fetches the hardiness data from our api
         this.answersSub = this.httpClient.get<BasicLocationData[]>("http://localhost:3000/api/minTempData?x=" + xAnswer + "&y=" + yAnswer).subscribe(
             response => {
-                console.log("location answer service response : " + response[0].hardiness);
                 //this service just fetches our hardiness
                 const ourLocation: BasicLocationData = {x: xAnswer, y: yAnswer, hardiness: response[0].hardiness};
-                console.log("location answer service : " + ourLocation);
-                console.log("location answer service : " + ourLocation.hardiness);
                 this.updatedLocation.next(ourLocation);            
             }
         );
