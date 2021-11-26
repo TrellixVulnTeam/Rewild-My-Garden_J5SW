@@ -51,10 +51,6 @@ export class PollinatorSuggestionsComponent implements OnInit {
       width: '750px',
       data: thisMonthData,
     });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
   }
   
   ngOnInit() {}

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AdviceGeneric } from '../models/advice.model';
+import { CompleteAnswerSet } from '../models/all-answers.model';
 import { InfoGeneric } from '../models/info.model';
-import { WildlifeAnswerSet } from '../models/multichoice-answers.model';
 import { AdviceService } from '../services/advice-boxes.service';
+import { AllAnswers } from '../services/all-answers.service';
 import { InfoService } from '../services/info-boxes.service';
-import { WildlifeAnswers } from '../services/multichoice-answers.service';
 
 @Component({
   selector: 'app-wildlife-layout',
@@ -34,10 +34,22 @@ export class WildlifeLayoutComponent implements OnInit {
   private randRecordAdvice: Number[] = [];
   private randRecordInfo: Number[] = [];
 
-  constructor(public wildlifeAnswersService: WildlifeAnswers, public adviceService: AdviceService, public infoService: InfoService) {
+  constructor(public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService) {
+    // at the moment, it's not displaying elements in a sensible order because the order of services is:
+    //   multichoice answers --> advice service [triggers display advice]
+
+    //   multichoice answers --> info service [triggers display info]
+
+    //   multichoice answers ---> 
+    //                            all answers [triggering multishow hide] [triggers display pollinators] ---> pollinator suggestions
+    //   location answer -------------^ 
+
+    // so when multichoice answers is entered, advice and info open, and all answers is still waiting for location answer.
+    // need an event emitter?
+
     //When the advice set is produced, create advice Title and hide questions
-    //Find a better way of triggering elements hiding/unhiding !!!!!
-    this.ourPollinatorsService = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet[]) => {
+    //Find a better way of triggering elements hiding/unhiding !!!!! ******
+    this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet[]) => {
       //We are using 'subscribe' to detect when 'save' has been clicked and data emitted
       //Here we are toggling the visibility of the grid using css
       document.getElementById('adviceGridID')!.classList.remove('hiddenElem');
@@ -45,7 +57,11 @@ export class WildlifeLayoutComponent implements OnInit {
       this.multichoiceShow = false;
       this.responseShow = true;
     });
+    this.fetchAdvice();
+    this.fetchInfo();
+  }
 
+  private fetchAdvice(){
     this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
       //find number of pieces of advice
       var noAdvice = retrievedAdvice.length;
@@ -53,7 +69,6 @@ export class WildlifeLayoutComponent implements OnInit {
       if(noAdvice < 3){
         for(var i = 0; i < noAdvice; i++){
           this.ourAdvice[i] = retrievedAdvice[i];
-          document.getElementById('genericAdviceID' + i)!.classList.remove('hiddenElem');
         }
       }
       //If there is enough advice, choose three random pieces of advice
@@ -80,7 +95,9 @@ export class WildlifeLayoutComponent implements OnInit {
         }
       }
     });
+  }
 
+  private fetchInfo(){
     this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
       //find number of pieces of info
       var noInfo = retrievedInfo.length;
@@ -123,6 +140,6 @@ export class WildlifeLayoutComponent implements OnInit {
   ngOnDestroy() {
     this.ourPollinatorsService.unsubscribe();
     this.ourAdviceService.unsubscribe();
-    // this.infoSub.unsubscribe();
+    this.ourInfoService.unsubscribe();
   }
 }

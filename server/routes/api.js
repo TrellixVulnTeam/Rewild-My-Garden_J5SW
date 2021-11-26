@@ -1,7 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require('express');
 const router = express.Router();
-const unfinishedPollinatorData = require('./unfinishedPollinatorData_model.js');
+const pollinatorDataFinal = require('./pollinatorData_model.js');
 const adviceData = require('./adviceData_model.js');
 const infoData = require('./infoData_model.js');
 // const minTempDataGeo = require('./minTempGeo_model.js');
@@ -25,11 +25,13 @@ router.get('/minimalTestDataFilter', function (req, res, next) {
   //need parsing. However, providing some checking might be worth thinking about?
   //Because the column we're querying changes, the name of the column is also part of the request
   //"Habit" is commented out because we ultimately decided to split the database by habit- it therefore isn't useful
-      unfinishedPollinatorData.find({/*"Habit" : req.query.Habit,*/
+      pollinatorDataFinal.find({/*"Habit" : req.query.Habit,*/
                   [req.query.SoilQueryType] : req.query.Soil, 
                   [req.query.ShadeQueryType] : req.query.Shade, 
                   [req.query.PHQueryType] : req.query.PH, 
-                  [req.query.FloweringQueryType] : req.query.Flowering}).then(function(result, err){
+                  [req.query.FloweringQueryType] : req.query.Flowering,
+                  [req.query.HardinessQueryType] : req.query.Hardiness}).then(function(result, err){
+      console.log(result);
       if(result){
         res.send(result);
       }
@@ -93,13 +95,24 @@ router.get('/infoData', function (req, res, next) {
 
 //Get info box data
 router.get('/minTempData', function (req, res, next) {
-  minTempData.find({x : req.query.x, y : req.query.y}).then(function(result, err){
-  if(result){
-    res.send("hello" + result);
-  }
-  if(err){
-    console.log(err);
-  }
+  //This rounds our coordinate up to the nearest coordinate understood by our database
+  //Under this system, the coordinate given is rounded up or down to this grid reference it is 
+  //closest to. The grids are spread by 5km or 5000 meters, starting at y=-197500m, x=-197500m.
+  //2500 and -2500 are both coordinates used. 1 would be allocated to 2500, 0 would be allocated to -2500.
+  //Similarly 5001 would be allocated to 7500, 5000 would be allocated to 2500.
+  //***** Check bottom and top bounds
+  console.log("api : " + req.query.x + " - " + req.query.y);
+  var varX = Math.ceil(req.query.x/5000)*5000 - 2500;
+  var varY = Math.ceil(req.query.y/5000)*5000 - 2500;
+  console.log("api : " + varX + " - " + varY);
+  minTempData.find({x : varX, y : varY}).then(function(result, err){
+    if(result){
+      console.log("api : " + result);
+      res.send(result);
+    }
+    if(err){
+      console.log(err);
+    }
 }); 
 });
 

@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { WildlifeAnswerSet } from '../models/multichoice-answers.model';
 import { Observable, Subject } from 'rxjs';
 
+//Could use this data to create a "users near you have save said they have X soil type" response ******
+
 @Injectable({providedIn: 'root'})
 export class WildlifeAnswers{
 
-    private ourAnswers: WildlifeAnswerSet[] = [];
     private updatedAnswers = new Subject<WildlifeAnswerSet>();
 
     getAnswerUpdateListener(): Observable<any>{

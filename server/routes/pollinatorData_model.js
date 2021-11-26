@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 //Define a schema
 var Schema = mongoose.Schema;
 
-var unfinishedPollinatorDataSchema = new Schema({
+var pollinatorDataSchema = new Schema({
         _id: mongoose.Schema.Types.ObjectId,
         "LatinName": { type: String },
         "CommonName": { type: String },
@@ -57,4 +57,4 @@ var unfinishedPollinatorDataSchema = new Schema({
         "Link": { type: String }
 });
 
-module.exports = mongoose.model("unfinishedPollinatorData", unfinishedPollinatorDataSchema, "unfinishedPollinatorData");
+module.exports = mongoose.model("pollinatorDataFinal", pollinatorDataSchema, "pollinatorDataFinal");
