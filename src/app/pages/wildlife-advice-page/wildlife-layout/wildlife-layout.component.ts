@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AdviceGeneric } from '../models/advice.model';
 import { CompleteAnswerSet } from '../models/all-answers.model';
 import { InfoGeneric } from '../models/info.model';
 import { AdviceSave } from '../models/save-advice.model';
+import { UserDataSave } from '../models/save-user-data.model';
 import { AdviceService } from '../services/advice-boxes.service';
 import { AllAnswers } from '../services/all-answers.service';
 import { InfoService } from '../services/info-boxes.service';
@@ -14,6 +16,12 @@ import { InfoService } from '../services/info-boxes.service';
   styleUrls: ['./wildlife-layout.component.scss']
 })
 export class WildlifeLayoutComponent implements OnInit {
+
+  /**********************************************************************
+   **********************************************************************
+   *** LOGIC TO HIDE/UNHIDE PAGE ELEMENTS AND CHOOSE ADVICE/INFO BOXES **
+   **********************************************************************
+   ***********************************************************************/
 
   public multichoiceShow: boolean = true;
   public responseShow: boolean = false;
@@ -35,67 +43,14 @@ export class WildlifeLayoutComponent implements OnInit {
   private randRecordAdvice: Number[] = [];
   private randRecordInfo: Number[] = [];
 
-  //the email that the user has submitted
-  private email = "bob@gmail.com"; /*Placeholder*/
-  //the user's longitude and latitude
-  private longitude: Number = 0; /*Placeholder*/
-  private latitude: Number = 0; /*Placeholder*/
-
-  //array which holds saved advice 
-  private savedAdvice: AdviceSave[] = [];
-
-
-  public addAdvice(advice: AdviceSave) {
-    this.savedAdvice.push(advice);
-  }
-
-  public removeAdvice(advice: String) {
-    this.savedAdvice.forEach((value,index)=>{
-      if(value.Header==advice){
-        this.savedAdvice.splice(index,1);
-      }
-    });  
-  }
-
-  public processEmailData(){
-    // Will need to do this!!
-    // this.sendEmail()
-    this.saveUserData();
-  }
-
-  private saveUserData(){
-    var geoJsonObj = {
-          "type": "Feature",
-          "properties": {
-            "email": this.email,
-            "savedAdvice": this.savedAdvice,
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              this.longitude, this.latitude
-            ]
-          }
-        }
-    console.log(geoJsonObj);
-  }
-
-  /* An array of saved advice is created and passed to all children. When 'save this advice' is clicked in an advice box, it adds a data entry to this
-  array. When a user submits their email, this array is wrapped up with the email and location (retrieved from CompleteAnswerSet) and added to the database as geojson.
-  Therefore, it may be useful to generate longitude/latitude in locationInfo.
-  We can also create a InYourLocalArea component which takes the user's location and searches the same database for people who are near enough to give advice.*/
-
-  constructor(public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService) {
-
-    //When the advice set is produced, create advice Title and hide questions
-    //Find a better way of triggering elements hiding/unhiding !!!!! ******
-
+  constructor(public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService, private httpClient: HttpClient) {
     this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
       //Get location from retrievedAnswers
       this.longitude = retrievedAnswers.longitude;
       this.latitude = retrievedAnswers.latitude;
 
       //We are using 'subscribe' to detect when 'save' has been clicked and data emitted
+      //When the advice set is produced, create advice Title and hide questions
       //Here we are toggling the visibility of the grid and email box using css
       document.getElementById('emailBoxID')!.classList.remove('hiddenElem');
       document.getElementById('adviceGridID')!.classList.remove('hiddenElem');
@@ -190,5 +145,62 @@ export class WildlifeLayoutComponent implements OnInit {
     this.ourPollinatorsService.unsubscribe();
     this.ourAdviceService.unsubscribe();
     this.ourInfoService.unsubscribe();
+  }
+
+  /**********************************************************************
+   **********************************************************************
+   ********* LOGIC TO HANDLE ADVICE THAT WILL BE SAVED AS GEOJSON ********
+   **********************************************************************
+   ***********************************************************************/
+
+  //the email that the user has submitted
+  private email = "bob@gmail.com"; /*Placeholder*/
+
+  //the user's longitude and latitude
+  private longitude: Number = 0; 
+  private latitude: Number = 0; 
+
+  //array which holds saved advice 
+  private savedAdvice: AdviceSave[] = [];
+
+  /* An array of saved advice is created and passed to all children. When 'save this advice' is clicked in an advice box, it adds a data entry to this
+  array. When a user submits their email, this array is wrapped up with the email and location (retrieved from CompleteAnswerSet) and added to the database as geojson.
+  Therefore, it may be useful to generate longitude/latitude in locationInfo.
+  We can also create a InYourLocalArea component which takes the user's location and searches the same database for people who are near enough to give advice.*/
+
+  public addAdvice(advice: AdviceSave) {
+    this.savedAdvice.push(advice);
+  }
+
+  public removeAdvice(advice: String) {
+    this.savedAdvice.forEach((value,index)=>{
+      if(value.Header==advice){
+        this.savedAdvice.splice(index,1);
+      }
+    });  
+  }
+
+  public processEmailData(){
+    // Will need to do this!!
+    // this.sendEmail()
+    this.saveUserData();
+  }
+
+  private saveUserData(){
+    var geoJsonObj : UserDataSave = {
+          "type": "Feature",
+          "properties": {
+            "email": this.email,
+            "savedAdvice": this.savedAdvice,
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              this.longitude, this.latitude
+            ]
+          }
+        }
+    console.log(geoJsonObj);
+    this.httpClient.post<UserDataSave>('http://localhost:3000/api/userData', geoJsonObj);
   }
 }

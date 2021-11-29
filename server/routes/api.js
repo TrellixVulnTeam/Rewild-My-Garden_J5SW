@@ -112,5 +112,12 @@ router.get('/minTempData', function (req, res, next) {
 }); 
 });
 
+// Add a new set of user info to the database
+router.post('/userData', function (req, res, next) {
+  ourData.create(req).then(function(ourData){ // creates & saves to DB
+    res.send(ourData);
+  }).catch(next);
+});
+
 module.exports = router;
 
