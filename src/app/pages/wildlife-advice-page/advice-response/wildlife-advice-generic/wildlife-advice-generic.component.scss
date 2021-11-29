@@ -4,9 +4,31 @@
     // object-position: center; 
     height: 200px;
     width: 200px;
-    padding: 20px;
+    // padding: 20px;
 }
 
 .card {
     flex-direction: row;
   }
+
+//Accessing the toggle button group like this seemed to be the only way to set the button height
+.mat-button-toggle-group {
+    margin-left: 7px;
+    height: 36px;
+    align-items: center;
+  }
+
+.mat-button-toggle{
+    background-color: #ffffff;
+    color: #ffffff;
+}
+
+.mat-button-toggle:hover {
+    background-color: transparent;
+    color: #ffffff !important;    
+}
+
+  .mat-button-toggle-checked {
+    background-color: #96e6a1;
+    color: #96e6a1 !important;
+}

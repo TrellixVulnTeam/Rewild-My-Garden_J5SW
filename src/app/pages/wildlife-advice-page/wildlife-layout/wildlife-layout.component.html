@@ -3,14 +3,12 @@
     <!-- Multiple choice is hidden if 'save' is clicked -->
     <app-wildlife-multiplechoice *ngIf="multichoiceShow"></app-wildlife-multiplechoice>
 
-    <!-- <button mat-stroked-button color="primary" (click)="getAdvice()">Get Your Advice</button> -->
-
-
     <!-- These only appear if 'save' is clicked -->
     <app-pollinator-suggestions id="adviceGridID" class="hiddenElem"></app-pollinator-suggestions>
     <br>
     <p *ngIf="responseShow" class="Subheader">Ideas for your Garden</p>
     <p *ngIf="responseShow">Suggestions for things you can do to help wildlife in the garden that you have.</p>
+
     <!-- We can group advice by species helped by creating the structure here and then populating each section with animal specific arrays
     i.e. 
     <p class="Subheader">Hedgehog Advice</p>
@@ -20,10 +18,22 @@
     This becomes unhidden as it is filled/ if see more is clicked
     -->
 
-    <app-wildlife-advice-generic id="genericAdviceID0" class="hiddenElem" [adviceGenericObject]="ourAdvice[0]"></app-wildlife-advice-generic>
-    <app-wildlife-info-generic id="genericInfoID0" class="hiddenElem" [infoGenericObject]="ourInfo[0]"></app-wildlife-info-generic>
-    <app-wildlife-advice-generic id="genericAdviceID1" class="hiddenElem" [adviceGenericObject]="ourAdvice[1]"></app-wildlife-advice-generic>
-    <app-wildlife-info-generic id="genericInfoID1" class="hiddenElem" [infoGenericObject]="ourInfo[1]"></app-wildlife-info-generic>
-    <app-wildlife-advice-generic id="genericAdviceID2" class="hiddenElem" [adviceGenericObject]="ourAdvice[2]"></app-wildlife-advice-generic>
-    <app-wildlife-info-generic id="genericInfoID2" class="hiddenElem" [infoGenericObject]="ourInfo[2]"></app-wildlife-info-generic>
+    <app-wildlife-advice-generic id="genericAdviceID0" class="hiddenElem" [adviceGenericObject]="ourAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <app-wildlife-info-generic id="genericInfoID0" class="hiddenElem" [infoGenericObject]="ourInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+    <app-wildlife-advice-generic id="genericAdviceID1" class="hiddenElem" [adviceGenericObject]="ourAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <app-wildlife-info-generic id="genericInfoID1" class="hiddenElem" [infoGenericObject]="ourInfo[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+    <app-wildlife-advice-generic id="genericAdviceID2" class="hiddenElem" [adviceGenericObject]="ourAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <app-wildlife-info-generic id="genericInfoID2" class="hiddenElem" [infoGenericObject]="ourInfo[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+
+    <div id="emailBoxID" class="hiddenElem">
+      <div class="card">
+        <div class="card-body">
+          <p class="Subheader">Have Your Advice Emailed to You</p>
+          <p class="card-text">If you want to have the advice you have saved from this page emailed to you, enter your email and click Send.</p>
+          <button mat-stroked-button color="primary" mat-button >Send Email</button>
+        </div>
+      </div>
+    </div>
+      
+    <br>
 </div>

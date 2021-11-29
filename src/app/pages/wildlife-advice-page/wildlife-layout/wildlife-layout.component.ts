@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { AdviceGeneric } from '../models/advice.model';
 import { CompleteAnswerSet } from '../models/all-answers.model';
 import { InfoGeneric } from '../models/info.model';
+import { AdviceSave } from '../models/save-advice.model';
 import { AdviceService } from '../services/advice-boxes.service';
 import { AllAnswers } from '../services/all-answers.service';
 import { InfoService } from '../services/info-boxes.service';
@@ -34,6 +35,44 @@ export class WildlifeLayoutComponent implements OnInit {
   private randRecordAdvice: Number[] = [];
   private randRecordInfo: Number[] = [];
 
+  //array which holds saved advice 
+  private savedAdvice: AdviceSave[] = [];
+
+  public addAdvice(advice: AdviceSave) {
+    var consoleString = "";
+    this.savedAdvice.forEach((value)=>{
+      consoleString = consoleString + value.Header;
+    });  
+    console.log("Pre-add: " + consoleString);
+
+    this.savedAdvice.push(advice);
+
+    this.savedAdvice.forEach((value)=>{
+      consoleString = consoleString + value.Header;
+    });  
+    console.log("Post-add: " + consoleString);
+  }
+
+  public removeAdvice(advice: String) {
+    var consoleString = "";
+    this.savedAdvice.forEach((value)=>{
+      consoleString = consoleString + value.Header;
+    });  
+    console.log("Pre-remove: " + consoleString);
+
+    this.savedAdvice.forEach((value,index)=>{
+      if(value.Header==advice){
+        this.savedAdvice.splice(index,1);
+      }
+    });  
+
+    var consoleString = "";
+    this.savedAdvice.forEach((value)=>{
+      consoleString = consoleString + value.Header;
+    });  
+    console.log("Post-remove: " + consoleString);
+  }
+
   /* An array of saved advice is created and passed to all children. When 'save this advice' is clicked in an advice box, it adds a data entry to this
   array. When a user submits their email, this array is wrapped up with the email and location (retrieved from CompleteAnswerSet) and added to the database as geojson.
   Therefore, it may be useful to generate longitude/latitude in locationInfo.
@@ -43,9 +82,11 @@ export class WildlifeLayoutComponent implements OnInit {
 
     //When the advice set is produced, create advice Title and hide questions
     //Find a better way of triggering elements hiding/unhiding !!!!! ******
+
     this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet[]) => {
       //We are using 'subscribe' to detect when 'save' has been clicked and data emitted
-      //Here we are toggling the visibility of the grid using css
+      //Here we are toggling the visibility of the grid and email box using css
+      document.getElementById('emailBoxID')!.classList.remove('hiddenElem');
       document.getElementById('adviceGridID')!.classList.remove('hiddenElem');
       // Here we are using ngIf to toggle visibility of multichoice Q
       this.multichoiceShow = false;

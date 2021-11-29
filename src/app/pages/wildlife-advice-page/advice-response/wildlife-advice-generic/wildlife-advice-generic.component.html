@@ -4,6 +4,11 @@
     <p class="Subheader">{{ adviceGenericObject.Header }}</p>
     <p class="card-text">{{ adviceGenericObject.Justification }}</p>
     <button mat-stroked-button (click)="openDialog(adviceGenericObject)" color="primary" mat-button >See info</button>
+    <!-- <button color="primary" mat-button-toggle class="saveButton">Save to My Goals</button> -->
+    <mat-button-toggle-group multiple>
+      <mat-button-toggle (click)="toggleSave()">Save to My Goals</mat-button-toggle>
+    </mat-button-toggle-group>
+
   </div>
 </div>
 
