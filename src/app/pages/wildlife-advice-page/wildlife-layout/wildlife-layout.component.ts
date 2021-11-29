@@ -187,6 +187,7 @@ export class WildlifeLayoutComponent implements OnInit {
   }
 
   private saveUserData(){
+    //Correct order of coordinates in geojson is [longitude, latitude, elevation] https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.1
     var geoJsonObj : UserDataSave = {
           "type": "Feature",
           "properties": {
@@ -200,8 +201,6 @@ export class WildlifeLayoutComponent implements OnInit {
             ]
           }
         }
-    console.log(geoJsonObj);
-
     this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
   }
 }

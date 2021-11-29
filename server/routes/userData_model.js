@@ -29,6 +29,6 @@ var userDataSchema = new Schema({
     "geometry": { type: ourGeometry }
 });
 
-userDataSchema.index({ location: '2dsphere' });
+userDataSchema.index({ geometry: "2dsphere" });
 
 module.exports = mongoose.model("userData", userDataSchema, "userData");

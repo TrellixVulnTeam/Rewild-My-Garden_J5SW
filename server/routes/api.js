@@ -55,42 +55,14 @@ router.get('/adviceData', function (req, res, next) {
 //Get info box data
 router.get('/infoData', function (req, res, next) {
   infoData.find({[req.query.SizeQueryType] : req.query.Size}).then(function(result, err){
-  if(result){
-    res.send(result);
-  }
-  if(err){
-    console.log(err);
-  }
-}); 
+    if(result){
+      res.send(result);
+    }
+    if(err){
+      console.log(err);
+    }
+  }); 
 });
-
-//For the moment we are using a normal jile rather than geojson as geojson seems to
-//trigger mongodb to assume we are using longitude and latitude and then throw an out of bounds err
-//Get hardiness data
-// router.get('/minTempData', function (req, res, next) {
-//   minTempDataGeo.find(
-//     {
-//        loc: {
-//          $near: {
-//            $geometry: {
-//               type: "Point" ,
-//               coordinates: [ req.query.x , req.query.y ]
-//            },
-//          }
-//        }
-//     })
-//     //Limit the response to 1
-//     .limit(1)
-//     .then(function(result, err){
-//       if(result){
-//         res.send(result.properties.hardiness);
-//       }
-//       if(err){
-//         console.log(err);
-//       }
-//     }
-//   ); 
-// });
 
 //Get info box data
 router.get('/minTempData', function (req, res, next) {
@@ -117,6 +89,30 @@ router.post('/userData', function (req, res, next) {
   userData.create(req.body).then(function(userData){ // creates & saves to DB
     res.send(userData);
   }).catch(next);
+});
+
+// Get other users who are within 
+router.get('/userData', function (req, res, next) {
+  userData.find(
+    {
+      geometry: {
+         $near: {
+           $geometry: { type: "Point" , coordinates: [ req.query.Longitude , req.query.Latitude ] },
+           //When specifying a GeoJSON point, you can use the optional $minDistance and $maxDistance specifications to limit the $near results by distance in meters
+           $maxDistance: req.query.Distance,
+         }
+       }
+    })
+    .then(function(result, err){
+      if(result){
+        console.log(result);
+        res.send(result);
+      }
+      if(err){
+        console.log(err);
+      }
+    }
+  ); 
 });
 
 module.exports = router;
