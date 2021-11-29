@@ -201,6 +201,7 @@ export class WildlifeLayoutComponent implements OnInit {
           }
         }
     console.log(geoJsonObj);
-    this.httpClient.post<UserDataSave>('http://localhost:3000/api/userData', geoJsonObj);
+
+    this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
   }
 }

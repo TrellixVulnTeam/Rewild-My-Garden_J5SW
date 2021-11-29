@@ -4,8 +4,8 @@ const router = express.Router();
 const pollinatorDataFinal = require('./pollinatorData_model.js');
 const adviceData = require('./adviceData_model.js');
 const infoData = require('./infoData_model.js');
-// const minTempDataGeo = require('./minTempGeo_model.js');
 const minTempData = require('./minTemp_model.js');
+const userData = require('./userData_model.js');
 const cors = require("cors");
 
 //Options to stop this API from being accessible by everyone one is live
@@ -114,8 +114,8 @@ router.get('/minTempData', function (req, res, next) {
 
 // Add a new set of user info to the database
 router.post('/userData', function (req, res, next) {
-  ourData.create(req).then(function(ourData){ // creates & saves to DB
-    res.send(ourData);
+  userData.create(req.body).then(function(userData){ // creates & saves to DB
+    res.send(userData);
   }).catch(next);
 });
 
