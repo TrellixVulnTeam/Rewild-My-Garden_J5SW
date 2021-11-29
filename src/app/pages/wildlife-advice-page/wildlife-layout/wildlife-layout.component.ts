@@ -35,42 +35,49 @@ export class WildlifeLayoutComponent implements OnInit {
   private randRecordAdvice: Number[] = [];
   private randRecordInfo: Number[] = [];
 
+  //the email that the user has submitted
+  private email = "bob@gmail.com"; /*Placeholder*/
+  //the user's longitude and latitude
+  private longitude: Number = 0; /*Placeholder*/
+  private latitude: Number = 0; /*Placeholder*/
+
   //array which holds saved advice 
   private savedAdvice: AdviceSave[] = [];
 
+
   public addAdvice(advice: AdviceSave) {
-    var consoleString = "";
-    this.savedAdvice.forEach((value)=>{
-      consoleString = consoleString + value.Header;
-    });  
-    console.log("Pre-add: " + consoleString);
-
     this.savedAdvice.push(advice);
-
-    this.savedAdvice.forEach((value)=>{
-      consoleString = consoleString + value.Header;
-    });  
-    console.log("Post-add: " + consoleString);
   }
 
   public removeAdvice(advice: String) {
-    var consoleString = "";
-    this.savedAdvice.forEach((value)=>{
-      consoleString = consoleString + value.Header;
-    });  
-    console.log("Pre-remove: " + consoleString);
-
     this.savedAdvice.forEach((value,index)=>{
       if(value.Header==advice){
         this.savedAdvice.splice(index,1);
       }
     });  
+  }
 
-    var consoleString = "";
-    this.savedAdvice.forEach((value)=>{
-      consoleString = consoleString + value.Header;
-    });  
-    console.log("Post-remove: " + consoleString);
+  public processEmailData(){
+    // Will need to do this!!
+    // this.sendEmail()
+    this.saveUserData();
+  }
+
+  private saveUserData(){
+    var geoJsonObj = {
+          "type": "Feature",
+          "properties": {
+            "email": this.email,
+            "savedAdvice": this.savedAdvice,
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              this.longitude, this.latitude
+            ]
+          }
+        }
+    console.log(geoJsonObj);
   }
 
   /* An array of saved advice is created and passed to all children. When 'save this advice' is clicked in an advice box, it adds a data entry to this
@@ -83,7 +90,11 @@ export class WildlifeLayoutComponent implements OnInit {
     //When the advice set is produced, create advice Title and hide questions
     //Find a better way of triggering elements hiding/unhiding !!!!! ******
 
-    this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet[]) => {
+    this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
+      //Get location from retrievedAnswers
+      this.longitude = retrievedAnswers.longitude;
+      this.latitude = retrievedAnswers.latitude;
+
       //We are using 'subscribe' to detect when 'save' has been clicked and data emitted
       //Here we are toggling the visibility of the grid and email box using css
       document.getElementById('emailBoxID')!.classList.remove('hiddenElem');

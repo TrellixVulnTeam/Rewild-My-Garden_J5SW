@@ -25,6 +25,8 @@ export class AllAnswers{
                     gardenSize: retrievedAnswers.gardenSize,
                     x : retrievedLocation.x,
                     y : retrievedLocation.y,
+                    longitude : retrievedLocation.longitude,
+                    latitude : retrievedLocation.latitude,
                     hardiness : retrievedLocation.hardiness,
                 };
                 this.updatedAnswers.next(allAnswers);            

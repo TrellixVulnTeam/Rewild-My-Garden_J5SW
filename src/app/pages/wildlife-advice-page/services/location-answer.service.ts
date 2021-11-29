@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import axios from 'axios';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { BasicLocationData } from '../models/location-data.model';
 
@@ -14,7 +15,7 @@ export class LocationAnswers{
 
     private updatedLocation = new Subject<BasicLocationData>();
     private answersSub: Subscription = new Subscription();
-    constructor(private httpClient: HttpClient){}
+    constructor(private httpClient: HttpClient){};
 
     getAnswerUpdateListener(): Observable<any>{
         return this.updatedLocation.asObservable();
@@ -24,9 +25,16 @@ export class LocationAnswers{
         //This fetches the hardiness data from our api
         this.answersSub = this.httpClient.get<BasicLocationData[]>("http://localhost:3000/api/minTempData?x=" + xAnswer + "&y=" + yAnswer).subscribe(
             response => {
-                //this service just fetches our hardiness
-                const ourLocation: BasicLocationData = {x: xAnswer, y: yAnswer, hardiness: response[0].hardiness};
-                this.updatedLocation.next(ourLocation);            
+                //THINK ABOUT THE ERROR CONDITION FOR THIS ************
+                //convert BNG to longtiude/latitude
+                axios.get('https://api.getthedata.com/bng2latlong/' + xAnswer + '/' + yAnswer)
+                .then((longLatresponse) => {
+                    var longitude: Number = longLatresponse.data.longitude;
+                    var latitude: Number = longLatresponse.data.latitude;
+                    //this service just fetches our hardiness
+                    const ourLocation: BasicLocationData = {x: xAnswer, y: yAnswer, longitude: longitude, latitude: latitude, hardiness: response[0].hardiness};
+                    this.updatedLocation.next(ourLocation);      
+                });      
             }
         );
     }

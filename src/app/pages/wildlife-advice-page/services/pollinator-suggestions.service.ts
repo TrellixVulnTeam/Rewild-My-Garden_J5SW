@@ -1,11 +1,8 @@
 import { Injectable } from "@angular/core";
-import { WildlifeAnswerSet } from "../models/multichoice-answers.model";
 import { Observable, Subject, Subscription } from "rxjs";
 import { GridResponse } from "../models/pollinator-visible.model";
-import { Component, OnInit } from "@angular/core";
 import { UnfinishedPollinatorData } from "../models/pollinator-data.model";
 import { HttpClient } from "@angular/common/http";
-import { WildlifeAnswers } from "./multichoice-answers.service";
 import { CompleteAnswerSet } from "../models/all-answers.model";
 import { AllAnswers } from "./all-answers.service";
 

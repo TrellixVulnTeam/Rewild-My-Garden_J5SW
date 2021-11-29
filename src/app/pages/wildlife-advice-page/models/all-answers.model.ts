@@ -5,5 +5,7 @@ export interface CompleteAnswerSet {
     gardenSize: String;
     x: Number;
     y: Number;
+    longitude: Number;
+    latitude: Number;
     hardiness: String;
 }

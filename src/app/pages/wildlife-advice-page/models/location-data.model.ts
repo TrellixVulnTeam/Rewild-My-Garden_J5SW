@@ -1,5 +1,7 @@
 export interface BasicLocationData { 
-    "x": Number;
-    "y": Number;
-    "hardiness": String;
+    x: Number;
+    y: Number;
+    longitude: Number;
+    latitude: Number;
+    hardiness: String;
 }
