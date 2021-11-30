@@ -79,15 +79,15 @@ export class NearYouComponentComponent implements OnInit {
     });
   }
 
-  private setUserDataClose(proximity: Number) {
+  private setUserUserfulClose(proximity: Number) {
     this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
       response => {
-        var tempArray : AdviceSave[] = [];
+        var closeArray : AdviceSave[] = [];
         let count = 0;
         for(let i=0; i<response.length; i++){
           let ourUserData : UserDataSave = response[i];
           for(let j=0; j<ourUserData.properties.savedAdvice.length; j++){
-            tempArray[count] = { 
+            closeArray[count] = { 
               Header: ourUserData.properties.savedAdvice[j].Header,
               Pathname: ourUserData.properties.savedAdvice[j].Pathname,
               Name: ourUserData.properties.savedAdvice[j].Name,
@@ -98,8 +98,39 @@ export class NearYouComponentComponent implements OnInit {
             count++;
           }
         }
-        if(tempArray.length == 0){
-          
+        if(closeArray.length != 0){
+          for(let n = 0; n < closeArray.length; n++){
+            if((closeArray[n].Header == "Put in a Small Water Feature") || (closeArray[n].Header == "Create a Container Water Feature") || (closeArray[n].Header == "Put in a Pond"))
+            document.getElementById('PondDistance')!.classList.remove('hiddenElem');
+          }
+        }
+    });
+  }
+
+  private setUserDataClose(proximity: Number) {
+    this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
+      response => {
+        var closeArray : AdviceSave[] = [];
+        let count = 0;
+        for(let i=0; i<response.length; i++){
+          let ourUserData : UserDataSave = response[i];
+          for(let j=0; j<ourUserData.properties.savedAdvice.length; j++){
+            closeArray[count] = { 
+              Header: ourUserData.properties.savedAdvice[j].Header,
+              Pathname: ourUserData.properties.savedAdvice[j].Pathname,
+              Name: ourUserData.properties.savedAdvice[j].Name,
+              Username: ourUserData.properties.savedAdvice[j].Username,
+              Copyright: ourUserData.properties.savedAdvice[j].Copyright,
+              Link: ourUserData.properties.savedAdvice[j].Link,
+            }
+            count++;
+          }
+        }
+        if(closeArray.length != 0){
+          for(let n = 0; n < closeArray.length; n++){
+            if(closeArray[n].Header == "Create a Hedgehog Hole Highway")
+            document.getElementById('HedgehogDistance')!.classList.remove('hiddenElem');
+          }
         }
     });
   }
