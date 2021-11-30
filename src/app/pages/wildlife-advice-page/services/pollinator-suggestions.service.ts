@@ -85,6 +85,7 @@ export class WildlifeResponse {
     //Every plant we can find associated with this month is added to this month's array
     for (let j = 0; j < allDataThisMonth.length; j++) {
       //Creating a new blank grid response
+      //*************************
       monthData[j] = {"Title": "", "LatinName": "", "CommonName": "", "Habit": "", "Height": "", "Growth": "", "Native": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
       monthData[j].Title = monthTitle;
       monthData[j].LatinName = allDataThisMonth[j].LatinName;

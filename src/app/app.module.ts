@@ -34,6 +34,7 @@ import {DataService} from './data.service';
 import { MatModule } from './materials.module';
 import { WildlifeAdviceDialogComponent } from './pages/wildlife-advice-page/advice-response/wildlife-advice-dialog/wildlife-advice-dialog.component';
 import { FindPostcodeComponent } from './pages/wildlife-advice-page/advice-questions/find-postcode/find-postcode.component';
+import { NearYouComponentComponent } from './pages/wildlife-advice-page/advice-response/near-you-component/near-you-component.component';
 
 @NgModule({
   imports: [
@@ -66,6 +67,7 @@ import { FindPostcodeComponent } from './pages/wildlife-advice-page/advice-quest
     PollinatorSuggestionsComponent,
     WildlifeAdviceDialogComponent,
     FindPostcodeComponent,
+    NearYouComponentComponent,
     ],
   entryComponents: [
     PollinatorDialogComponent,

@@ -54,6 +54,7 @@ export class WildlifeLayoutComponent implements OnInit {
       //Here we are toggling the visibility of the grid and email box using css
       document.getElementById('emailBoxID')!.classList.remove('hiddenElem');
       document.getElementById('adviceGridID')!.classList.remove('hiddenElem');
+      document.getElementById('nearYouID')!.classList.remove('hiddenElem');
       // Here we are using ngIf to toggle visibility of multichoice Q
       this.multichoiceShow = false;
       this.responseShow = true;
@@ -157,8 +158,8 @@ export class WildlifeLayoutComponent implements OnInit {
   private email = "bob@gmail.com"; /*Placeholder*/
 
   //the user's longitude and latitude
-  private longitude: Number = 0; 
-  private latitude: Number = 0; 
+  public longitude: Number = 0; 
+  public latitude: Number = 0; 
 
   //array which holds saved advice 
   private savedAdvice: AdviceSave[] = [];

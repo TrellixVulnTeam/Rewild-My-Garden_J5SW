@@ -13,13 +13,14 @@ export class InfoService{
     private updatedInfo = new Subject<InfoGeneric[]>();
     //Subscriptions to wildlife answers data
     private answersSub: Subscription = new Subscription();
+    private infoSub: Subscription = new Subscription();
 
     constructor(private httpClient: HttpClient, public allAnswersService: AllAnswers){
         //here we are subscribing to the listener
         this.answersSub = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
             var ourGardenSize = retrievedAnswers.gardenSize;
             //Then use that data to filter API data for display
-            this.httpClient.get<InfoGeneric[]>("http://localhost:3000/api/infoData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(
+            this.infoSub = this.httpClient.get<InfoGeneric[]>("http://localhost:3000/api/infoData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(
                 response => {
                 this.updatedInfo.next(response);
             });
@@ -34,5 +35,6 @@ export class InfoService{
     ngOnDestroy() {
         //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
         this.answersSub.unsubscribe();
+        this.infoSub.unsubscribe();
     }
 }

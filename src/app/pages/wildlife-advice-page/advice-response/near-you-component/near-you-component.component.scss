@@ -1,0 +1,44 @@
+.hiddenElem{
+    display: none;
+}
+
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+}
+
+div.item img {
+    width: 200px;
+    object-fit: none;
+    height: 200px;
+    //This makes the image a circle
+    border-radius:50%;
+}
+
+.caption {
+    display: block;
+    font-family: "Playfair Display", serif;
+    font-size: 19px;
+}
+
+.leftImage {
+    object-fit: none;
+    height: 200px;
+    width: 200px;
+}
+
+.card {
+    flex-direction: row;
+}
+
+.cardElements {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap;
+}
+
+#SingleAdvice0, #SingleAdvice1, #SingleAdvice2 {
+    margin: 5px;
+}
