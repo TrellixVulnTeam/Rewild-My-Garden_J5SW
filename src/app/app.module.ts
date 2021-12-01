@@ -35,6 +35,8 @@ import { MatModule } from './materials.module';
 import { WildlifeAdviceDialogComponent } from './pages/wildlife-advice-page/advice-response/wildlife-advice-dialog/wildlife-advice-dialog.component';
 import { FindPostcodeComponent } from './pages/wildlife-advice-page/advice-questions/find-postcode/find-postcode.component';
 import { NearYouComponentComponent } from './pages/wildlife-advice-page/advice-response/near-you-component/near-you-component.component';
+import { AllAnswers } from './pages/wildlife-advice-page/services/all-answers.service';
+import { LocationAnswers } from './pages/wildlife-advice-page/services/location-answer.service';
 
 @NgModule({
   imports: [
@@ -79,7 +81,10 @@ import { NearYouComponentComponent } from './pages/wildlife-advice-page/advice-r
     WildlifeAnswers,
     WildlifeResponse,
     AdviceService,
-    InfoService
+    InfoService,
+    AllAnswers,
+    LocationAnswers,
+
   ],
   bootstrap: [
     AppComponent

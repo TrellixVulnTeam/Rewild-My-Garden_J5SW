@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WildlifeResponse } from '../../services/pollinator-suggestions.service';
 import { Subscription } from 'rxjs';
@@ -55,6 +55,7 @@ export class PollinatorSuggestionsComponent implements OnInit {
   ngOnInit() {}
 
   //This is called whenever this component is about to be removed from the DOM
+  @HostListener('unloaded')
   ngOnDestroy(){
     //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
     this.monthsSub.unsubscribe();

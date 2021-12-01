@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HostListener, Injectable } from '@angular/core';
 import axios from 'axios';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { BasicLocationData } from '../models/location-data.model';
@@ -45,6 +45,7 @@ export class LocationAnswers{
     }
 
     //This is called whenever this component is about to be removed from the DOM
+    @HostListener('unloaded')
     ngOnDestroy() {
         //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
         this.answersSub.unsubscribe();

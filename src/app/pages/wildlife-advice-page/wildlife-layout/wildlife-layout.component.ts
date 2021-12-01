@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AdviceGeneric } from '../models/advice.model';
 import { CompleteAnswerSet } from '../models/all-answers.model';
@@ -47,7 +48,7 @@ export class WildlifeLayoutComponent implements OnInit {
   private randRecordAdvice: Number[] = [];
   private randRecordInfo: Number[] = [];
 
-  constructor(public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService, private httpClient: HttpClient) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService, private httpClient: HttpClient) {
     this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
       //Get location from retrievedAnswers
       this.longitude = retrievedAnswers.longitude;
@@ -155,11 +156,19 @@ export class WildlifeLayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @HostListener('unloaded')
   ngOnDestroy() {
     this.ourPollinatorsService.unsubscribe();
     this.ourAdviceService.unsubscribe();
     this.ourInfoService.unsubscribe();
     this.extraSub.unsubscribe();
+    // ******* We were experiencing a problem where, if you navigated away from the advice page and back and then
+    //tried to get more advice it would crash the site. This is (presumably?) because there was still data being held by
+    //the wildlife-advice-page components, so that when more data was added was inserted into the components the site crashed.
+    //This is a very imperfect fix for this problem. '@HostListener('unloaded')' assures that whenever we exit the advice page,
+    //ngOnDestroy() is called. 'window.location.reload();' then triggers the page (and therefore site) to reload. This prevents the crash. This is 
+    //against the principle of a single page application, and so will be the first thing to fix if we have time!
+    window.location.reload();
   }
 
   /**********************************************************************

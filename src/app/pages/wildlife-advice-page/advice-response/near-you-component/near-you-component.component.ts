@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit} from '@angular/core';
+import { Component, HostListener, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CompleteAnswerSet } from '../../models/all-answers.model';
 import { AdviceSave } from '../../models/save-advice.model';
@@ -143,6 +143,7 @@ export class NearYouComponentComponent implements OnInit {
   }
 
   //This is called whenever this component is about to be removed from the DOM
+  @HostListener('unloaded')
   ngOnDestroy() {
     //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
     this.userSubOne.unsubscribe();

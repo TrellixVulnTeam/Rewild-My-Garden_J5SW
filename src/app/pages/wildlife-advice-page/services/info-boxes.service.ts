@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HostListener, Injectable } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { CompleteAnswerSet } from '../models/all-answers.model';
 import { InfoGeneric } from '../models/info.model';
@@ -36,6 +36,7 @@ export class InfoService{
     }
 
     //This is called whenever this component is about to be removed from the DOM
+    @HostListener('unloaded')
     ngOnDestroy() {
         //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
         this.answersSub.unsubscribe();

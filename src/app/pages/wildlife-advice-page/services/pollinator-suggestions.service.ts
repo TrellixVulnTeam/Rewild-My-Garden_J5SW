@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { HostListener, Injectable } from "@angular/core";
 import { Observable, Subject, Subscription } from "rxjs";
 import { GridResponse } from "../models/pollinator-visible.model";
 import { UnfinishedPollinatorData } from "../models/pollinator-data.model";
@@ -143,6 +143,7 @@ export class WildlifeResponse {
   ngOnInit() {}
 
   //This is called whenever this component is about to be removed from the DOM
+  @HostListener('unloaded')
   ngOnDestroy() {
     //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
     this.answersSub.unsubscribe();
