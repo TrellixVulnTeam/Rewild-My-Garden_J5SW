@@ -68,13 +68,13 @@ router.get('/infoData', function (req, res, next) {
 router.get('/minTempData', function (req, res, next) {
   //This rounds our coordinate up to the nearest coordinate understood by our database
   //Under this system, the coordinate given is rounded up or down to this grid reference it is 
-  //closest to. The grids are spread by 5km or 5000 meters, starting at y=-197500m, x=-197500m.
+  //closest to. The grids are spread by 5 km or 5000 meters, starting at y=-197500m, x=-197500m.
   //2500 and -2500 are both coordinates used. 1 would be allocated to 2500, 0 would be allocated to -2500.
-  //Similarly 5001 would be allocated to 7500, 5000 would be allocated to 2500.
+  //Similarly, 5001 would be allocated to 7500, 5000 would be allocated to 2500.
   //***** Check bottom and top bounds
-  var varX = Math.ceil(req.query.x/5000)*5000 - 2500;
-  var varY = Math.ceil(req.query.y/5000)*5000 - 2500;
-  minTempData.find({x : varX, y : varY}).then(function(result, err){
+    const varX = Math.ceil(req.query.x / 5000) * 5000 - 2500;
+    const varY = Math.ceil(req.query.y / 5000) * 5000 - 2500;
+    minTempData.find({x : varX, y : varY}).then(function(result, err){
     if(result){
       res.send(result);
     }

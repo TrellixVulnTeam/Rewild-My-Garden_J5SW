@@ -14,20 +14,20 @@ export class AllAnswers{
     private answersSubMulti: Subscription = new Subscription();
     private answersSubLocs: Subscription = new Subscription();
 
-    constructor(private httpClient: HttpClient, public wildlifeAnswersService: WildlifeAnswers, public locationAnswersService: LocationAnswers){
+    constructor(public wildlifeAnswersService: WildlifeAnswers, public locationAnswersService: LocationAnswers){
         //here we subscribe to the multichoice answers and then the location and turn them into one subscription object
         this.answersSubMulti = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet) => {
             this.answersSubLocs = this.locationAnswersService.getAnswerUpdateListener().subscribe((retrievedLocation: BasicLocationData) => {
-                var allAnswers : CompleteAnswerSet = { 
-                    soil: retrievedAnswers.soil, 
-                    ph: retrievedAnswers.ph, 
-                    shade: retrievedAnswers.shade, 
+                const allAnswers: CompleteAnswerSet = {
+                    soil: retrievedAnswers.soil,
+                    ph: retrievedAnswers.ph,
+                    shade: retrievedAnswers.shade,
                     gardenSize: retrievedAnswers.gardenSize,
-                    x : retrievedLocation.x,
-                    y : retrievedLocation.y,
-                    longitude : retrievedLocation.longitude,
-                    latitude : retrievedLocation.latitude,
-                    hardiness : retrievedLocation.hardiness,
+                    x: retrievedLocation.x,
+                    y: retrievedLocation.y,
+                    longitude: retrievedLocation.longitude,
+                    latitude: retrievedLocation.latitude,
+                    hardiness: retrievedLocation.hardiness,
                 };
                 this.updatedAnswers.next(allAnswers);            
             });

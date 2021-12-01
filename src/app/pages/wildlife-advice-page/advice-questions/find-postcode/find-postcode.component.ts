@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroupDirective, NgForm, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import axios from 'axios';
 import { LocationAnswers } from '../../services/location-answer.service';
 import { osApiEnvironment } from './os-api-env';

@@ -1,32 +1,32 @@
 //Require Mongoose
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 //Define a schema
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var ourAdvice = new Schema({
-    "Header": { type: String },
-    "Pathname": { type: String },
-    "Name": { type: String },
-    "Username": { type: String },
-    "Copyright": { type: String },
-    "Link": { type: String }
-})
-
-var ourProperties = new Schema({
-      "email": { type: String },
-      "savedAdvice": { type: [ ourAdvice ] },
+const ourAdvice = new Schema({
+    "Header": {type: String},
+    "Pathname": {type: String},
+    "Name": {type: String},
+    "Username": {type: String},
+    "Copyright": {type: String},
+    "Link": {type: String}
 });
 
-var ourGeometry = new Schema({
-    "type": { type: String, enum: ['Point'], required: true },
-    "coordinates": { type: [ Number ] }
+const ourProperties = new Schema({
+    "email": {type: String},
+    "savedAdvice": {type: [ourAdvice]},
 });
 
-var userDataSchema = new Schema({
-    "type": { type: String },
-    "properties": { type: ourProperties },
-    "geometry": { type: ourGeometry }
+const ourGeometry = new Schema({
+    "type": {type: String, enum: ['Point'], required: true},
+    "coordinates": {type: [Number]}
+});
+
+const userDataSchema = new Schema({
+    "type": {type: String},
+    "properties": {type: ourProperties},
+    "geometry": {type: ourGeometry}
 });
 
 userDataSchema.index({ geometry: "2dsphere" });

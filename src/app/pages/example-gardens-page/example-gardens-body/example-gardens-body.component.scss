@@ -19,17 +19,17 @@
 /* If the screen size is 600px wide or less, reduce padding */
 @media screen and (max-width: 600px) {
     .Section {
-        padding-left: 0px;
-        padding-right: 0px;    
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .instagramImage{
-        padding-right: 0px;
+        padding-right: 0;
         float: right;
     }
     
     .instagramImageRight{
-        padding-left: 0px;
+        padding-left: 0;
         float: right;
     }
   }

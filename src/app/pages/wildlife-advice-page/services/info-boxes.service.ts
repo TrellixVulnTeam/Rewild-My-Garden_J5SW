@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { CompleteAnswerSet } from '../models/all-answers.model';
 import { InfoGeneric } from '../models/info.model';
-import { WildlifeAnswerSet } from '../models/multichoice-answers.model';
 import { AllAnswers } from './all-answers.service';
-import { WildlifeAnswers } from './multichoice-answers.service';
 
 @Injectable({providedIn: 'root'})
 export class InfoService{
@@ -18,7 +16,7 @@ export class InfoService{
     constructor(private httpClient: HttpClient, public allAnswersService: AllAnswers){
         //here we are subscribing to the listener
         this.answersSub = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
-            var ourGardenSize = retrievedAnswers.gardenSize;
+            const ourGardenSize = retrievedAnswers.gardenSize;
             //Then use that data to filter API data for display
             this.infoSub = this.httpClient.get<InfoGeneric[]>("http://localhost:3000/api/infoData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(
                 response => {

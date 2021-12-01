@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Component, OnInit} from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CompleteAnswerSet } from '../../models/all-answers.model';
 import { AdviceSave } from '../../models/save-advice.model';
 import { UserDataSave } from '../../models/save-user-data.model';
-import { AdviceService } from '../../services/advice-boxes.service';
 import { AllAnswers } from '../../services/all-answers.service';
 import { ProximityEnvironment } from './proximity-env';
 
@@ -30,24 +29,21 @@ export class NearYouComponentComponent implements OnInit {
   private adviceThree: AdviceSave = { Header: "", Pathname: "", Name: "", Username: "", Copyright: "", Link: ""};
   public displayArray: AdviceSave[] = [this.adviceOne, this.adviceTwo, this.adviceThree];
 
-  private closeData: UserDataSave[] = [];
-  private usefulProximityData: UserDataSave[] = [];
-  private inspoProximityData: UserDataSave[] = [];
-
   constructor(private httpClient: HttpClient, public allAnswersService: AllAnswers) { 
     this.ourAnswersService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
       this.latitude = retrievedAnswers.latitude;
       this.longitude = retrievedAnswers.longitude;
 
       this.setUserDataInspo(ProximityEnvironment.INSPIRATION_PROXIMITY);
-      // this.setUserDataClose(ProximityEnvironment.CLOSEST);
+      this.setUserUserfulClose(ProximityEnvironment.USEFUL_PROXIMITY);
+      this.setUserDataClose(ProximityEnvironment.CLOSEST);
     });
   }
 
   private setUserDataInspo(proximity: Number) {
     this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
       response => {
-        var inspoArray : AdviceSave[] = [];
+        const inspoArray: AdviceSave[] = [];
         let count = 0;
         for(let i=0; i<response.length; i++){
           let ourUserData : UserDataSave = response[i];
@@ -82,7 +78,7 @@ export class NearYouComponentComponent implements OnInit {
   private setUserUserfulClose(proximity: Number) {
     this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
       response => {
-        var closeArray : AdviceSave[] = [];
+        const closeArray: AdviceSave[] = [];
         let count = 0;
         for(let i=0; i<response.length; i++){
           let ourUserData : UserDataSave = response[i];
@@ -110,7 +106,7 @@ export class NearYouComponentComponent implements OnInit {
   private setUserDataClose(proximity: Number) {
     this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
       response => {
-        var closeArray : AdviceSave[] = [];
+        const closeArray: AdviceSave[] = [];
         let count = 0;
         for(let i=0; i<response.length; i++){
           let ourUserData : UserDataSave = response[i];

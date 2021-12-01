@@ -66,7 +66,7 @@ export class WildlifeResponse {
       this.httpClient.get<UnfinishedPollinatorData[]>(REST_API_SERVER).subscribe(
         response => {
         let allDataThisMonth: UnfinishedPollinatorData[] = response;
-        this.allMonthsUsed[this.counter] = this.populateMonth(this.counter, allDataThisMonth, this.infoArr[this.counter].Title);
+        this.allMonthsUsed[this.counter] = this.populateMonth(allDataThisMonth, this.infoArr[this.counter].Title);
         //Using recursion to loop through all 8 months
         if(this.counter == 7){
           this.createSubObjects();
@@ -79,9 +79,9 @@ export class WildlifeResponse {
       });
   }
 
-  private populateMonth(i: number, allDataThisMonth: UnfinishedPollinatorData[], monthTitle: String) : GridResponse[]{
+  private populateMonth(allDataThisMonth: UnfinishedPollinatorData[], monthTitle: String) : GridResponse[]{
     //Create a new month array for new cell of allMonthsUsed (i.e, create data array for the new month)
-    var monthData : GridResponse[] = [];
+    const monthData: GridResponse[] = [];
     //Every plant we can find associated with this month is added to this month's array
     for (let j = 0; j < allDataThisMonth.length; j++) {
       //Creating a new blank grid response

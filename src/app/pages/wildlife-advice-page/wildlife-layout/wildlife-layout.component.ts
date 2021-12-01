@@ -17,6 +17,9 @@ import { InfoService } from '../services/info-boxes.service';
 })
 export class WildlifeLayoutComponent implements OnInit {
 
+  //********************* There is currently a bug which kills the page if you ask 
+  //for two sets of advice
+
   /**********************************************************************
    **********************************************************************
    *** LOGIC TO HIDE/UNHIDE PAGE ELEMENTS AND CHOOSE ADVICE/INFO BOXES **
@@ -66,21 +69,21 @@ export class WildlifeLayoutComponent implements OnInit {
   private fetchAdvice(){
     this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
       //find number of pieces of advice
-      var noAdvice = retrievedAdvice.length;
+      const noAdvice = retrievedAdvice.length;
       //If there isn't three pieces of advice for this garden, display the advice we do have
       if(noAdvice < 3){
-        for(var i = 0; i < noAdvice; i++){
+        for(let i = 0; i < noAdvice; i++){
           this.ourAdvice[i] = retrievedAdvice[i];
         }
       }
       //If there is enough advice, choose three random pieces of advice
       else{
-        for(var j = 0; j < 3; j++){
-          var flag = "setCard"
-          var rand = Math.floor( Math.random() * noAdvice);
+        for(let j = 0; j < 3; j++){
+          let flag = "setCard";
+          const rand = Math.floor(Math.random() * noAdvice);
           //Compare our random number with previous random
           //numbers to ensure no repeated cards
-          for(var m = 0; m < this.randRecordAdvice.length; m++){
+          for(let m = 0; m < this.randRecordAdvice.length; m++){
             if(this.randRecordAdvice[m] == rand){
               flag = "dontSet"
             }
@@ -105,22 +108,22 @@ export class WildlifeLayoutComponent implements OnInit {
   private fetchInfo(){
     this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
       //find number of pieces of info
-      var noInfo = retrievedInfo.length;
+      const noInfo = retrievedInfo.length;
       //If there isn't three pieces of info for this garden, display the info we do have
       if(noInfo < 3){
-        for(var x = 0; x < noInfo; x++){
+        for(let x = 0; x < noInfo; x++){
           this.ourInfo[x] = retrievedInfo[x];
           document.getElementById('genericInfoID' + x)!.classList.remove('hiddenElem');
         }
       }
       //If there is enough info, choose three random pieces of info
       else{
-        for(var y = 0; y < 3; y++){
-          var infoFlag = "setCard"
-          var infoRand = Math.floor( Math.random() * noInfo);
+        for(let y = 0; y < 3; y++){
+          let infoFlag = "setCard";
+          const infoRand = Math.floor(Math.random() * noInfo);
           //Compare our random number with previous random
           //numbers to ensure no repeated cards
-          for(var n = 0; n < this.randRecordInfo.length; n++){
+          for(let n = 0; n < this.randRecordInfo.length; n++){
             if(this.randRecordInfo[n] == infoRand){
               infoFlag = "dontSet"
             }
@@ -189,19 +192,19 @@ export class WildlifeLayoutComponent implements OnInit {
 
   private saveUserData(){
     //Correct order of coordinates in geojson is [longitude, latitude, elevation] https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.1
-    var geoJsonObj : UserDataSave = {
-          "type": "Feature",
-          "properties": {
-            "email": this.email,
-            "savedAdvice": this.savedAdvice,
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              this.longitude, this.latitude
-            ]
-          }
-        }
+    const geoJsonObj: UserDataSave = {
+      "type": "Feature",
+      "properties": {
+        "email": this.email,
+        "savedAdvice": this.savedAdvice,
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          this.longitude, this.latitude
+        ]
+      }
+    };
     this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
   }
 }

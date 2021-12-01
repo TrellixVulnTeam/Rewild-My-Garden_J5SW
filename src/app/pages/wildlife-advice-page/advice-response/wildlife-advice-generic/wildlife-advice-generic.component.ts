@@ -46,7 +46,7 @@ export class WildlifeAdviceGenericComponent implements OnInit {
 
   // make changes to the array in wildlifeLayout
   toggleSave(){
-    if(this.isChecked == false){
+    if(!this.isChecked){
       this.addNewSave();
       this.isChecked = true;
     } 
@@ -60,14 +60,16 @@ export class WildlifeAdviceGenericComponent implements OnInit {
     this.newRemoveEvent.emit(this.adviceGenericObject.Header);
   }
 
-  private addNewSave() {   
-    var saveObj: AdviceSave = 
-    { Header: this.adviceGenericObject.Header,
-    Pathname: this.adviceGenericObject.Pathname,
-    Name: this.adviceGenericObject.Name,
-    Username: this.adviceGenericObject.Username,
-    Copyright: this.adviceGenericObject.Copyright,
-    Link: this.adviceGenericObject.Link };
+  private addNewSave() {
+    const saveObj: AdviceSave =
+        {
+          Header: this.adviceGenericObject.Header,
+          Pathname: this.adviceGenericObject.Pathname,
+          Name: this.adviceGenericObject.Name,
+          Username: this.adviceGenericObject.Username,
+          Copyright: this.adviceGenericObject.Copyright,
+          Link: this.adviceGenericObject.Link
+        };
 
     this.newSaveEvent.emit(saveObj);
   }
