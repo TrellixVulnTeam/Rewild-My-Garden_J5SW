@@ -30,7 +30,13 @@ export class AllAnswers{
                     hardiness: retrievedLocation.hardiness,
                 };
                 this.updatedAnswers.next(allAnswers);            
+            },
+            err => {
+              console.log(err);
             });
+        },
+        err => {
+          console.log(err);
         });
     }
 

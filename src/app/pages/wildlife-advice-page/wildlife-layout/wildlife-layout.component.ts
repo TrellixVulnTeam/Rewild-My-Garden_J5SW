@@ -18,7 +18,7 @@ import { InfoService } from '../services/info-boxes.service';
 export class WildlifeLayoutComponent implements OnInit {
 
   //********************* There is currently a bug which kills the page if you ask 
-  //for two sets of advice
+  //for two sets of advice !!
 
   /**********************************************************************
    **********************************************************************
@@ -32,6 +32,7 @@ export class WildlifeLayoutComponent implements OnInit {
   private ourPollinatorsService: Subscription = new Subscription();
   private ourAdviceService: Subscription = new Subscription();
   private ourInfoService: Subscription = new Subscription();
+  private extraSub: Subscription = new Subscription();
 
   public adviceOne: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public adviceTwo: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
@@ -61,6 +62,9 @@ export class WildlifeLayoutComponent implements OnInit {
       // Here we are using ngIf to toggle visibility of multichoice Q
       this.multichoiceShow = false;
       this.responseShow = true;
+    },
+    err => {
+      console.log(err);
     });
     this.fetchAdvice();
     this.fetchInfo();
@@ -102,6 +106,9 @@ export class WildlifeLayoutComponent implements OnInit {
           }
         }
       }
+    },
+    err => {
+      console.log(err);
     });
   }
 
@@ -139,6 +146,9 @@ export class WildlifeLayoutComponent implements OnInit {
           }
         }
       }
+    },
+    err => {
+      console.log(err);
     });
   }
 
@@ -149,6 +159,7 @@ export class WildlifeLayoutComponent implements OnInit {
     this.ourPollinatorsService.unsubscribe();
     this.ourAdviceService.unsubscribe();
     this.ourInfoService.unsubscribe();
+    this.extraSub.unsubscribe();
   }
 
   /**********************************************************************
@@ -205,6 +216,8 @@ export class WildlifeLayoutComponent implements OnInit {
         ]
       }
     };
-    this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
+    //************* this line may not need to include a .subscribe()
+    //check for err????
+    this.extraSub = this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
   }
 }

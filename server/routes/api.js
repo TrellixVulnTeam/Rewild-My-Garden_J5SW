@@ -105,7 +105,6 @@ router.get('/userData', function (req, res, next) {
     })
     .then(function(result, err){
       if(result){
-        console.log(result);
         res.send(result);
       }
       if(err){

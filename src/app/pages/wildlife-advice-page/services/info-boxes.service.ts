@@ -21,7 +21,13 @@ export class InfoService{
             this.infoSub = this.httpClient.get<InfoGeneric[]>("http://localhost:3000/api/infoData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(
                 response => {
                 this.updatedInfo.next(response);
+            },
+            err => {
+              console.log(err);
             });
+        },
+        err => {
+          console.log(err);
         });
     }
 

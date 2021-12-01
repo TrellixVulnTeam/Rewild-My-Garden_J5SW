@@ -15,12 +15,11 @@ import { ProximityEnvironment } from './proximity-env';
 export class NearYouComponentComponent implements OnInit {
 
   //Subscriptions to wildlife answers data
-  private userSub: Subscription = new Subscription();
+  private userSubOne: Subscription = new Subscription();
+  private userSubTwo: Subscription = new Subscription();
+  private userSubThree: Subscription = new Subscription();
   private ourAnswersService: Subscription = new Subscription();
 
-  //Input from wildlife layout
-  // @Input() latitude: Number = 0;
-  // @Input() longitude: Number = 0;
   private latitude: Number = 0;
   private longitude: Number = 0;
 
@@ -35,13 +34,13 @@ export class NearYouComponentComponent implements OnInit {
       this.longitude = retrievedAnswers.longitude;
 
       this.setUserDataInspo(ProximityEnvironment.INSPIRATION_PROXIMITY);
-      this.setUserUserfulClose(ProximityEnvironment.USEFUL_PROXIMITY);
+      this.setUserUsefulClose(ProximityEnvironment.USEFUL_PROXIMITY);
       this.setUserDataClose(ProximityEnvironment.CLOSEST);
     });
   }
 
   private setUserDataInspo(proximity: Number) {
-    this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
+    this.userSubOne = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
       response => {
         const inspoArray: AdviceSave[] = [];
         let count = 0;
@@ -72,11 +71,14 @@ export class NearYouComponentComponent implements OnInit {
             document.getElementById('SingleAdvice' + m)!.classList.remove('hiddenElem');
           }
         }
+    },
+    err => {
+      console.log(err);
     });
   }
 
-  private setUserUserfulClose(proximity: Number) {
-    this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
+  private setUserUsefulClose(proximity: Number) {
+    this.userSubTwo = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
       response => {
         const closeArray: AdviceSave[] = [];
         let count = 0;
@@ -100,11 +102,14 @@ export class NearYouComponentComponent implements OnInit {
             document.getElementById('PondDistance')!.classList.remove('hiddenElem');
           }
         }
+    },
+    err => {
+      console.log(err);
     });
   }
 
   private setUserDataClose(proximity: Number) {
-    this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
+    this.userSubThree = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + proximity + "&Longitude=" + this.longitude + "&Latitude=" + this.latitude).subscribe(
       response => {
         const closeArray: AdviceSave[] = [];
         let count = 0;
@@ -128,6 +133,9 @@ export class NearYouComponentComponent implements OnInit {
             document.getElementById('HedgehogDistance')!.classList.remove('hiddenElem');
           }
         }
+    },
+    err => {
+      console.log(err);
     });
   }
 
@@ -137,7 +145,9 @@ export class NearYouComponentComponent implements OnInit {
   //This is called whenever this component is about to be removed from the DOM
   ngOnDestroy() {
     //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
-    this.userSub.unsubscribe();
+    this.userSubOne.unsubscribe();
+    this.userSubTwo.unsubscribe();
+    this.userSubThree.unsubscribe();
     this.ourAnswersService.unsubscribe();
   }   
 }

@@ -12,6 +12,7 @@ export class WildlifeResponse {
 
   //Subscriptions to wildlife answers data
   private answersSub: Subscription = new Subscription();
+  private pollinatorSub: Subscription = new Subscription();
 
   //These variables are set so that we can query our api and filter data according to users' specifications
   private reqSoilQueryType: String = "";
@@ -44,6 +45,9 @@ export class WildlifeResponse {
     this.answersSub = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
         this.assignUserAnswers(retrievedAnswers);
         this.getGridData();
+      },
+      err => {
+        console.log(err);
       });
   }
 
@@ -63,7 +67,7 @@ export class WildlifeResponse {
       //get API string
       const REST_API_SERVER = this.getAPI(this.infoArr[this.counter].Month);
       //Then use that data to filter API data for display
-      this.httpClient.get<UnfinishedPollinatorData[]>(REST_API_SERVER).subscribe(
+      this.pollinatorSub = this.httpClient.get<UnfinishedPollinatorData[]>(REST_API_SERVER).subscribe(
         response => {
         let allDataThisMonth: UnfinishedPollinatorData[] = response;
         this.allMonthsUsed[this.counter] = this.populateMonth(allDataThisMonth, this.infoArr[this.counter].Title);
@@ -76,6 +80,9 @@ export class WildlifeResponse {
           this.counter++;
           this.getGridData();
         }
+      },
+      err => {
+        console.log(err);
       });
   }
 
@@ -139,5 +146,6 @@ export class WildlifeResponse {
   ngOnDestroy() {
     //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
     this.answersSub.unsubscribe();
+    this.pollinatorSub.unsubscribe();
   }
 }

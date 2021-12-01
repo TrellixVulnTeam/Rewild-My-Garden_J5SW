@@ -21,7 +21,13 @@ export class AdviceService{
             this.adviceSub = this.httpClient.get<AdviceGeneric[]>("http://localhost:3000/api/adviceData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(
                 response => {
                 this.updatedAdvice.next(response);
+            },
+            err => {
+              console.log(err);
             });
+        },
+        err => {
+          console.log(err);
         });
     }
 

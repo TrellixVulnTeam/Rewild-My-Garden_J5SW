@@ -5,7 +5,6 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { BasicLocationData } from '../models/location-data.model';
 
 //***** the service stucture we're using isn't entirely logical- it's not logical for instance that find-postcode
-//***** check all subscriptions are unsubscribed from!
 //calls the OS api and this calls the hardiness API- if there's time, it may be worth refactoring into a more
 //considered model. For now, we're just going with an approach that works.
 //For instance, some of our components could probably call an api themselves rather than being passed it through a service file
@@ -34,7 +33,13 @@ export class LocationAnswers{
                     //this service just fetches our hardiness
                     const ourLocation: BasicLocationData = {x: xAnswer, y: yAnswer, longitude: longitude, latitude: latitude, hardiness: response[0].hardiness};
                     this.updatedLocation.next(ourLocation);      
+                },
+                err => {
+                  console.log(err);
                 });      
+            },
+            err => {
+              console.log(err);
             }
         );
     }
