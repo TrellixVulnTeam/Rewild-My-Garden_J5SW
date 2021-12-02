@@ -120,6 +120,7 @@ router.get('/userData', function (req, res, next) {
 // gmail is probably not the best email provider to use as it is twitchy about blocking emails
 // that it things look spammy- but will probably work temporarily on our small scale
 // ********** It may be worth putting this in another file when we have time- it shouldn't be with the apis
+// This can be tested in postman by using http://localhost:3000/api/sendmail and editing the body in x-www-form-urlencoded
 const {
   SENDER_EMAIL,
   SENDER_PASSWORD,

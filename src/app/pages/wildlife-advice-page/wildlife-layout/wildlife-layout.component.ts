@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import axios from 'axios';
 import { Subscription } from 'rxjs';
 import { AdviceGeneric } from '../models/advice.model';
 import { CompleteAnswerSet } from '../models/all-answers.model';
@@ -205,9 +206,19 @@ export class WildlifeLayoutComponent implements OnInit {
   }
 
   public processEmailData(){
-    // Will need to do this!!
-    // this.sendEmail()
+    this.sendEmail()
     this.saveUserData();
+  }
+
+  private sendEmail(){
+    const emailContent = { email: 'aprilsayhi@gmail.com', emailBody: '<p>hi from our code</p>' };
+    axios.post('http://localhost:3000/api/sendmail', emailContent)
+    .then(response => 
+      console.log(response)
+      )
+    .catch(error => {
+        console.error('There was an error!', error);
+    });
   }
 
   private saveUserData(){
