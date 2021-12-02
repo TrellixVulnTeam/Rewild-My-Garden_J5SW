@@ -1,5 +1,8 @@
+import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { Subscription } from 'rxjs';
@@ -179,7 +182,7 @@ export class WildlifeLayoutComponent implements OnInit {
    ***********************************************************************/
 
   //the email that the user has submitted
-  private email = "bob@gmail.com"; /*Placeholder*/
+  private email = "";
 
   //the user's longitude and latitude
   public longitude: Number = 0; 
@@ -205,22 +208,7 @@ export class WildlifeLayoutComponent implements OnInit {
     });  
   }
 
-  public processEmailData(){
-    this.sendEmail()
-    this.saveUserData();
-  }
-
-  private sendEmail(){
-    const emailContent = { email: 'aprilsayhi@gmail.com', emailBody: '<p>hi from our code</p>' };
-    axios.post('http://localhost:3000/api/sendmail', emailContent)
-    .then(response => 
-      console.log(response)
-      )
-    .catch(error => {
-        console.error('There was an error!', error);
-    });
-  }
-
+  //Triggered by processEmailData() below
   private saveUserData(){
     //Correct order of coordinates in geojson is [longitude, latitude, elevation] https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.1
     const geoJsonObj: UserDataSave = {
@@ -239,5 +227,58 @@ export class WildlifeLayoutComponent implements OnInit {
     //************* this line may not need to include a .subscribe()
     //check for err????
     this.extraSub = this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
+  }
+
+  /***********************************************************************
+   ***********************************************************************
+   ************************ LOGIC TO HANDLE EMAILS ***********************
+   ***********************************************************************
+   ***********************************************************************/
+
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  matcher = new MyErrorStateMatcher();
+
+  public processEmailData(){
+    this.email = this.emailFormControl.value;
+    this.sendEmail()
+    this.saveUserData();
+  }
+
+  private sendEmail(){
+    const emailContent = { email: this.email, emailBody: this.getEmailContent()};
+    axios.post('http://localhost:3000/api/sendmail', emailContent)
+    .then(response => 
+      console.log(response)
+      )
+    .catch(error => {
+        console.error('There was an error!', error);
+    });
+  }
+
+  private getEmailContent(): String{
+    let htmlString: String = '<head><link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"></head><body>' + 
+        '<p style="text-align: center; font-family:' + "'Playfair Display'" + ', serif; font-size: 30px;">Thank you for using Rewild My Garden!</p>' +
+        '<p style="text-align: center; font-size: 20px">Please see the advice you saved below: </p><br>';
+
+    for(let i=0; i<this.savedAdvice.length; i++){
+      htmlString = htmlString +"<div>" +
+        // this isn't working because the image source isn't a web link yet
+        // "<img src='" + this.savedAdvice[i].Pathname + "' width='250' height='250' alt='advice_img'>" +
+        "<div>" +
+          '<p style="font-family:' + "'Playfair Display'" + ', serif; font-size: 20px; line-height: 0.8;">' + this.savedAdvice[i].Header + '</p>' +
+        '</div>' +
+        '<br>';
+        // "<p>" + this.savedAdvice[i].Justification + "</p>" +
+    }
+    htmlString = htmlString + "</body>"
+    return htmlString;
+  }
+}
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
