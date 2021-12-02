@@ -159,7 +159,6 @@ router.post("/sendmail", (req, res) => {
       res.status(400);
       res.send({ error: "Failed to send email" });
     } else {
-      console.log("Email has been sent");
       res.send(info);
     }
   });

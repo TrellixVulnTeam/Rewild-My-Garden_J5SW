@@ -35,10 +35,13 @@
     font-size: 30px;
   }
 
+  //!important is being used because at the head of the dialogue boxes,
+  //angular materials is trying to apply its own size and font. This is the not the best fix-
+  //may be worth changing if there is time **********
   .Subheader{
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    line-height: 0.8;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 30px !important;
+    line-height: 1.1;
   }
 
   .PageBody{
@@ -103,5 +106,4 @@
     height: 100%;
     margin: 0; 
     padding: 0;
-    // font-family: Roboto, "Helvetica Neue", sans-serif; 
   }

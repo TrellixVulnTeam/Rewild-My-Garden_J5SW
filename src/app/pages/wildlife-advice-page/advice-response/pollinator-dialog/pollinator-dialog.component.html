@@ -1,5 +1,11 @@
-<p mat-dialog-title class="PageHeader">Plant Info</p>
+<div class="dialog-title">
+    <h1 mat-dialog-title class="Subheader">Plant Info</h1>
+    <button mat-icon-button class="close-button" mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
 
+<mat-dialog-content class="mat-typography">
 <div>
     <img alt="Plant_Image" [src]="data[0].Pathname" class="img-dialog">
     <div class="MainSection">
@@ -35,7 +41,4 @@
         <p class="CopyRightText">&copy; Image <a href="{{extraFlowers.Link}}">"{{extraFlowers.Name}}"</a> by {{extraFlowers.Username}}, distributed under {{extraFlowers.Copyright}} license.</p>
     </div>
 </div>
-
-<mat-dialog-actions align="end">
-    <button mat-raised-button color="primary" mat-dialog-close><b class="button-text">Close</b></button>
-</mat-dialog-actions>
+</mat-dialog-content>

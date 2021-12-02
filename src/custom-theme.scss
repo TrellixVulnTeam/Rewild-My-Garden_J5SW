@@ -55,21 +55,6 @@ $my-tabs-theme: mat.define-light-theme((
  )
 ));
 
-// @mixin mix-app-theme($my-tabs-theme) {
-//   $primary: map-get($my-tabs-theme, primary);
-//   $accent: map-get($my-tabs-theme, accent);
-
-//   .mat-button-toggle {
-//     background-color: mat-color($primary);
-//     color: mat-color($primary);
-//   }
-
-//   .mat-button-toggle-checked {
-//     background-color: mat-color($accent);
-//     color: mat-color($accent);
-//   }
-// }
-
 //I wanted the radio accents to be green rather than white, so this is my lazy temporary
 //fix for that - see @include mat.radio-theme($my-radio-theme), which uses this theme
 $my-radio-theme: mat.define-light-theme((

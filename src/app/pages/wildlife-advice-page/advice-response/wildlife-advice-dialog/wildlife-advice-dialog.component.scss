@@ -1,8 +1,14 @@
-.img-dialog{
+.dialogImage{
     margin-right: 30px;
     object-fit: none;
     object-position: center; 
     height: 160px;
     width: 160px;
     float: left;
+}
+
+.dialog-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

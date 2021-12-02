@@ -32,7 +32,7 @@ export class WildlifeAdviceGenericComponent implements OnInit {
   //this function is passed the correct month data through the HTML
   public openDialog(adviceGenericObject: AdviceGeneric) {
     const dialogRef = this.dialog.open(WildlifeAdviceDialogComponent, {
-      height: "350px",
+      height: "auto",
       width: "750px",
       data: adviceGenericObject,
     });
