@@ -1,3 +1,4 @@
+require('dotenv/config') // require the dotenv/config at beginning of file
 const bodyParser = require("body-parser");
 const express = require('express');
 const router = express.Router();
@@ -7,6 +8,7 @@ const infoData = require('./infoData_model.js');
 const minTempData = require('./minTemp_model.js');
 const userData = require('./userData_model.js');
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 
 //Options to stop this API from being accessible by everyone one is live
 //WHEN LIVE CHANGE ORIGIN FROM * TO SITE DOMAIN
@@ -112,6 +114,54 @@ router.get('/userData', function (req, res, next) {
       }
     }
   ); 
+});
+
+// Code for emailing users
+// gmail is probably not the best email provider to use as it is twitchy about blocking emails
+// that it things look spammy- but will probably work temporarily on our small scale
+// ********** It may be worth putting this in another file when we have time- it shouldn't be with the apis
+const {
+  SENDER_EMAIL,
+  SENDER_PASSWORD,
+} = process.env;
+
+const sendMail = (emailInfo, callback) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: SENDER_EMAIL,
+      pass: SENDER_PASSWORD
+    }
+  });
+
+  const mailOptions = {
+    from: SENDER_EMAIL,
+    to: `<${emailInfo.email}>`,
+    subject: 'Your Rewild My Garden Results',
+    html: `${emailInfo.emailBody}`
+  };
+  
+  transporter.sendMail(mailOptions, callback);
+}
+
+router.use(
+  express.urlencoded({
+    extended: true
+  })
+)
+
+router.post("/sendmail", (req, res) => {
+  let emailInfo = req.body;
+  sendMail(emailInfo, (err, info) => {
+    if (err) {
+      console.log(err);
+      res.status(400);
+      res.send({ error: "Failed to send email" });
+    } else {
+      console.log("Email has been sent");
+      res.send(info);
+    }
+  });
 });
 
 module.exports = router;
