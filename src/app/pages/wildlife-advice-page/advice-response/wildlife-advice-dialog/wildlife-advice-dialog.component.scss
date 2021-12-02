@@ -1,5 +1,7 @@
 .dialogImage{
-    margin-right: 30px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-top: 4px;
     object-fit: none;
     object-position: center; 
     height: 160px;
@@ -11,4 +13,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.body{
+    padding: 0.1rem;
 }

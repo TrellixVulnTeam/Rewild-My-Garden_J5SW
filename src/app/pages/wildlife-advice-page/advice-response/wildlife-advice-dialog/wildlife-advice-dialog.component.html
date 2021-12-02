@@ -6,8 +6,8 @@
 </div>
 
 <mat-dialog-content>
-    <img class="dialogImage" src="{{ adviceGenericObject.Pathname }}" alt="Advice_Image">
-    <div class="card-body">
+    <div class="body">
+      <img class="dialogImage" src="{{ adviceGenericObject.Pathname }}" alt="Advice_Image">
       <p class="card-text">{{ adviceGenericObject.BodyText }}</p>
     <div>
         <p class="CopyRightText">&copy; Image <a href="{{adviceGenericObject.Link}}">"{{adviceGenericObject.Name}}"</a> by {{adviceGenericObject.Username}}, distributed under {{adviceGenericObject.Copyright}} license.</p>
