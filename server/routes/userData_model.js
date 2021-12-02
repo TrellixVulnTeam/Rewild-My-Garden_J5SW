@@ -7,6 +7,8 @@ const Schema = mongoose.Schema;
 const ourAdvice = new Schema({
     "Header": {type: String},
     "Pathname": {type: String},
+    "Justification": {type: String},
+    "BodyText": {type: String},
     "Name": {type: String},
     "Username": {type: String},
     "Copyright": {type: String},

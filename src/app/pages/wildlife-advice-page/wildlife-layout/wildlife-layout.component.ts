@@ -245,14 +245,19 @@ export class WildlifeLayoutComponent implements OnInit {
   }
 
   private sendEmail(){
-    const emailContent = { email: this.email, emailBody: this.getEmailContent()};
-    axios.post('http://localhost:3000/api/sendmail', emailContent)
-    .then(response => 
-      console.log(response)
-      )
-    .catch(error => {
-        console.error('There was an error!', error);
-    });
+    if(this.savedAdvice.length == 0){
+      alert("You haven't saved any advice yet! Please select some advice and then re-enter your email.");
+    }
+    else{
+      const emailContent = { email: this.email, emailBody: this.getEmailContent()};
+      axios.post('http://localhost:3000/api/sendmail', emailContent)
+      .then(response => {
+        alert("An email was sent to " + this.email + ". Happy gardening!");
+      })
+      .catch(error => {
+          console.error('There was an error!', error);
+      });
+    }
   }
 
   private getEmailContent(): String{
@@ -266,9 +271,10 @@ export class WildlifeLayoutComponent implements OnInit {
         // "<img src='" + this.savedAdvice[i].Pathname + "' width='250' height='250' alt='advice_img'>" +
         "<div>" +
           '<p style="font-family:' + "'Playfair Display'" + ', serif; font-size: 20px; line-height: 0.8;">' + this.savedAdvice[i].Header + '</p>' +
+          "<p><b>Why You Should Try This in Your Garden: </b>" + this.savedAdvice[i].Justification + "</p>" +
+          "<p><b>How To Do It: </b>" + this.savedAdvice[i].BodyText + "</p>" +
         '</div>' +
         '<br>';
-        // "<p>" + this.savedAdvice[i].Justification + "</p>" +
     }
     htmlString = htmlString + "</body>"
     return htmlString;

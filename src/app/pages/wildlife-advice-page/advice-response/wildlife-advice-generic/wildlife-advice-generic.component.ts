@@ -65,6 +65,8 @@ export class WildlifeAdviceGenericComponent implements OnInit {
         {
           Header: this.adviceGenericObject.Header,
           Pathname: this.adviceGenericObject.Pathname,
+          Justification: this.adviceGenericObject.Justification,
+          BodyText: this.adviceGenericObject.BodyText,
           Name: this.adviceGenericObject.Name,
           Username: this.adviceGenericObject.Username,
           Copyright: this.adviceGenericObject.Copyright,

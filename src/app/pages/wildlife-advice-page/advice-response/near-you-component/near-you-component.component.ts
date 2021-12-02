@@ -23,9 +23,9 @@ export class NearYouComponentComponent implements OnInit {
   private latitude: Number = 0;
   private longitude: Number = 0;
 
-  private adviceOne: AdviceSave = { Header: "", Pathname: "", Name: "", Username: "", Copyright: "", Link: ""};
-  private adviceTwo: AdviceSave = { Header: "", Pathname: "", Name: "", Username: "", Copyright: "", Link: ""};
-  private adviceThree: AdviceSave = { Header: "", Pathname: "", Name: "", Username: "", Copyright: "", Link: ""};
+  private adviceOne: AdviceSave = { Header: "", Pathname: "", Justification: "", BodyText: "", Name: "", Username: "", Copyright: "", Link: ""};
+  private adviceTwo: AdviceSave = { Header: "", Pathname: "", Justification: "", BodyText: "", Name: "", Username: "", Copyright: "", Link: ""};
+  private adviceThree: AdviceSave = { Header: "", Pathname: "", Justification: "", BodyText: "", Name: "", Username: "", Copyright: "", Link: ""};
   public displayArray: AdviceSave[] = [this.adviceOne, this.adviceTwo, this.adviceThree];
 
   constructor(private httpClient: HttpClient, public allAnswersService: AllAnswers) { 
@@ -50,6 +50,8 @@ export class NearYouComponentComponent implements OnInit {
             inspoArray[count] = { 
               Header: ourUserData.properties.savedAdvice[j].Header,
               Pathname: ourUserData.properties.savedAdvice[j].Pathname,
+              Justification: ourUserData.properties.savedAdvice[j].Justification,
+              BodyText: ourUserData.properties.savedAdvice[j].BodyText,
               Name: ourUserData.properties.savedAdvice[j].Name,
               Username: ourUserData.properties.savedAdvice[j].Username,
               Copyright: ourUserData.properties.savedAdvice[j].Copyright,
@@ -88,6 +90,8 @@ export class NearYouComponentComponent implements OnInit {
             closeArray[count] = { 
               Header: ourUserData.properties.savedAdvice[j].Header,
               Pathname: ourUserData.properties.savedAdvice[j].Pathname,
+              Justification: ourUserData.properties.savedAdvice[j].Justification,
+              BodyText: ourUserData.properties.savedAdvice[j].BodyText,
               Name: ourUserData.properties.savedAdvice[j].Name,
               Username: ourUserData.properties.savedAdvice[j].Username,
               Copyright: ourUserData.properties.savedAdvice[j].Copyright,
@@ -119,6 +123,8 @@ export class NearYouComponentComponent implements OnInit {
             closeArray[count] = { 
               Header: ourUserData.properties.savedAdvice[j].Header,
               Pathname: ourUserData.properties.savedAdvice[j].Pathname,
+              Justification: ourUserData.properties.savedAdvice[j].Justification,
+              BodyText: ourUserData.properties.savedAdvice[j].BodyText,
               Name: ourUserData.properties.savedAdvice[j].Name,
               Username: ourUserData.properties.savedAdvice[j].Username,
               Copyright: ourUserData.properties.savedAdvice[j].Copyright,
