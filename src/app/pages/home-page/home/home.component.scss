@@ -6,21 +6,26 @@
 }
 
 button{
-    width: 480px;
+    //button background css
+    width: 100%;
     height: 90px;
     margin: 10px;
     background-color: rgb(121, 194, 139); /* Green */
     border: none;
     border-radius: 12px;
+    //font css
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 30px;
+    line-height: 1.1;
     color: black;
 }
 
 .buttonHolder{
     display: inline-grid;
+    width: 480px;
+    max-width: 80%;
 }
 
 .centraliseButtons{
@@ -29,11 +34,18 @@ button{
 }
 
 .home-layout-wrapper{
-    height: 100%;
+    margin-top: 150px;
+    height: auto;
 }
 
 .home-flex-wrapper{
-    height: 100%;
+    height: auto;
+}
+
+//This stops the title from moving all the elements on the page as it grows and shrinks
+//the top margin of home-layout-wrapper decides the size of this block
+.titleHolder{
+    position: absolute;
 }
 
 //We've created a special (very similar) PageBody class for this elem so it can have rounded corners
@@ -45,4 +57,79 @@ button{
     padding-right: 30px;
     background-color: rgb(248, 252, 249);
     height: auto;
+}
+
+.PageHeaderSpecial{
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    line-height: 1.1;
+}
+
+.background-holder {
+    top: 0;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    //This transparent element was previously preventing us clicking some buttons- so we've had to turn off its
+    //pointer events
+    pointer-events: none;
+}
+
+.background-image-left{
+    top: 0;
+    float: left;
+    height: 400px;
+    opacity: 60%;
+}
+
+.background-image-right{
+    top: 0;
+    float: right;
+    height: 400px;
+    opacity: 60%;
+}
+
+/* If the screen size is 1150px wide or more*/
+@media screen and (min-width: 1150px) {
+    .home-layout-wrapper{
+      margin-top: 190px;
+    }
+}
+
+/* If the screen size is 960px wide or less */
+@media screen and (max-width: 960px) {
+  .home-layout-wrapper{
+    margin-top: 120px;
+  }
+  //When the page gets narrow enough that the vines will be annoying, hide them
+  .background-image-left{
+    display: none;
+  }
+  .background-image-right{
+    display: none;
+  }
+}
+
+/* If the screen size is 600px wide or less */
+@media screen and (max-width: 600px) {
+  .home-layout-wrapper{
+    margin-top: 100px;
+  }
+  .PageHeaderSpecial{
+    font-size: 35px;
+  }
+  button{
+    font-size: 25px;
+  }
+}
+
+/* If the screen size is 350px wide or less*/
+@media screen and (max-width: 350px) {
+  .home-layout-wrapper{
+    margin-top: 60px;
+  }
+  .PageHeaderSpecial{
+    font-size: 30px;
+  }
 }

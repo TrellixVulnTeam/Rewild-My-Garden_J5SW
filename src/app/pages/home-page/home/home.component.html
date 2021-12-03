@@ -1,14 +1,26 @@
-<a routerLink="/home"><img 
-  class="title-image"
-  src="/assets/Rewild_Title.png" 
-  alt="Rewild My Garden" 
-  >
-</a>
+<!-- <div class="background"> -->
+<div class="titleHolder">
+  <a routerLink="/home"><img 
+      class="title-image"
+      src="/assets/Rewild_Title.png" 
+      alt="Rewild My Garden" 
+      >
+  </a>
+</div>
+
+<div class="background-holder">
+  <img class="background-image-left"
+  src="/assets/home_background_left.png" 
+  alt="home background img left">
+  <img class="background-image-right"
+  src="/assets/home_background_right.png" 
+  alt="home background img right">
+</div>
 
 <div  fxLayoutAlign="center center" class="home-layout-wrapper">
-  <div fxFlex="60%" fxFlex.lt-md="100%" class="home-flex-wrapper">
+  <div fxFlex="75%" fxFlex.lt-md="100%" class="home-flex-wrapper">
     <div class='PageBodySpecial'>
-      <p class='PageHeader'>Welcome to Rewild My Garden! </p>
+      <p class='PageHeaderSpecial'>Welcome to Rewild My Garden! </p>
       <div class="centraliseButtons">
         <div class="buttonHolder">
           <button [routerLink]="['/wildlife-advice-page']">Make My Garden Wild</button>
@@ -16,6 +28,8 @@
           <button [routerLink]="['/about-page']">About</button>
         </div>
       </div>
+      <br>
+      <br>
     </div>
   </div>
 </div>
