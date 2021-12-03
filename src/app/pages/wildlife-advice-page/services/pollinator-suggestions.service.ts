@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { CompleteAnswerSet } from "../models/all-answers.model";
 import { AllAnswers } from "./all-answers.service";
 
+
 //Check this is right?
 @Injectable({ providedIn: "root" })
 export class WildlifeResponse {
@@ -92,22 +93,199 @@ export class WildlifeResponse {
     //Every plant we can find associated with this month is added to this month's array
     for (let j = 0; j < allDataThisMonth.length; j++) {
       //Creating a new blank grid response
-      //*************************
-      monthData[j] = {"Title": "", "LatinName": "", "CommonName": "", "Habit": "", "Height": "", "Growth": "", "Native": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-      monthData[j].Title = monthTitle;
-      monthData[j].LatinName = allDataThisMonth[j].LatinName;
-      monthData[j].CommonName = allDataThisMonth[j].CommonName;
-      monthData[j].Height = allDataThisMonth[j].Height;
-      monthData[j].Habit = allDataThisMonth[j].Habit;
-      monthData[j].Growth = allDataThisMonth[j].Growth;
-      monthData[j].Native = allDataThisMonth[j].Native;
-      monthData[j].Pathname = allDataThisMonth[j].Pathname;
-      monthData[j].Name = allDataThisMonth[j].Name;
-      monthData[j].Username = allDataThisMonth[j].Username;
-      monthData[j].Copyright = allDataThisMonth[j].Copyright;
-      monthData[j].Link = allDataThisMonth[j].Link;
+      //This is done in a quirky way because I had a battle to get it to work
+      //It might be worth trying to reimplement this if there is time *************************
+      monthData[j] = {"Title": monthTitle, 
+      "LatinName": allDataThisMonth[j].LatinName, 
+      "CommonName": allDataThisMonth[j].CommonName, 
+      "Hardiness": this.getHardinessString(allDataThisMonth[j]),
+      "Soil": this.getSoilString(allDataThisMonth[j]),
+      "SoilPH": this.getPHString(allDataThisMonth[j]),
+      "Shadiness": this.getShadinessString(allDataThisMonth[j]),
+      "Moisture": this.getMoistureString(allDataThisMonth[j]),
+      "Habit": allDataThisMonth[j].Habit, 
+      "Height": allDataThisMonth[j].Height, 
+      "Growth": allDataThisMonth[j].Growth, 
+      "Native": this.getNativeString(allDataThisMonth[j].Native), 
+      "Pathname": allDataThisMonth[j].Pathname, 
+      "Name": allDataThisMonth[j].Name, 
+      "Username": allDataThisMonth[j].Username, 
+      "Copyright": allDataThisMonth[j].Copyright, 
+      "Link": allDataThisMonth[j].Link};
+      // monthData[j].Title = monthTitle;
+      // monthData[j].LatinName = allDataThisMonth[j].LatinName;
+      // monthData[j].CommonName = allDataThisMonth[j].CommonName;
+      // monthData[j].Hardiness = this.getHardinessString(allDataThisMonth[j]);
+      // monthData[j].Soil = this.getSoilString(allDataThisMonth[j]);
+      // monthData[j].SoilPH = this.getPHString(allDataThisMonth[j]);
+      // monthData[j].Shadiness = this.getShadinessString(allDataThisMonth[j]);
+      // monthData[j].Moisture = this.getMoistureString(allDataThisMonth[j]);
+      // monthData[j].Height = allDataThisMonth[j].Height;
+      // monthData[j].Habit = allDataThisMonth[j].Habit;
+      // monthData[j].Growth = allDataThisMonth[j].Growth;
+      // monthData[j].Native = this.getNativeString(allDataThisMonth[j].Native);
+      // monthData[j].Pathname = allDataThisMonth[j].Pathname;
+      // monthData[j].Name = allDataThisMonth[j].Name;
+      // monthData[j].Username = allDataThisMonth[j].Username;
+      // monthData[j].Copyright = allDataThisMonth[j].Copyright;
+      // monthData[j].Link = allDataThisMonth[j].Link;
     }
     return monthData;
+  }
+
+  private getHardinessString(allDataThisMonth: UnfinishedPollinatorData){
+    if(allDataThisMonth.Hardiness0 == "Y"){
+      return "0 and above - Very Hardy"
+    }
+    if(allDataThisMonth.Hardiness1 == "Y"){
+      return "1 and above - Very Hardy"
+    }
+    if(allDataThisMonth.Hardiness2 == "Y"){
+      return "2 and above - Very Hardy"
+    }
+    if(allDataThisMonth.Hardiness3 == "Y"){
+      return "3 and above - Very Hardy"
+    }
+    if(allDataThisMonth.Hardiness4 == "Y"){
+      return "4 and above - Very Hardy"
+    }
+    if(allDataThisMonth.Hardiness5 == "Y"){
+      return "5 and above - Very Hardy"
+    }
+    if(allDataThisMonth.Hardiness6 == "Y"){
+      return "6 and above"
+    }
+    if(allDataThisMonth.Hardiness7 == "Y"){
+      return "7 and above"
+    }
+    if(allDataThisMonth.Hardiness8 == "Y"){
+      return "8 and above"
+    }
+    if(allDataThisMonth.Hardiness9 == "Y"){
+      return "9 and above"
+    }
+    if(allDataThisMonth.Hardiness10 == "Y"){
+      return "10 and above"
+    }
+    if(allDataThisMonth.Hardiness11 == "Y"){
+      return "11 and above - Not Very Cold Hardy"
+    }
+    if(allDataThisMonth.Hardiness12 == "Y"){
+      return "12 and above - Not Very Cold Hardy"
+    }
+    return "Unknown"
+  }
+
+  private getSoilString(allDataThisMonth: UnfinishedPollinatorData){
+    let responseString: String = "";
+    if(allDataThisMonth.SoilLight == "Y"){
+      responseString = responseString + "Light, Sandy Soil"
+    }
+    if(allDataThisMonth.SoilMedium == "Y"){
+      if(responseString == ""){
+        responseString = responseString + "Medium Soil"
+      }
+      else{
+        responseString = responseString + ", Medium Soil"
+      }
+    }
+    if(allDataThisMonth.SoilHeavy == "Y"){
+      if(responseString == ""){
+        responseString = responseString + "Heavy Clay Soil"
+      }
+      else{
+        responseString = responseString + ", Heavy Clay Soil"
+      }
+    }
+    return responseString;
+  }
+
+  private getPHString(allDataThisMonth: UnfinishedPollinatorData): String{
+    let responseString: String = "";
+    if(allDataThisMonth.PHBasicAlkaline == "Y"){
+      responseString = responseString + "Basic (Alkaline) Soil"
+    }
+    if(allDataThisMonth.PHNeutral == "Y"){
+      if(responseString == ""){
+        responseString = responseString + "Neutral Soil"
+      }
+      else{
+        responseString = responseString + ", Neutral Soil"
+      }
+    }
+    if(allDataThisMonth.PHAcid == "Y"){
+      if(responseString == ""){
+        responseString = responseString + "Acid Soil"
+      }
+      else{
+        responseString = responseString + ", Acid Soil"
+      }
+    }
+    return responseString;
+  }
+
+  private getShadinessString(allDataThisMonth: UnfinishedPollinatorData){
+    let responseString: String = "";
+    if(allDataThisMonth.ShadeNone == "Y"){
+      responseString = responseString + "No Shade"
+    }
+    if(allDataThisMonth.ShadeSemi == "Y"){
+      if(responseString == ""){
+        responseString = responseString + "Medium Shade"
+      }
+      else{
+        responseString = responseString + ", Medium Shade"
+      }
+    }
+    if(allDataThisMonth.ShadeFull == "Y"){
+      if(responseString == ""){
+        responseString = responseString + "Full Shade"
+      }
+      else{
+        responseString = responseString + ", Full Shade"
+      }
+    }
+    return responseString;
+  }
+
+  private getMoistureString(allDataThisMonth: UnfinishedPollinatorData){
+    let responseString: String = "";
+    if(allDataThisMonth.MoistureDry == "Y"){
+      responseString = responseString + "Dry Soil"
+    }
+    if(allDataThisMonth.MoistureMoist == "Y"){
+      if(responseString == ""){
+        responseString = responseString + "Moist Soil"
+      }
+      else{
+        responseString = responseString + ", Moist Soil"
+      }
+    }
+    if(allDataThisMonth.MoistureWet == "Y"){
+      if(responseString == ""){
+        responseString = responseString + "Wet Soil"
+      }
+      else{
+        responseString = responseString + ", Wet Soil"
+      }
+    }
+    if(allDataThisMonth.MoistureWater == "Y"){
+      if(responseString == ""){
+        responseString = responseString + "Water"
+      }
+      else{
+        responseString = responseString + ", Water"
+      }
+    }
+    return responseString;
+  }
+
+  private getNativeString(nativeLetter: String): String {
+    if(nativeLetter == "Y"){
+      return "Yes";
+    } else{
+      return "No";
+    }
   }
 
   private getAPI(monthReq: String) {
@@ -134,7 +312,7 @@ export class WildlifeResponse {
   }
 
   private createSubObjects() {
-    //We are now sending our ACTUAL array as opposed to a copy. We do nothing to the dat of the other end, so this shouldn't
+    //We are now sending our ACTUAL array as opposed to a copy. We do nothing to the data at the other end, so this shouldn't
     //be a problem, but it's a good idea to take note of this ! Creating a duplicate of a multidimensional array would require an
     //explicit copy of each cell
     this.updatedMonthsUsed.next(this.allMonthsUsed);
@@ -142,7 +320,6 @@ export class WildlifeResponse {
 
   ngOnInit() {}
 
-  //This is called whenever this component is about to be removed from the DOM
   @HostListener('unloaded')
   ngOnDestroy() {
     //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
