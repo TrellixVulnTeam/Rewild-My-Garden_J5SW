@@ -41,11 +41,20 @@ export class PollinatorSuggestionsComponent implements OnInit {
       if(retrievedAnswers[i].length < 8){
         //If there is 7 or fewer flowers to choose from, just choose the first 4 to be displayed in the pop-up
         //If there are fewer than 5, (j < retrievedAnswers[i].length) assures we won't try and access an array cell that doesn't exist.
-        //It may repeat the plant that is being displayed in the grid, for now we're going to say that is fine *******
+        //'displayCount = 1' here is to accommodate for the fact that we don't want to overwrite ourMonthDisplay[0] because it
+        //holds our main display plant
+        let displayCount: number = 1;
         for(let j = 0; (j < 4) && (j < retrievedAnswers[i].length); j++){
-          //The +1 here is to accomodate for the fact that we don't want to overwrite ourMonthDisplay[0] because it
-          //holds our main display plant
-          ourMonthDisplay[j+1] = retrievedAnswers[i][j];
+          //If the most recent retrieved plant != the plant we're displaying in the main grid, set it and iterate our count
+          if(retrievedAnswers[i][j].LatinName != ourMonthDisplay[0].LatinName){
+            ourMonthDisplay[displayCount] = retrievedAnswers[i][j];
+            displayCount++;
+          } 
+          //If retrievedAnswers[i][j].LatinName == ourMonthDisplay[0].LatinName 
+            // - Do not iterate displayCount
+            // - Do not set anything to ourMonthDisplay
+          //By using displayCount we can skip a cell in retrievedAnswers without leaving a corresponding gap in our
+          //ourMonthDisplay array (as would be the case if we did ourMonthDisplay[j] = retrievedAnswers[i][j] and tried to skip
         }
       }
       else{
