@@ -1,19 +1,5 @@
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav role="navigation">
-      <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <app-navigation (sidenavToggle)="sidenav.toggle()"></app-navigation>
-      <app-layout>
-        <div class="HeaderBlock">
-        <main>
-          <!-- The component associated with the current route will be rendered here -->
-          <router-outlet></router-outlet>
-        </main>
-        </div>
-      </app-layout>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+<router-outlet></router-outlet>
+
 
 
 

@@ -1,0 +1,20 @@
+<!-- This is the layout for all pages bar the home page. The 'layout' component actually just 
+describes the central panel under the that is used by these elements. This is therefore a higher
+level layout. -->
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+      <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-navigation (sidenavToggle)="sidenav.toggle()"></app-navigation>
+      <app-layout>
+        <div class="HeaderBlock">
+        <main>
+          <!-- The component associated with the current route will be rendered here -->
+          <router-outlet></router-outlet>
+        </main>
+        </div>
+      </app-layout>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

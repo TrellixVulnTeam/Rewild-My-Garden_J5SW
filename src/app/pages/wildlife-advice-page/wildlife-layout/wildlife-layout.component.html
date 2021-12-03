@@ -36,7 +36,7 @@
 
           <form class="example-form">
             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Email</mat-label>
+              <mat-label>Enter your email here</mat-label>
               <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
                      placeholder="Ex. pat@example.com">
               <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -47,7 +47,7 @@
               </mat-error>
             </mat-form-field>
           </form>
-          
+
           <button mat-stroked-button (click)="processEmailData()" color="primary" mat-button >Send Email</button>
         </div>
       </div>

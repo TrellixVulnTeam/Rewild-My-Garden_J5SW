@@ -13,8 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './pages/home-page/home/home.component';
 import { NotFoundComponent } from './pages/not-found-page/not-found/not-found.component';
 import { LayoutComponent } from './display/layout/layout.component';
-import { NavigationComponent } from './top-display/navigation/navigation.component';
-import { SidenavListComponent } from './top-display/sidenav-list/sidenav-list.component';
+import { NavigationComponent } from './display/top-display/navigation/navigation.component';
+import { SidenavListComponent } from './display/top-display/sidenav-list/sidenav-list.component';
 import { AboutTextComponent } from './pages/about-page/about-text/about-text.component';
 import { WildlifeMultiplechoiceComponent } from './pages/wildlife-advice-page/advice-questions/wildlife-multiplechoice/wildlife-multiplechoice.component';
 import { WildlifeLayoutComponent } from './pages/wildlife-advice-page/wildlife-layout/wildlife-layout.component';
@@ -37,6 +37,7 @@ import { FindPostcodeComponent } from './pages/wildlife-advice-page/advice-quest
 import { NearYouComponentComponent } from './pages/wildlife-advice-page/advice-response/near-you-component/near-you-component.component';
 import { AllAnswers } from './pages/wildlife-advice-page/services/all-answers.service';
 import { LocationAnswers } from './pages/wildlife-advice-page/services/location-answer.service';
+import { NotHomeLayoutComponent } from './display/not-home-layout/not-home-layout.component';
 
 @NgModule({
   imports: [
@@ -70,6 +71,7 @@ import { LocationAnswers } from './pages/wildlife-advice-page/services/location-
     WildlifeAdviceDialogComponent,
     FindPostcodeComponent,
     NearYouComponentComponent,
+    NotHomeLayoutComponent,
     ],
   entryComponents: [
     PollinatorDialogComponent,

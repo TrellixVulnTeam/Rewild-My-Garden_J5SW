@@ -1,22 +1,21 @@
-<p class='PageHeader'>Welcome to Rewild My Garden! </p>
+<a routerLink="/home"><img 
+  class="title-image"
+  src="/assets/Rewild_Title.png" 
+  alt="Rewild My Garden" 
+  >
+</a>
 
-<div class='PageBody'>
-<section fxLayout="column" fxFlexAlign="stretch">
-    <div fxFlexAlign="center">
+<div  fxLayoutAlign="center center" class="home-layout-wrapper">
+  <div fxFlex="60%" fxFlex.lt-md="100%" class="home-flex-wrapper">
+    <div class='PageBodySpecial'>
+      <p class='PageHeader'>Welcome to Rewild My Garden! </p>
+      <div class="centraliseButtons">
+        <div class="buttonHolder">
+          <button [routerLink]="['/wildlife-advice-page']">Make My Garden Wild</button>
+          <button [routerLink]="['/example-gardens-body']">Inspiration</button>
+          <button [routerLink]="['/about-page']">About</button>
+        </div>
+      </div>
     </div>
-    <mat-tab-group mat-align-tabs="center">
-      <mat-tab> 
-        <ng-template mat-tab-label>
-          Things To Grow 
-        </ng-template>
-        <p class="content">Lots of flowering plants!</p> 
-      </mat-tab>
-      <mat-tab> 
-        <ng-template mat-tab-label>
-          Post About Plants
-        </ng-template>
-        <p class="content">We want to hear your thoughts!</p>
-      </mat-tab>
-    </mat-tab-group>
-  </section>
+  </div>
 </div>
