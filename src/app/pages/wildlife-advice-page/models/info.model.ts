@@ -1,5 +1,5 @@
 export interface InfoGeneric { 
-    "Header": String;
+    "Title": String;
     "WindoxBox": String;
     "OutdoorPlantPots": String;
     "SmallGarden": String;

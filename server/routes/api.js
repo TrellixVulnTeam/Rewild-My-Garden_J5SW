@@ -3,8 +3,10 @@ const bodyParser = require("body-parser");
 const express = require('express');
 const router = express.Router();
 const pollinatorDataFinal = require('./pollinatorData_model.js');
-const adviceData = require('./adviceData_model.js');
-const infoData = require('./infoData_model.js');
+// const adviceData = require('./adviceData_model.js');
+// const infoData = require('./infoData_model.js');
+const adviceFinal = require('./adviceFinal_model.js');
+const infoFinal = require('./infoFinal_model.js');
 const minTempData = require('./minTemp_model.js');
 const userData = require('./userData_model.js');
 const cors = require("cors");
@@ -44,7 +46,7 @@ router.get('/minimalTestDataFilter', function (req, res, next) {
 
 //Get advice box data
 router.get('/adviceData', function (req, res, next) {
-    adviceData.find({[req.query.SizeQueryType] : req.query.Size}).then(function(result, err){
+    adviceFinal.find({[req.query.SizeQueryType] : req.query.Size}).then(function(result, err){
     if(result){
       res.send(result);
     }
@@ -56,7 +58,7 @@ router.get('/adviceData', function (req, res, next) {
 
 //Get info box data
 router.get('/infoData', function (req, res, next) {
-  infoData.find({[req.query.SizeQueryType] : req.query.Size}).then(function(result, err){
+  infoFinal.find({[req.query.SizeQueryType] : req.query.Size}).then(function(result, err){
     if(result){
       res.send(result);
     }
