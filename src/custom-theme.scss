@@ -74,5 +74,6 @@ $my-radio-theme: mat.define-light-theme((
 @include mat.input-theme($my-tabs-theme);
 @include mat.form-field-theme($my-tabs-theme);
 @include mat.button-toggle-theme($my-tabs-theme);
+@include mat.checkbox-theme($my-radio-theme);
 
 

@@ -8,6 +8,7 @@ import { WildlifeAnswers } from '../../services/multichoice-answers.service';
 })
 
 export class WildlifeMultiplechoiceComponent implements OnInit {
+  //multichoice radio questions
   chosenSoilType: String = "";
   soilTypes: String[] = ['SoilLight', 'SoilMedium', 'SoilHeavy'];
   chosenPHType: String = "";
@@ -17,6 +18,13 @@ export class WildlifeMultiplechoiceComponent implements OnInit {
   chosenSize: String = "";
   sizes: String[] = ['WindoxBox', 'OutdoorPlantPots', 'SmallGarden', 'LargeGarden', 'Allotment', 'FieldFields'];
   errMessage: String = "";
+
+  //multichoice checkbox question
+  childFriendly: String = "";
+  cheap: String = "";
+  easy: String = "";
+  renting: String = "";
+  pavedGardens: String = "";
 
   constructor(public wildlifeAnswersService: WildlifeAnswers) { }
 
@@ -30,8 +38,9 @@ export class WildlifeMultiplechoiceComponent implements OnInit {
     else{
       //If successful, clear error message
       document.getElementById("errMessage")!.innerHTML = "";
+      console.log(this.childFriendly + " " + this.cheap + " " + this.easy + " " + this.renting + " " + this.pavedGardens);
       //A response is composed of the results from mutliple tick boxes!
-      this.wildlifeAnswersService.addAnswerSet(this.chosenSoilType, this.chosenPHType, this.chosenShadeType, this.chosenSize);
+      this.wildlifeAnswersService.addAnswerSet(this.chosenSoilType, this.chosenPHType, this.chosenShadeType, this.chosenSize, this.childFriendly, this.cheap, this.easy, this.renting, this.pavedGardens);
     }
   }
 

@@ -8,7 +8,7 @@ import { InfoGeneric } from '../../models/info.model';
 })
 export class WildlifeInfoGenericComponent implements OnInit {
 
-  @Input() infoGenericObject: InfoGeneric = {"Title": "", WindoxBox: "", OutdoorPlantPots: "", SmallGarden: "", LargeGarden: "", Allotment: "", FieldFields: "", "BodyText": ""}; 
+  @Input() infoGenericObject: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""}; 
 
   constructor() { }
 

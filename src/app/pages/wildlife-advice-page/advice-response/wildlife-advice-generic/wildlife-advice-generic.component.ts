@@ -12,12 +12,10 @@ import { WildlifeAdviceDialogComponent } from "../wildlife-advice-dialog/wildlif
 export class WildlifeAdviceGenericComponent implements OnInit {
   @Input() adviceGenericObject: AdviceGeneric = {
     Header: "",
-    WindoxBox: "",
-    OutdoorPlantPots: "",
-    SmallGarden: "",
-    LargeGarden: "",
-    Allotment: "",
-    FieldFields: "",
+    "Hedgehogs": "",	
+    "Birds": "", 
+    "Insects": "",	
+    "Amphibians": "",
     Justification: "",
     BodyText: "",
     Pathname: "",

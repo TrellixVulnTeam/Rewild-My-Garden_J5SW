@@ -28,8 +28,7 @@ router.get('/minimalTestDataFilter', function (req, res, next) {
   //We are relying on the fact that all requests will be emitted by the front end, and therefore shouldn't
   //need parsing. However, providing some checking might be worth thinking about?
   //Because the column we're querying changes, the name of the column is also part of the request
-  //"Habit" is commented out because we ultimately decided to split the database by habit- it therefore isn't useful
-      pollinatorDataFinal.find({/*"Habit" : req.query.Habit,*/
+      pollinatorDataFinal.find({
                   [req.query.SoilQueryType] : req.query.Soil, 
                   [req.query.ShadeQueryType] : req.query.Shade, 
                   [req.query.PHQueryType] : req.query.PH, 
@@ -46,7 +45,12 @@ router.get('/minimalTestDataFilter', function (req, res, next) {
 
 //Get advice box data
 router.get('/adviceData', function (req, res, next) {
-    adviceFinal.find({[req.query.SizeQueryType] : req.query.Size}).then(function(result, err){
+    adviceFinal.find({[req.query.SizeQueryType] : req.query.Size, 
+      [req.query.ChildFriendlyQuery] : req.query.ChildFriendlyResponse, 
+      [req.query.CheapQuery] : req.query.CheapResponse,
+      [req.query.EasyQuery] : req.query.EasyResponse, 
+      [req.query.RentingQuery] : req.query.RentingResponse,
+      [req.query.PavedGardensQuery] : req.query.PavedGardensResponse}).then(function(result, err){
     if(result){
       res.send(result);
     }

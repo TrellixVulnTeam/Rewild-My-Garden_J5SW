@@ -1,11 +1,9 @@
 export interface AdviceGeneric { 
     "Header": String;
-    "WindoxBox": String;
-    "OutdoorPlantPots": String;
-    "SmallGarden": String;
-    "LargeGarden": String;
-    "Allotment": String;
-    "FieldFields": String;
+    "Hedgehogs": String;	
+    "Birds": String;	
+    "Insects": String;	
+    "Amphibians": String;
     "Justification": String;
     "BodyText": String;
     "Pathname": String;

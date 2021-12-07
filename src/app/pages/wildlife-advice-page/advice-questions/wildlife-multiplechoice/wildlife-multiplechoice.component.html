@@ -40,6 +40,17 @@
 
 <br>
 
+<label id="multiplechoice-label">Please select any suggestions that you are particularly interested in.</label>
+<section class="example-section">
+  <mat-checkbox class="personal-choices" [(ngModel)]="childFriendly">ChildFriendly</mat-checkbox>
+  <mat-checkbox class="personal-choices" [(ngModel)]="cheap">Cheap</mat-checkbox>
+  <mat-checkbox class="personal-choices" [(ngModel)]="easy">Easy</mat-checkbox>
+  <mat-checkbox class="personal-choices" [(ngModel)]="renting">Renting</mat-checkbox>
+  <mat-checkbox class="personal-choices" [(ngModel)]="pavedGardens">PavedGardens</mat-checkbox>
+</section>
+
+<br>
+
 <button mat-stroked-button color="primary" (click)="saveForm()">Save</button>
 <p id="errMessage"></p>
 

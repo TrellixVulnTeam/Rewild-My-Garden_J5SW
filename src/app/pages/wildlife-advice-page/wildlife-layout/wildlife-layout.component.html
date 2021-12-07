@@ -10,20 +10,44 @@
     <p *ngIf="responseShow">Suggestions for things you can do to help wildlife in the garden that you have.</p>
 
     <!-- We can group advice by species helped by creating the structure here and then populating each section with animal specific arrays
-    i.e. 
-    <p class="Subheader">Hedgehog Advice</p>
-    <app-wildlife-advice-generic id="hedgehogAdviceID0" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[0]"></app-wildlife-advice-generic>
-    <app-wildlife-advice-generic id="hedgehogAdviceID0" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[1]"></app-wildlife-advice-generic>
-    <app-wildlife-advice-generic id="hedgehogAdviceID0" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[2]"></app-wildlife-advice-generic>
-    This becomes unhidden as it is filled/ if see more is clicked
-    -->
+    i.e.  -->
+    <!-- <app-wildlife-advice-generic id="specialAdvice" class="hiddenElem" [adviceGenericObject]="ourSpecialAdvice[0]"></app-wildlife-advice-generic> -->
 
-    <app-wildlife-advice-generic id="genericAdviceID0" class="hiddenElem" [adviceGenericObject]="ourAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <p class="Subheader">Advice to Help Hedgehogs</p>
+    <app-wildlife-advice-generic id="hedgehogAdviceID0" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <app-wildlife-advice-generic id="hedgehogAdviceID1" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+        <app-wildlife-info-generic id="HedgehogInfoID0" class="hiddenElem" [infoGenericObject]="ourHedgehogInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+    <app-wildlife-advice-generic id="hedgehogAdviceID2" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+        <p class="Subheader">Advice to Help Birds</p>
+    <app-wildlife-advice-generic id="birdsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <app-wildlife-advice-generic id="birdsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+        <app-wildlife-info-generic id="BirdInfoID0" class="hiddenElem" [infoGenericObject]="ourBirdsInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+    <app-wildlife-advice-generic id="birdsAdviceID2" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+        <app-wildlife-info-generic id="BirdInfoID01" class="hiddenElem" [infoGenericObject]="ourBirdsInfo[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+    <app-wildlife-advice-generic id="birdsAdviceID3" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[3]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+        <p class="Subheader">Advice to Help Pollinators and Other Insects</p>
+    <app-wildlife-advice-generic id="insectsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <app-wildlife-advice-generic id="insectsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+      <app-wildlife-info-generic id="InsectInfoID0" class="hiddenElem" [infoGenericObject]="ourInsectsInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+    <app-wildlife-advice-generic id="insectsAdviceID2" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <app-wildlife-advice-generic id="insectsAdviceID3" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[3]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+      <app-wildlife-info-generic id="InsectInfoID1" class="hiddenElem" [infoGenericObject]="ourInsectsInfo[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+    <app-wildlife-advice-generic id="insectsAdviceID4" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[4]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+      <app-wildlife-info-generic id="InsectInfoID2" class="hiddenElem" [infoGenericObject]="ourInsectsInfo[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+    <app-wildlife-advice-generic id="insectsAdviceID5" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[5]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+            <p class="Subheader">Advice to Help Frogs and Other Amphibians</p>
+    <app-wildlife-advice-generic id="frogsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourFrogsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <app-wildlife-advice-generic id="frogsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourFrogsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <app-wildlife-advice-generic id="frogsAdviceID2" class="hiddenElem" [adviceGenericObject]="ourFrogsAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+    <!-- This becomes unhidden as it is filled/ if see more is clicked -->
+   
+
+    <!-- <app-wildlife-advice-generic id="genericAdviceID0" class="hiddenElem" [adviceGenericObject]="ourAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
     <app-wildlife-info-generic id="genericInfoID0" class="hiddenElem" [infoGenericObject]="ourInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
     <app-wildlife-advice-generic id="genericAdviceID1" class="hiddenElem" [adviceGenericObject]="ourAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
     <app-wildlife-info-generic id="genericInfoID1" class="hiddenElem" [infoGenericObject]="ourInfo[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
     <app-wildlife-advice-generic id="genericAdviceID2" class="hiddenElem" [adviceGenericObject]="ourAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-    <app-wildlife-info-generic id="genericInfoID2" class="hiddenElem" [infoGenericObject]="ourInfo[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+    <app-wildlife-info-generic id="genericInfoID2" class="hiddenElem" [infoGenericObject]="ourInfo[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic> -->
 
     <app-near-you-component id="nearYouID" class="hiddenElem"></app-near-you-component>
 

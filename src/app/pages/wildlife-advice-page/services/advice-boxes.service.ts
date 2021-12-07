@@ -17,9 +17,12 @@ export class AdviceService{
         //here we are subscribing to the listener
         this.answersSub = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
             const ourGardenSize = retrievedAnswers.gardenSize;
+            let ourPersonalisationQuery : String = this.getPersonalisationString(retrievedAnswers);
             //Then use that data to filter API data for display
-            this.adviceSub = this.httpClient.get<AdviceGeneric[]>("http://localhost:3000/api/adviceData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(
-                response => {
+            this.adviceSub = this.httpClient.get<AdviceGeneric[]>(
+                    "http://localhost:3000/api/adviceData?SizeQueryType=" 
+                    + ourGardenSize + "&Size=Y" + ourPersonalisationQuery).subscribe(
+                    response => {
                 this.updatedAdvice.next(response);
             },
             err => {
@@ -29,6 +32,29 @@ export class AdviceService{
         err => {
           console.log(err);
         });
+    }
+
+    private getPersonalisationString(retrievedAnswers: CompleteAnswerSet) : String{
+        //If we do notadd to the string, api.js effectively finds by " : "- which captures everything, meaning no
+        //filter is applied
+        let ourString: String = "";
+        if(retrievedAnswers.childFriendly == "true"){
+            ourString = ourString + "&ChildFriendlyQuery=ChildFriendly&ChildFriendlyResponse=Y"
+        }
+        else
+        if(retrievedAnswers.cheap == "true"){
+            ourString = ourString + "&CheapQuery=Cheap&CheapResponse=Y"
+        }
+        if(retrievedAnswers.easy == "true"){
+            ourString = ourString + "&EasyQuery=Easy&EasyResponse=Y"
+        }
+        if(retrievedAnswers.renting == "true"){
+            ourString = ourString + "&RentingQuery=Renting&RentingResponse=Y"
+        }
+        if(retrievedAnswers.pavedGardens == "true"){
+            ourString = ourString + "&PavedGardensQuery=PavedGardens&PavedGardensResponse=Y"
+        }
+        return ourString;
     }
 
     getAnswerUpdateListener(): Observable<any>{

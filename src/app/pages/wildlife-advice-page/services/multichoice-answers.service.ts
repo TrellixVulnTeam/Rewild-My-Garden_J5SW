@@ -13,8 +13,8 @@ export class WildlifeAnswers{
         return this.updatedAnswers.asObservable();
     }
 
-    addAnswerSet(soilAnswer: String, phAnswer: String, shadeAnswer: String, sizeAnswer: String){
-        const ourAnswer: WildlifeAnswerSet = {soil: soilAnswer, ph: phAnswer, shade: shadeAnswer, gardenSize: sizeAnswer};
+    addAnswerSet(soilAnswer: String, phAnswer: String, shadeAnswer: String, sizeAnswer: String, childFriendlyAnswer: String, cheapAnswer: String, easyAnswer: String, rentingAnswer: String, pavedGardensAnswer: String){
+        const ourAnswer: WildlifeAnswerSet = {soil: soilAnswer, ph: phAnswer, shade: shadeAnswer, gardenSize: sizeAnswer, childFriendly: childFriendlyAnswer, cheap: cheapAnswer, easy: easyAnswer, renting: rentingAnswer, pavedGardens: pavedGardensAnswer};
         //This is the equivalent of .emit- it sets a copy of the posts after they have been updated
         //The three methods that can be called on our observable are .next(), .error() and .complete()
         this.updatedAnswers.next(ourAnswer);

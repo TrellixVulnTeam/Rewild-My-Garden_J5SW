@@ -13,6 +13,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     imports: [
@@ -29,7 +30,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
       MatGridListModule,
       MatDialogModule,
       MatFormFieldModule,
-      MatButtonToggleModule
+      MatButtonToggleModule,
+      MatCheckboxModule
     ],
     exports: [
         MatTabsModule,
@@ -45,7 +47,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         MatGridListModule,
         MatDialogModule,
         MatFormFieldModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatCheckboxModule
     ]
   })
 

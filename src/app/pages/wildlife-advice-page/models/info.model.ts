@@ -1,10 +1,9 @@
 export interface InfoGeneric { 
     "Title": String;
-    "WindoxBox": String;
-    "OutdoorPlantPots": String;
-    "SmallGarden": String;
-    "LargeGarden": String;
-    "Allotment": String;
-    "FieldFields": String;
+    "Special": String;	
+    "Hedgehogs": String;	
+    "Birds": String;	
+    "Insects": String;	
+    "Amphibians": String;
     "BodyText": String;
 }

@@ -39,15 +39,73 @@ export class WildlifeLayoutComponent implements OnInit {
   private ourInfoService: Subscription = new Subscription();
   private extraSub: Subscription = new Subscription();
 
-  public adviceOne: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-  public adviceTwo: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-  public adviceThree: AdviceGeneric = {"Header": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-  public ourAdvice: AdviceGeneric[] = [this.adviceOne, this.adviceTwo, this.adviceThree];
+  public hedgehogAdviceOne: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public hedgehogAdviceTwo: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public hedgehogAdviceThree: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public ourHedgehogAdvice: AdviceGeneric[] = [this.hedgehogAdviceOne, this.hedgehogAdviceTwo, this.hedgehogAdviceThree];
+  
+  public hedgehogInfoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  public ourHedgehogInfo: InfoGeneric[] = [this.hedgehogInfoOne];
 
-  public infoOne: InfoGeneric = {"Title": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "BodyText": ""};
-  public infoTwo: InfoGeneric = {"Title": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "BodyText": ""};
-  public infoThree: InfoGeneric = {"Title": "", "WindoxBox": "", "OutdoorPlantPots": "", "SmallGarden": "", "LargeGarden": "", "Allotment": "", "FieldFields": "", "BodyText": ""};
-  public ourInfo: InfoGeneric[] = [this.infoOne, this.infoTwo, this.infoThree];
+  public birdAdviceOne: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public birdAdviceTwo: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public birdAdviceThree: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public birdAdviceFour: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public ourBirdsAdvice: AdviceGeneric[] = [this.birdAdviceOne, this.birdAdviceTwo, this.birdAdviceThree, this.birdAdviceFour];
+
+  public birdInfoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  public birdInfoTwo: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  public ourBirdsInfo: InfoGeneric[] = [this.birdInfoOne, this.birdInfoTwo];
+
+  public insectAdviceOne: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceTwo: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceThree: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceFour: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceFive: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceSix: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public ourInsectsAdvice: AdviceGeneric[] = [this.insectAdviceOne, this.insectAdviceTwo, this.insectAdviceThree, this.insectAdviceFour, this.insectAdviceFive, this.insectAdviceSix];
+
+  public insectInfoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  public insectInfoTwo: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  public insectInfoThree: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  public ourInsectsInfo: InfoGeneric[] = [this.insectInfoOne, this.insectInfoTwo, this.insectInfoThree];
+
+  public frogAdviceOne: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public frogAdviceTwo: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public frogAdviceThree: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public ourFrogsAdvice: AdviceGeneric[] = [this.frogAdviceOne, this.frogAdviceTwo, this.frogAdviceThree];
+
+
+  // public infoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  // public infoTwo: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  // public infoThree: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  // public ourInfo: InfoGeneric[] = [this.infoOne, this.infoTwo, this.infoThree];
+
+  // <app-wildlife-advice-generic id="hedgehogAdviceID0" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  // <app-wildlife-advice-generic id="hedgehogAdviceID1" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  //     <app-wildlife-info-generic id="HedgehogInfoID0" class="hiddenElem" [infoGenericObject]="ourHedgehogInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+  // <app-wildlife-advice-generic id="hedgehogAdviceID2" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  //     <p class="Subheader">Advice to Help Birds</p>
+  // <app-wildlife-advice-generic id="birdsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  // <app-wildlife-advice-generic id="birdsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  //     <app-wildlife-info-generic id="BirdInfoID0" class="hiddenElem" [infoGenericObject]="ourBirdInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+  // <app-wildlife-advice-generic id="birdsAdviceID2" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  //     <app-wildlife-info-generic id="BirdInfoID01" class="hiddenElem" [infoGenericObject]="ourBirdInfo[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+  // <app-wildlife-advice-generic id="birdsAdviceID3" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[3]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  //     <p class="Subheader">Advice to Help Pollinators and Other Insects</p>
+  // <app-wildlife-advice-generic id="insectsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  // <app-wildlife-advice-generic id="insectsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  //   <app-wildlife-info-generic id="InsectInfoID0" class="hiddenElem" [infoGenericObject]="ourInsectInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+  // <app-wildlife-advice-generic id="insectsAdviceID2" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  // <app-wildlife-advice-generic id="insectsAdviceID3" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[3]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  //   <app-wildlife-info-generic id="InsectInfoID1" class="hiddenElem" [infoGenericObject]="ourInsectInfo[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+  // <app-wildlife-advice-generic id="insectsAdviceID4" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[4]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  //   <app-wildlife-info-generic id="InsectInfoID2" class="hiddenElem" [infoGenericObject]="ourInsectInfo[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
+  // <app-wildlife-advice-generic id="insectsAdviceID5" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[5]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  //         <p class="Subheader">Advice to Help Frogs and Other Amphibians</p>
+  // <app-wildlife-advice-generic id="frogsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourFrogsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  // <app-wildlife-advice-generic id="frogsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourFrogsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
+  // <app-wildlife-advice-generic id="frogsAdviceID2" class="hiddenElem" [adviceGenericObject]="ourFrogsAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
 
   private randRecordAdvice: Number[] = [];
   private randRecordInfo: Number[] = [];
@@ -75,40 +133,74 @@ export class WildlifeLayoutComponent implements OnInit {
     this.fetchInfo();
   }
 
+  // private fetchAdvice(){
+  //   this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
+  //     //find number of pieces of advice
+  //     const noAdvice = retrievedAdvice.length;
+  //     //If there isn't three pieces of advice for this garden, display the advice we do have
+  //     if(noAdvice < 3){
+  //       for(let i = 0; i < noAdvice; i++){
+  //         this.ourAdvice[i] = retrievedAdvice[i];
+  //       }
+  //     }
+  //     //If there is enough advice, choose three random pieces of advice
+  //     else{
+  //       for(let j = 0; j < 3; j++){
+  //         let flag = "setCard";
+  //         const rand = Math.floor(Math.random() * noAdvice);
+  //         //Compare our random number with previous random
+  //         //numbers to ensure no repeated cards
+  //         for(let m = 0; m < this.randRecordAdvice.length; m++){
+  //           if(this.randRecordAdvice[m] == rand){
+  //             flag = "dontSet"
+  //           }
+  //         }
+  //         if(flag == "setCard"){
+  //           //this sets a cell in this.ourAdvice with the random retrievedAdvice
+  //           this.ourAdvice[j] = retrievedAdvice[rand];
+  //           //this stores which random advice we have used. This info is saved by the advice's position in the retrievedAdvice array (i.e. 1, 2, 7 etc)
+  //           this.randRecordAdvice.push(rand);
+  //           //this unhides the advice box that's just been populated
+  //           document.getElementById('genericAdviceID' + j)!.classList.remove('hiddenElem');
+  //         }
+  //         //If we've found a repeat card, j-- to try again
+  //         else{
+  //           j--;
+  //         }
+  //       }
+  //     }
+  //   },
+  //   err => {
+  //     console.log(err);
+  //   });
+  // }
+
   private fetchAdvice(){
     this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
-      //find number of pieces of advice
-      const noAdvice = retrievedAdvice.length;
-      //If there isn't three pieces of advice for this garden, display the advice we do have
-      if(noAdvice < 3){
-        for(let i = 0; i < noAdvice; i++){
-          this.ourAdvice[i] = retrievedAdvice[i];
+      let hedgehogCount = 0;
+      let birdCount = 0;
+      let insectCount = 0;
+      let frogCount = 0;
+      for(let i = 0; i < retrievedAdvice.length; i++){
+        if(retrievedAdvice[i].Hedgehogs == "Y"){
+          this.ourHedgehogAdvice[hedgehogCount] = retrievedAdvice[i];
+          document.getElementById('hedgehogAdviceID' + hedgehogCount)!.classList.remove('hiddenElem');
+          hedgehogCount++;
         }
-      }
-      //If there is enough advice, choose three random pieces of advice
-      else{
-        for(let j = 0; j < 3; j++){
-          let flag = "setCard";
-          const rand = Math.floor(Math.random() * noAdvice);
-          //Compare our random number with previous random
-          //numbers to ensure no repeated cards
-          for(let m = 0; m < this.randRecordAdvice.length; m++){
-            if(this.randRecordAdvice[m] == rand){
-              flag = "dontSet"
-            }
-          }
-          if(flag == "setCard"){
-            //this sets a cell in this.ourAdvice with the random retrievedAdvice
-            this.ourAdvice[j] = retrievedAdvice[rand];
-            //this stores which random advice we have used. This info is saved by the advice's position in the retrievedAdvice array (i.e. 1, 2, 7 etc)
-            this.randRecordAdvice.push(rand);
-            //this unhides the advice box that's just been populated
-            document.getElementById('genericAdviceID' + j)!.classList.remove('hiddenElem');
-          }
-          //If we've found a repeat card, j-- to try again
-          else{
-            j--;
-          }
+        if(retrievedAdvice[i].Birds == "Y"){
+          this.ourBirdsAdvice[birdCount] = retrievedAdvice[i];
+          document.getElementById('birdsAdviceID' + birdCount)!.classList.remove('hiddenElem');
+          birdCount++;
+        }
+        if(retrievedAdvice[i].Insects == "Y"){
+          this.ourInsectsAdvice[insectCount] = retrievedAdvice[i];
+          document.getElementById('insectsAdviceID' + insectCount)!.classList.remove('hiddenElem');
+          insectCount++;
+        }
+        if(retrievedAdvice[i].Amphibians == "Y"){
+          this.ourFrogsAdvice[frogCount] = retrievedAdvice[i];
+          document.getElementById('frogsAdviceID' + frogCount)!.classList.remove('hiddenElem');
+          frogCount++;
         }
       }
     },
@@ -117,38 +209,66 @@ export class WildlifeLayoutComponent implements OnInit {
     });
   }
 
+  // private fetchInfo(){
+  //   this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
+  //     //find number of pieces of info
+  //     const noInfo = retrievedInfo.length;
+  //     //If there isn't three pieces of info for this garden, display the info we do have
+  //     if(noInfo < 3){
+  //       for(let x = 0; x < noInfo; x++){
+  //         this.ourInfo[x] = retrievedInfo[x];
+  //         document.getElementById('genericInfoID' + x)!.classList.remove('hiddenElem');
+  //       }
+  //     }
+  //     //If there is enough info, choose three random pieces of info
+  //     else{
+  //       for(let y = 0; y < 3; y++){
+  //         let infoFlag = "setCard";
+  //         const infoRand = Math.floor(Math.random() * noInfo);
+  //         //Compare our random number with previous random
+  //         //numbers to ensure no repeated cards
+  //         for(let n = 0; n < this.randRecordInfo.length; n++){
+  //           if(this.randRecordInfo[n] == infoRand){
+  //             infoFlag = "dontSet"
+  //           }
+  //         }
+  //         if(infoFlag == "setCard"){
+  //           this.ourInfo[y] = retrievedInfo[infoRand];
+  //           this.randRecordInfo.push(infoRand);
+  //           document.getElementById('genericInfoID' + y)!.classList.remove('hiddenElem');
+  //         }
+  //         //If we've found a repeat card, y-- to try again
+  //         else{
+  //           y--;
+  //         }
+  //       }
+  //     }
+  //   },
+  //   err => {
+  //     console.log(err);
+  //   });
+  // }
+
   private fetchInfo(){
     this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
-      //find number of pieces of info
-      const noInfo = retrievedInfo.length;
-      //If there isn't three pieces of info for this garden, display the info we do have
-      if(noInfo < 3){
-        for(let x = 0; x < noInfo; x++){
-          this.ourInfo[x] = retrievedInfo[x];
-          document.getElementById('genericInfoID' + x)!.classList.remove('hiddenElem');
+      let hedgehogCountInfo = 0;
+      let birdCountInfo = 0;
+      let insectCountInfo = 0;
+      for(let j = 0; j < retrievedInfo.length; j++){
+        if(retrievedInfo[j].Hedgehogs == "Y"){
+          this.ourHedgehogInfo[hedgehogCountInfo] = retrievedInfo[j];
+          document.getElementById('HedgehogInfoID' + hedgehogCountInfo)!.classList.remove('hiddenElem');
+          hedgehogCountInfo++;
         }
-      }
-      //If there is enough info, choose three random pieces of info
-      else{
-        for(let y = 0; y < 3; y++){
-          let infoFlag = "setCard";
-          const infoRand = Math.floor(Math.random() * noInfo);
-          //Compare our random number with previous random
-          //numbers to ensure no repeated cards
-          for(let n = 0; n < this.randRecordInfo.length; n++){
-            if(this.randRecordInfo[n] == infoRand){
-              infoFlag = "dontSet"
-            }
-          }
-          if(infoFlag == "setCard"){
-            this.ourInfo[y] = retrievedInfo[infoRand];
-            this.randRecordInfo.push(infoRand);
-            document.getElementById('genericInfoID' + y)!.classList.remove('hiddenElem');
-          }
-          //If we've found a repeat card, y-- to try again
-          else{
-            y--;
-          }
+        if(retrievedInfo[j].Birds == "Y"){
+          this.ourBirdsInfo[birdCountInfo] = retrievedInfo[j];
+          document.getElementById('BirdInfoID' + birdCountInfo)!.classList.remove('hiddenElem');
+          birdCountInfo++;
+        }
+        if(retrievedInfo[j].Insects == "Y"){
+          this.ourInsectsInfo[insectCountInfo] = retrievedInfo[j];
+          document.getElementById('InsectInfoID' + insectCountInfo)!.classList.remove('hiddenElem');
+          insectCountInfo++;
         }
       }
     },
