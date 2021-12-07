@@ -39,6 +39,9 @@ export class WildlifeLayoutComponent implements OnInit {
   private ourInfoService: Subscription = new Subscription();
   private extraSub: Subscription = new Subscription();
 
+  public specialInfoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
+  public ourSpecialAdvice: InfoGeneric[] = [this.specialInfoOne];
+
   public hedgehogAdviceOne: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public hedgehogAdviceTwo: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public hedgehogAdviceThree: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
@@ -75,54 +78,22 @@ export class WildlifeLayoutComponent implements OnInit {
   public frogAdviceThree: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public ourFrogsAdvice: AdviceGeneric[] = [this.frogAdviceOne, this.frogAdviceTwo, this.frogAdviceThree];
 
+  private hedgehogCountAdvice: number = 0;
+  private birdCountAdvice: number = 0;
+  private insectCountAdvice: number = 0;
+  private frogCountAdvice: number = 0;
 
-  // public infoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
-  // public infoTwo: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
-  // public infoThree: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
-  // public ourInfo: InfoGeneric[] = [this.infoOne, this.infoTwo, this.infoThree];
-
-  // <app-wildlife-advice-generic id="hedgehogAdviceID0" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  // <app-wildlife-advice-generic id="hedgehogAdviceID1" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  //     <app-wildlife-info-generic id="HedgehogInfoID0" class="hiddenElem" [infoGenericObject]="ourHedgehogInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
-  // <app-wildlife-advice-generic id="hedgehogAdviceID2" class="hiddenElem" [adviceGenericObject]="ourHedgehogAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  //     <p class="Subheader">Advice to Help Birds</p>
-  // <app-wildlife-advice-generic id="birdsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  // <app-wildlife-advice-generic id="birdsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  //     <app-wildlife-info-generic id="BirdInfoID0" class="hiddenElem" [infoGenericObject]="ourBirdInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
-  // <app-wildlife-advice-generic id="birdsAdviceID2" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  //     <app-wildlife-info-generic id="BirdInfoID01" class="hiddenElem" [infoGenericObject]="ourBirdInfo[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
-  // <app-wildlife-advice-generic id="birdsAdviceID3" class="hiddenElem" [adviceGenericObject]="ourBirdsAdvice[3]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  //     <p class="Subheader">Advice to Help Pollinators and Other Insects</p>
-  // <app-wildlife-advice-generic id="insectsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  // <app-wildlife-advice-generic id="insectsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  //   <app-wildlife-info-generic id="InsectInfoID0" class="hiddenElem" [infoGenericObject]="ourInsectInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
-  // <app-wildlife-advice-generic id="insectsAdviceID2" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  // <app-wildlife-advice-generic id="insectsAdviceID3" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[3]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  //   <app-wildlife-info-generic id="InsectInfoID1" class="hiddenElem" [infoGenericObject]="ourInsectInfo[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
-  // <app-wildlife-advice-generic id="insectsAdviceID4" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[4]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  //   <app-wildlife-info-generic id="InsectInfoID2" class="hiddenElem" [infoGenericObject]="ourInsectInfo[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>
-  // <app-wildlife-advice-generic id="insectsAdviceID5" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[5]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  //         <p class="Subheader">Advice to Help Frogs and Other Amphibians</p>
-  // <app-wildlife-advice-generic id="frogsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourFrogsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  // <app-wildlife-advice-generic id="frogsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourFrogsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-  // <app-wildlife-advice-generic id="frogsAdviceID2" class="hiddenElem" [adviceGenericObject]="ourFrogsAdvice[2]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
-
-  private randRecordAdvice: Number[] = [];
-  private randRecordInfo: Number[] = [];
+  private hedgehogCountInfo: number = 0;
+  private birdCountInfo: number = 0;
+  private insectCountInfo: number = 0;
+  private specialCountInfo: number = 0;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService, private httpClient: HttpClient) {
     this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
       //Get location from retrievedAnswers
       this.longitude = retrievedAnswers.longitude;
       this.latitude = retrievedAnswers.latitude;
-
-      //We are using 'subscribe' to detect when 'save' has been clicked and data emitted
-      //When the advice set is produced, create advice Title and hide questions
-      //Here we are toggling the visibility of the grid and email box using css
-      document.getElementById('emailBoxID')!.classList.remove('hiddenElem');
-      document.getElementById('adviceGridID')!.classList.remove('hiddenElem');
-      document.getElementById('nearYouID')!.classList.remove('hiddenElem');
-      // Here we are using ngIf to toggle visibility of multichoice Q
+      document.getElementById('allresults')!.classList.remove('hiddenElem');
       this.multichoiceShow = false;
       this.responseShow = true;
     },
@@ -133,74 +104,48 @@ export class WildlifeLayoutComponent implements OnInit {
     this.fetchInfo();
   }
 
-  // private fetchAdvice(){
-  //   this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
-  //     //find number of pieces of advice
-  //     const noAdvice = retrievedAdvice.length;
-  //     //If there isn't three pieces of advice for this garden, display the advice we do have
-  //     if(noAdvice < 3){
-  //       for(let i = 0; i < noAdvice; i++){
-  //         this.ourAdvice[i] = retrievedAdvice[i];
-  //       }
-  //     }
-  //     //If there is enough advice, choose three random pieces of advice
-  //     else{
-  //       for(let j = 0; j < 3; j++){
-  //         let flag = "setCard";
-  //         const rand = Math.floor(Math.random() * noAdvice);
-  //         //Compare our random number with previous random
-  //         //numbers to ensure no repeated cards
-  //         for(let m = 0; m < this.randRecordAdvice.length; m++){
-  //           if(this.randRecordAdvice[m] == rand){
-  //             flag = "dontSet"
-  //           }
-  //         }
-  //         if(flag == "setCard"){
-  //           //this sets a cell in this.ourAdvice with the random retrievedAdvice
-  //           this.ourAdvice[j] = retrievedAdvice[rand];
-  //           //this stores which random advice we have used. This info is saved by the advice's position in the retrievedAdvice array (i.e. 1, 2, 7 etc)
-  //           this.randRecordAdvice.push(rand);
-  //           //this unhides the advice box that's just been populated
-  //           document.getElementById('genericAdviceID' + j)!.classList.remove('hiddenElem');
-  //         }
-  //         //If we've found a repeat card, j-- to try again
-  //         else{
-  //           j--;
-  //         }
-  //       }
-  //     }
-  //   },
-  //   err => {
-  //     console.log(err);
-  //   });
-  // }
-
   private fetchAdvice(){
     this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
-      let hedgehogCount = 0;
-      let birdCount = 0;
-      let insectCount = 0;
-      let frogCount = 0;
       for(let i = 0; i < retrievedAdvice.length; i++){
         if(retrievedAdvice[i].Hedgehogs == "Y"){
-          this.ourHedgehogAdvice[hedgehogCount] = retrievedAdvice[i];
-          document.getElementById('hedgehogAdviceID' + hedgehogCount)!.classList.remove('hiddenElem');
-          hedgehogCount++;
+          this.ourHedgehogAdvice[this.hedgehogCountAdvice] = retrievedAdvice[i];
+          //Only automatically display the first piece of advice- the rest will be displayed with 'see more'
+          if(this.hedgehogCountAdvice < 1){
+            //If there is a piece of hedgehog advice to show, show title and 'see more' button
+            //It's in this 'if' because we don't want it called too many times unecessarily
+            document.getElementById('hedgehogTitle')!.classList.remove('hiddenElem');
+            document.getElementById('hedgehogButton')!.classList.remove('hiddenElem');
+            //Show first piece of advice
+            document.getElementById('hedgehogAdviceID' + this.hedgehogCountAdvice)!.classList.remove('hiddenElem');
+          }
+          this.hedgehogCountAdvice++;
         }
         if(retrievedAdvice[i].Birds == "Y"){
-          this.ourBirdsAdvice[birdCount] = retrievedAdvice[i];
-          document.getElementById('birdsAdviceID' + birdCount)!.classList.remove('hiddenElem');
-          birdCount++;
+          this.ourBirdsAdvice[this.birdCountAdvice] = retrievedAdvice[i];
+          if(this.birdCountAdvice < 1){
+            document.getElementById('birdsTitle')!.classList.remove('hiddenElem');
+            document.getElementById('birdsButton')!.classList.remove('hiddenElem');
+            document.getElementById('birdsAdviceID' + this.birdCountAdvice)!.classList.remove('hiddenElem');
+          }
+          this.birdCountAdvice++;
         }
         if(retrievedAdvice[i].Insects == "Y"){
-          this.ourInsectsAdvice[insectCount] = retrievedAdvice[i];
-          document.getElementById('insectsAdviceID' + insectCount)!.classList.remove('hiddenElem');
-          insectCount++;
+          this.ourInsectsAdvice[this.insectCountAdvice] = retrievedAdvice[i];
+          if(this.insectCountAdvice < 1){
+            document.getElementById('insectsTitle')!.classList.remove('hiddenElem');
+            document.getElementById('insectsButton')!.classList.remove('hiddenElem');
+            document.getElementById('insectsAdviceID' + this.insectCountAdvice)!.classList.remove('hiddenElem');
+          }
+          this.insectCountAdvice++;
         }
         if(retrievedAdvice[i].Amphibians == "Y"){
-          this.ourFrogsAdvice[frogCount] = retrievedAdvice[i];
-          document.getElementById('frogsAdviceID' + frogCount)!.classList.remove('hiddenElem');
-          frogCount++;
+          this.ourFrogsAdvice[this.frogCountAdvice] = retrievedAdvice[i];
+          if(this.frogCountAdvice < 1){
+            document.getElementById('frogTitle')!.classList.remove('hiddenElem');
+            document.getElementById('frogButton')!.classList.remove('hiddenElem');
+            document.getElementById('frogsAdviceID' + this.frogCountAdvice)!.classList.remove('hiddenElem');
+          }
+          this.frogCountAdvice++;
         }
       }
     },
@@ -209,72 +154,113 @@ export class WildlifeLayoutComponent implements OnInit {
     });
   }
 
-  // private fetchInfo(){
-  //   this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
-  //     //find number of pieces of info
-  //     const noInfo = retrievedInfo.length;
-  //     //If there isn't three pieces of info for this garden, display the info we do have
-  //     if(noInfo < 3){
-  //       for(let x = 0; x < noInfo; x++){
-  //         this.ourInfo[x] = retrievedInfo[x];
-  //         document.getElementById('genericInfoID' + x)!.classList.remove('hiddenElem');
-  //       }
-  //     }
-  //     //If there is enough info, choose three random pieces of info
-  //     else{
-  //       for(let y = 0; y < 3; y++){
-  //         let infoFlag = "setCard";
-  //         const infoRand = Math.floor(Math.random() * noInfo);
-  //         //Compare our random number with previous random
-  //         //numbers to ensure no repeated cards
-  //         for(let n = 0; n < this.randRecordInfo.length; n++){
-  //           if(this.randRecordInfo[n] == infoRand){
-  //             infoFlag = "dontSet"
-  //           }
-  //         }
-  //         if(infoFlag == "setCard"){
-  //           this.ourInfo[y] = retrievedInfo[infoRand];
-  //           this.randRecordInfo.push(infoRand);
-  //           document.getElementById('genericInfoID' + y)!.classList.remove('hiddenElem');
-  //         }
-  //         //If we've found a repeat card, y-- to try again
-  //         else{
-  //           y--;
-  //         }
-  //       }
-  //     }
-  //   },
-  //   err => {
-  //     console.log(err);
-  //   });
-  // }
-
   private fetchInfo(){
     this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
-      let hedgehogCountInfo = 0;
-      let birdCountInfo = 0;
-      let insectCountInfo = 0;
       for(let j = 0; j < retrievedInfo.length; j++){
+        if(retrievedInfo[j].Special == "Y"){
+          this.ourSpecialAdvice[this.specialCountInfo] = retrievedInfo[j];
+          this.specialCountInfo++;
+        }
         if(retrievedInfo[j].Hedgehogs == "Y"){
-          this.ourHedgehogInfo[hedgehogCountInfo] = retrievedInfo[j];
-          document.getElementById('HedgehogInfoID' + hedgehogCountInfo)!.classList.remove('hiddenElem');
-          hedgehogCountInfo++;
+          this.ourHedgehogInfo[this.hedgehogCountInfo] = retrievedInfo[j];
+          this.hedgehogCountInfo++;
         }
         if(retrievedInfo[j].Birds == "Y"){
-          this.ourBirdsInfo[birdCountInfo] = retrievedInfo[j];
-          document.getElementById('BirdInfoID' + birdCountInfo)!.classList.remove('hiddenElem');
-          birdCountInfo++;
+          this.ourBirdsInfo[this.birdCountInfo] = retrievedInfo[j];
+          this.birdCountInfo++;
         }
         if(retrievedInfo[j].Insects == "Y"){
-          this.ourInsectsInfo[insectCountInfo] = retrievedInfo[j];
-          document.getElementById('InsectInfoID' + insectCountInfo)!.classList.remove('hiddenElem');
-          insectCountInfo++;
+          this.ourInsectsInfo[this.insectCountInfo] = retrievedInfo[j];
+          this.insectCountInfo++;
         }
       }
     },
     err => {
       console.log(err);
     });
+  }
+
+  public seeMoreInsect(){
+    for(let a = 0; a < this.insectCountAdvice; a++){
+      document.getElementById('insectsAdviceID' + a)!.classList.remove('hiddenElem');
+    }
+    for(let b = 0; b < this.insectCountInfo; b++){
+      document.getElementById('InsectInfoID' + b)!.classList.remove('hiddenElem');
+    }
+    document.getElementById('insectsButton')!.classList.add('hiddenElem');
+    document.getElementById('insectsButtonLess')!.classList.remove('hiddenElem');
+  }
+
+  public seeMoreHedgehog(){
+    for(let c = 0; c < this.hedgehogCountAdvice; c++){
+      document.getElementById('hedgehogAdviceID' + c)!.classList.remove('hiddenElem');
+    }
+    for(let d = 0; d < this.hedgehogCountInfo; d++){
+      document.getElementById('HedgehogInfoID' + d)!.classList.remove('hiddenElem');
+    }
+    document.getElementById('hedgehogButton')!.classList.add('hiddenElem');
+    document.getElementById('hedgehogButtonLess')!.classList.remove('hiddenElem');
+  }
+
+  public seeMoreBird(){
+    for(let e = 0; e < this.birdCountAdvice; e++){
+      document.getElementById('birdsAdviceID' + e)!.classList.remove('hiddenElem');
+    }
+    for(let d = 0; d < this.birdCountInfo; d++){
+      document.getElementById('BirdInfoID' + d)!.classList.remove('hiddenElem');
+    }
+    document.getElementById('birdsButton')!.classList.add('hiddenElem');
+    document.getElementById('birdsButtonLess')!.classList.remove('hiddenElem');
+  }
+
+  public seeMoreFrog(){
+    for(let f = 0; f < this.frogCountAdvice; f++){
+      document.getElementById('frogsAdviceID' + f)!.classList.remove('hiddenElem');
+    }
+    document.getElementById('frogButton')!.classList.add('hiddenElem');
+    document.getElementById('frogButtonLess')!.classList.remove('hiddenElem');
+  }
+
+  public seeLessInsect(){
+    //hide all except first piece of advice
+    for(let a = 1; a < this.insectCountAdvice; a++){
+      document.getElementById('insectsAdviceID' + a)!.classList.add('hiddenElem');
+    }
+    for(let b = 0; b < this.insectCountInfo; b++){
+      document.getElementById('InsectInfoID' + b)!.classList.add('hiddenElem');
+    }
+    document.getElementById('insectsButton')!.classList.remove('hiddenElem');
+    document.getElementById('insectsButtonLess')!.classList.add('hiddenElem');
+  }
+
+  public seeLessHedgehog(){
+    for(let c = 1; c < this.hedgehogCountAdvice; c++){
+      document.getElementById('hedgehogAdviceID' + c)!.classList.add('hiddenElem');
+    }
+    for(let d = 0; d < this.hedgehogCountInfo; d++){
+      document.getElementById('HedgehogInfoID' + d)!.classList.add('hiddenElem');
+    }
+    document.getElementById('hedgehogButton')!.classList.remove('hiddenElem');
+    document.getElementById('hedgehogButtonLess')!.classList.add('hiddenElem');
+  }
+
+  public seeLessBird(){
+    for(let e = 1; e < this.birdCountAdvice; e++){
+      document.getElementById('birdsAdviceID' + e)!.classList.add('hiddenElem');
+    }
+    for(let d = 0; d < this.birdCountInfo; d++){
+      document.getElementById('BirdInfoID' + d)!.classList.add('hiddenElem');
+    }
+    document.getElementById('birdsButton')!.classList.remove('hiddenElem');
+    document.getElementById('birdsButtonLess')!.classList.add('hiddenElem');
+  }
+
+  public seeLessFrog(){
+    for(let f = 1; f < this.frogCountAdvice; f++){
+      document.getElementById('frogsAdviceID' + f)!.classList.add('hiddenElem');
+    }
+    document.getElementById('frogButton')!.classList.remove('hiddenElem');
+    document.getElementById('frogButtonLess')!.classList.add('hiddenElem')
   }
 
   ngOnInit(): void {
