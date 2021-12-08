@@ -88,6 +88,8 @@ export class WildlifeLayoutComponent implements OnInit {
   private insectCountInfo: number = 0;
   private specialCountInfo: number = 0;
 
+  private readonly NUM_FIRST_DISPLAY: number = 1;
+
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService, private httpClient: HttpClient) {
     this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
       //Get location from retrievedAnswers
@@ -110,7 +112,7 @@ export class WildlifeLayoutComponent implements OnInit {
         if(retrievedAdvice[i].Hedgehogs == "Y"){
           this.ourHedgehogAdvice[this.hedgehogCountAdvice] = retrievedAdvice[i];
           //Only automatically display the first piece of advice- the rest will be displayed with 'see more'
-          if(this.hedgehogCountAdvice < 1){
+          if(this.hedgehogCountAdvice < this.NUM_FIRST_DISPLAY){
             //If there is a piece of hedgehog advice to show, show title and 'see more' button
             //It's in this 'if' because we don't want it called too many times unecessarily
             document.getElementById('hedgehogTitle')!.classList.remove('hiddenElem');
@@ -122,7 +124,7 @@ export class WildlifeLayoutComponent implements OnInit {
         }
         if(retrievedAdvice[i].Birds == "Y"){
           this.ourBirdsAdvice[this.birdCountAdvice] = retrievedAdvice[i];
-          if(this.birdCountAdvice < 1){
+          if(this.birdCountAdvice < this.NUM_FIRST_DISPLAY){
             document.getElementById('birdsTitle')!.classList.remove('hiddenElem');
             document.getElementById('birdsButton')!.classList.remove('hiddenElem');
             document.getElementById('birdsAdviceID' + this.birdCountAdvice)!.classList.remove('hiddenElem');
@@ -131,7 +133,7 @@ export class WildlifeLayoutComponent implements OnInit {
         }
         if(retrievedAdvice[i].Insects == "Y"){
           this.ourInsectsAdvice[this.insectCountAdvice] = retrievedAdvice[i];
-          if(this.insectCountAdvice < 1){
+          if(this.insectCountAdvice < this.NUM_FIRST_DISPLAY){
             document.getElementById('insectsTitle')!.classList.remove('hiddenElem');
             document.getElementById('insectsButton')!.classList.remove('hiddenElem');
             document.getElementById('insectsAdviceID' + this.insectCountAdvice)!.classList.remove('hiddenElem');
@@ -140,7 +142,7 @@ export class WildlifeLayoutComponent implements OnInit {
         }
         if(retrievedAdvice[i].Amphibians == "Y"){
           this.ourFrogsAdvice[this.frogCountAdvice] = retrievedAdvice[i];
-          if(this.frogCountAdvice < 1){
+          if(this.frogCountAdvice < this.NUM_FIRST_DISPLAY){
             document.getElementById('frogTitle')!.classList.remove('hiddenElem');
             document.getElementById('frogButton')!.classList.remove('hiddenElem');
             document.getElementById('frogsAdviceID' + this.frogCountAdvice)!.classList.remove('hiddenElem');
@@ -223,41 +225,41 @@ export class WildlifeLayoutComponent implements OnInit {
 
   public seeLessInsect(){
     //hide all except first piece of advice
-    for(let a = 1; a < this.insectCountAdvice; a++){
-      document.getElementById('insectsAdviceID' + a)!.classList.add('hiddenElem');
+    for(let g = this.NUM_FIRST_DISPLAY; g < this.insectCountAdvice; g++){
+      document.getElementById('insectsAdviceID' + g)!.classList.add('hiddenElem');
     }
-    for(let b = 0; b < this.insectCountInfo; b++){
-      document.getElementById('InsectInfoID' + b)!.classList.add('hiddenElem');
+    for(let h = 0; h < this.insectCountInfo; h++){
+      document.getElementById('InsectInfoID' + h)!.classList.add('hiddenElem');
     }
     document.getElementById('insectsButton')!.classList.remove('hiddenElem');
     document.getElementById('insectsButtonLess')!.classList.add('hiddenElem');
   }
 
   public seeLessHedgehog(){
-    for(let c = 1; c < this.hedgehogCountAdvice; c++){
-      document.getElementById('hedgehogAdviceID' + c)!.classList.add('hiddenElem');
+    for(let k = this.NUM_FIRST_DISPLAY; k < this.hedgehogCountAdvice; k++){
+      document.getElementById('hedgehomAdviceID' + k)!.classList.add('hiddenElem');
     }
-    for(let d = 0; d < this.hedgehogCountInfo; d++){
-      document.getElementById('HedgehogInfoID' + d)!.classList.add('hiddenElem');
+    for(let l = 0; l < this.hedgehogCountInfo; l++){
+      document.getElementById('HedgehogInfoID' + l)!.classList.add('hiddenElem');
     }
     document.getElementById('hedgehogButton')!.classList.remove('hiddenElem');
     document.getElementById('hedgehogButtonLess')!.classList.add('hiddenElem');
   }
 
   public seeLessBird(){
-    for(let e = 1; e < this.birdCountAdvice; e++){
-      document.getElementById('birdsAdviceID' + e)!.classList.add('hiddenElem');
+    for(let m = this.NUM_FIRST_DISPLAY; m < this.birdCountAdvice; m++){
+      document.getElementById('birdsAdviceID' + m)!.classList.add('hiddenElem');
     }
-    for(let d = 0; d < this.birdCountInfo; d++){
-      document.getElementById('BirdInfoID' + d)!.classList.add('hiddenElem');
+    for(let n = 0; n < this.birdCountInfo; n++){
+      document.getElementById('BirdInfoID' + n)!.classList.add('hiddenElem');
     }
     document.getElementById('birdsButton')!.classList.remove('hiddenElem');
     document.getElementById('birdsButtonLess')!.classList.add('hiddenElem');
   }
 
   public seeLessFrog(){
-    for(let f = 1; f < this.frogCountAdvice; f++){
-      document.getElementById('frogsAdviceID' + f)!.classList.add('hiddenElem');
+    for(let o = this.NUM_FIRST_DISPLAY; o < this.frogCountAdvice; o++){
+      document.getElementById('frogsAdviceID' + o)!.classList.add('hiddenElem');
     }
     document.getElementById('frogButton')!.classList.remove('hiddenElem');
     document.getElementById('frogButtonLess')!.classList.add('hiddenElem')

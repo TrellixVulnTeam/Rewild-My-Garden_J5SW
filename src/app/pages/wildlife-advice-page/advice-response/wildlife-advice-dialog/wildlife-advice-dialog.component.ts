@@ -9,7 +9,10 @@ import { AdviceGeneric } from '../../models/advice.model';
 })
 export class WildlifeAdviceDialogComponent implements OnInit {
 
+  public ourBodyText = "";
+
   constructor(@Inject(MAT_DIALOG_DATA) public adviceGenericObject: AdviceGeneric) {
+    this.ourBodyText = "<p class='card-text'>" + adviceGenericObject.BodyText + "</p>";
   }
   
   ngOnInit(): void {
