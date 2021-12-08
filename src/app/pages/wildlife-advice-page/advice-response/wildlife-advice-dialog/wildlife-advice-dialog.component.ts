@@ -8,7 +8,6 @@ import { AdviceGeneric } from '../../models/advice.model';
   styleUrls: ['./wildlife-advice-dialog.component.scss']
 })
 export class WildlifeAdviceDialogComponent implements OnInit {
-
   public ourBodyText = "";
 
   constructor(@Inject(MAT_DIALOG_DATA) public adviceGenericObject: AdviceGeneric) {

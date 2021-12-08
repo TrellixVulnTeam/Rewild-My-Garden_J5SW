@@ -6,6 +6,14 @@
     border-top-right-radius: 10px;
 }
 
+/* If the screen size is 960px wide or less, remove rounded corners*/
+@media screen and (max-width: 960px) {
+  .HeaderBlock{
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+  }
+}
+
 /* styling from https://cdn-2.code-maze.com/angular-material-navigation/ */
 /* Check! */ 
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {

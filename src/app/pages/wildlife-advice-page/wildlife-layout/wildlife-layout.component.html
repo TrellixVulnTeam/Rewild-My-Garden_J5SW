@@ -6,7 +6,8 @@
     <!-- Top of results page -->
     <div id="allresults" class="hiddenElem">
       <p *ngIf="responseShow" class="BigSubheader">Ideas for your Garden</p>
-      <p *ngIf="responseShow">Suggestions for things you can do to help wildlife in the garden that you have.</p>
+      <!-- Subheader which displays what the user input -->
+      <div [innerHTML]="ourSubheader"></div>
 
       <!-- Our generic advice list -->
       <app-wildlife-advice-generic id="specialAdvice" class="hiddenElem" [adviceGenericObject]="ourSpecialAdvice[0]"></app-wildlife-advice-generic>
@@ -16,8 +17,7 @@
             <p class="Subheader">Advice to Help Pollinators and Other Insects</p>
         </div>
             <!-- Pollinators plants -->
-        <app-pollinator-suggestions id="adviceGridID"></app-pollinator-suggestions>
-        <br>
+        <app-pollinator-suggestions id="adviceGridID" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-pollinator-suggestions>
         <app-wildlife-advice-generic id="insectsAdviceID0" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
         <app-wildlife-advice-generic id="insectsAdviceID1" class="hiddenElem" [adviceGenericObject]="ourInsectsAdvice[1]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-advice-generic>
         <app-wildlife-info-generic id="InsectInfoID0" class="hiddenElem" [infoGenericObject]="ourInsectsInfo[0]" (newSaveEvent)="addAdvice($event)" (newRemoveEvent)="removeAdvice($event)"></app-wildlife-info-generic>

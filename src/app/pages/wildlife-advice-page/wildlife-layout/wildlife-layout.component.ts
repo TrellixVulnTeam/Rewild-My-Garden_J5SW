@@ -1,4 +1,3 @@
-import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
@@ -21,9 +20,6 @@ import { InfoService } from '../services/info-boxes.service';
   styleUrls: ['./wildlife-layout.component.scss']
 })
 export class WildlifeLayoutComponent implements OnInit {
-
-  //********************* There is currently a bug which kills the page if you ask 
-  //for two sets of advice !!
 
   /**********************************************************************
    **********************************************************************
@@ -90,11 +86,15 @@ export class WildlifeLayoutComponent implements OnInit {
 
   private readonly NUM_FIRST_DISPLAY: number = 1;
 
+  public ourSubheader: String = "";
+
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService, private httpClient: HttpClient) {
     this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
       //Get location from retrievedAnswers
       this.longitude = retrievedAnswers.longitude;
       this.latitude = retrievedAnswers.latitude;
+      this.ourSubheader = this.getOurSubheader(retrievedAnswers);
+
       document.getElementById('allresults')!.classList.remove('hiddenElem');
       this.multichoiceShow = false;
       this.responseShow = true;
@@ -104,6 +104,94 @@ export class WildlifeLayoutComponent implements OnInit {
     });
     this.fetchAdvice();
     this.fetchInfo();
+  }
+
+  private getOurSubheader(retrievedAnswers: CompleteAnswerSet) : String{
+    let tempSubheader = "";
+    tempSubheader = tempSubheader + "You said you have <b>" + this.getSoilString(retrievedAnswers.soil) + "</b>, <b>" + this.getPHString(retrievedAnswers.ph) + "</b>. " +
+    "You said you have <b>" + this.getGardenSizeString(retrievedAnswers.gardenSize) + "</b>, which experiences <b>" + this.getShadinessString(retrievedAnswers.shade) + "</b>. From your location we worked out that plants with a USDA hardiness level of <b>" + retrievedAnswers.hardiness + "</b> or above should be able to thrive in your garden.<br>";
+    tempSubheader = tempSubheader + this.getOptionsString(retrievedAnswers);
+    return tempSubheader;
+  }
+
+  private getSoilString(soil: String) : String{
+    if(soil == "SoilLight"){
+      return "Light-Weight";
+    }
+    else if(soil == "SoilMedium"){
+      return "Medium-Weight";
+    }
+    else {
+      return "Heavy-Weight";
+    }
+  }
+
+  private getPHString(PH: String): String{
+    if(PH == "PHAcid"){
+      return "Acidic Soil";
+    }
+    else if(PH == "PHNeutral"){
+      return "Neutral Soil";
+    }
+    else {
+      return "Alkaline (Basic) Soil";
+    }
+  }
+
+  private getShadinessString(shadiness: String): String{
+    if(shadiness == "ShadeFull"){
+      return "Heavy Shade";
+    }
+    else if(shadiness == "ShadeSemi"){
+      return "Medium Shade";
+    }
+    else {
+      return "No Shade";
+    }
+  }
+
+  private getGardenSizeString(size: String): String{
+    if(size == "WindoxBox"){
+      return "A Window Box";
+    }
+    else if(size == "OutdoorPlantPots"){
+      return "Outdoor Plant Pots";
+    }
+    else if(size == "SmallGarden"){
+      return "A Small Garden";
+    }
+    else if(size == "LargeGarden"){
+      return "A Large Garden";
+    }
+    else if(size == "Allotment"){
+      return "An Allotment";
+    }
+    else {
+      return "A Field or Multiple Fields";
+    }
+  }
+
+  private getOptionsString(retrievedAnswers: CompleteAnswerSet): String{
+    let tempSubheader = "";
+    if(retrievedAnswers.childFriendly != "" || retrievedAnswers.cheap != "" || retrievedAnswers.easy != "" || retrievedAnswers.renting != "" || retrievedAnswers.pavedGardens != ""){
+      tempSubheader = tempSubheader + "You said you were particularly interested in suggestions which were: ";
+      if(retrievedAnswers.childFriendly != ""){
+        tempSubheader = tempSubheader + "<b>Child-friendly </b>";
+      }
+      if(retrievedAnswers.cheap != ""){
+        tempSubheader = tempSubheader + "<b>Cheap </b>";
+      }
+      if(retrievedAnswers.easy != ""){
+        tempSubheader = tempSubheader + "<b>Easy </b>";
+      }
+      if(retrievedAnswers.renting != ""){
+        tempSubheader = tempSubheader + "<b>Good for Renters </b>";
+      }
+      if(retrievedAnswers.pavedGardens != ""){
+        tempSubheader = tempSubheader + "<b>Good for Paved Gardens </b>";
+      }
+    }
+    return tempSubheader;
   }
 
   private fetchAdvice(){
@@ -375,12 +463,10 @@ export class WildlifeLayoutComponent implements OnInit {
 
     for(let i=0; i<this.savedAdvice.length; i++){
       htmlString = htmlString +"<div>" +
-        // this isn't working because the image source isn't a web link yet
-        // "<img src='" + this.savedAdvice[i].Pathname + "' width='250' height='250' alt='advice_img'>" +
         "<div>" +
           '<p style="font-family:' + "'Playfair Display'" + ', serif; font-size: 20px; line-height: 0.8;">' + this.savedAdvice[i].Header + '</p>' +
-          "<p><b>Why You Should Try This in Your Garden: </b>" + this.savedAdvice[i].Justification + "</p>" +
-          "<p><b>How To Do It: </b>" + this.savedAdvice[i].BodyText + "</p>" +
+          "<p><b>" + this.savedAdvice[i].Justification + "</b></p>" +
+          "<p>" + this.savedAdvice[i].BodyText + "</p>" +
         '</div>' +
         '<br>';
     }

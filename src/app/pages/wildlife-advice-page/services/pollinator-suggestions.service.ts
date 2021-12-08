@@ -112,45 +112,28 @@ export class WildlifeResponse {
       "Username": allDataThisMonth[j].Username, 
       "Copyright": allDataThisMonth[j].Copyright, 
       "Link": allDataThisMonth[j].Link};
-      // monthData[j].Title = monthTitle;
-      // monthData[j].LatinName = allDataThisMonth[j].LatinName;
-      // monthData[j].CommonName = allDataThisMonth[j].CommonName;
-      // monthData[j].Hardiness = this.getHardinessString(allDataThisMonth[j]);
-      // monthData[j].Soil = this.getSoilString(allDataThisMonth[j]);
-      // monthData[j].SoilPH = this.getPHString(allDataThisMonth[j]);
-      // monthData[j].Shadiness = this.getShadinessString(allDataThisMonth[j]);
-      // monthData[j].Moisture = this.getMoistureString(allDataThisMonth[j]);
-      // monthData[j].Height = allDataThisMonth[j].Height;
-      // monthData[j].Habit = allDataThisMonth[j].Habit;
-      // monthData[j].Growth = allDataThisMonth[j].Growth;
-      // monthData[j].Native = this.getNativeString(allDataThisMonth[j].Native);
-      // monthData[j].Pathname = allDataThisMonth[j].Pathname;
-      // monthData[j].Name = allDataThisMonth[j].Name;
-      // monthData[j].Username = allDataThisMonth[j].Username;
-      // monthData[j].Copyright = allDataThisMonth[j].Copyright;
-      // monthData[j].Link = allDataThisMonth[j].Link;
     }
     return monthData;
   }
 
   private getHardinessString(allDataThisMonth: UnfinishedPollinatorData){
     if(allDataThisMonth.Hardiness0 == "Y"){
-      return "0 and above - Very Hardy"
+      return "0 and above"
     }
     if(allDataThisMonth.Hardiness1 == "Y"){
-      return "1 and above - Very Hardy"
+      return "1 and above"
     }
     if(allDataThisMonth.Hardiness2 == "Y"){
-      return "2 and above - Very Hardy"
+      return "2 and above"
     }
     if(allDataThisMonth.Hardiness3 == "Y"){
-      return "3 and above - Very Hardy"
+      return "3 and above"
     }
     if(allDataThisMonth.Hardiness4 == "Y"){
-      return "4 and above - Very Hardy"
+      return "4 and above"
     }
     if(allDataThisMonth.Hardiness5 == "Y"){
-      return "5 and above - Very Hardy"
+      return "5 and above"
     }
     if(allDataThisMonth.Hardiness6 == "Y"){
       return "6 and above"
@@ -168,10 +151,10 @@ export class WildlifeResponse {
       return "10 and above"
     }
     if(allDataThisMonth.Hardiness11 == "Y"){
-      return "11 and above - Not Very Cold Hardy"
+      return "11 and above"
     }
     if(allDataThisMonth.Hardiness12 == "Y"){
-      return "12 and above - Not Very Cold Hardy"
+      return "12 and above"
     }
     return "Unknown"
   }
@@ -179,7 +162,7 @@ export class WildlifeResponse {
   private getSoilString(allDataThisMonth: UnfinishedPollinatorData){
     let responseString: String = "";
     if(allDataThisMonth.SoilLight == "Y"){
-      responseString = responseString + "Light, Sandy Soil"
+      responseString = responseString + "Light Soil"
     }
     if(allDataThisMonth.SoilMedium == "Y"){
       if(responseString == ""){

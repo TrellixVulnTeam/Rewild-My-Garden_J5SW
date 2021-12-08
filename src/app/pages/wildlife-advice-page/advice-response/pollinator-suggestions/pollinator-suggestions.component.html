@@ -1,22 +1,29 @@
-<p class="SmallSubheader">Plants Recommended for Your Garden</p>
-<p>It is helpful to have plants flowering in your garden from spring to autumn. Each plant blooms in the month specified and suits your garden, so you can make your garden a home to pollinators all year.</p>
-
-<div class="CardHolder">
-    <div *ngFor="let flower of displayFlowers" class="grid-container">
-    <div>
-        <!-- Display the first flower from our display array -->
-        <mat-card class="card">
-            <mat-card-title>
-                <p class="BodySubtitle"> {{ flower[0].Title }} </p>
-            </mat-card-title>
-            <img mat-card-image alt="Plant_Image" [src]="flower[0].Pathname" class="card-img-top">
-            <mat-card-content class="plantName">
-                <p> {{ flower[0].LatinName }} </p>
-            </mat-card-content>
-            <mat-card-actions align="end">
-                <button mat-stroked-button color="primary" mat-button (click)="openDialog(flower)">See info</button>
-            </mat-card-actions>
-        </mat-card>
+<div class="card">
+    <div class="our-card-body">
+        <p class="SmallSubheader">Plants Recommended for Your Garden</p>
+        <p>It is helpful to have plants flowering in your garden from spring to autumn. Each plant blooms in the month specified and suits your garden, so you can make your garden a home to pollinators all year.</p>
+        <div *ngFor="let flower of displayFlowers" class="grid-container">
+            <div>
+                <!-- Display the first flower from our display array -->
+                <mat-card class="card" id="innerCard">
+                    <!-- <mat-card-title> -->
+                        <p class="BodySubtitle"> {{ flower[0].Title }} </p>
+                    <!-- </mat-card-title> -->
+                    <img mat-card-image alt="Plant_Image" [src]="flower[0].Pathname">
+                    <mat-card-content class="plantName">
+                        <p> {{ flower[0].LatinName }} </p>
+                    </mat-card-content>
+                    <mat-card-actions align="end">
+                        <button mat-stroked-button color="primary" mat-button (click)="openDialog(flower)">See info</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
     </div>
+    <div class="bottomBar">
+        <mat-button-toggle-group multiple>
+            <mat-button-toggle (click)="toggleSave()">Save to My Goals</mat-button-toggle>
+        </mat-button-toggle-group>
     </div>
 </div>
+<br>

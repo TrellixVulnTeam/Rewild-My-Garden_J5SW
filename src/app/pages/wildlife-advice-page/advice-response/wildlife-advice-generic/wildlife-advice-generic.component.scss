@@ -1,15 +1,16 @@
 //This sets image size + centers the image within the element. Object-fit stops the image stretching
 .card img {
     object-fit: none;
-    // object-position: center; 
     height: 200px;
     width: 200px;
-    // padding: 20px;
+    //rounding corners of image to match card
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
 }
 
 .card {
     flex-direction: row;
-  }
+}
 
 //Accessing the toggle button group like this seemed to be the only way to set the button height
 .mat-button-toggle-group {

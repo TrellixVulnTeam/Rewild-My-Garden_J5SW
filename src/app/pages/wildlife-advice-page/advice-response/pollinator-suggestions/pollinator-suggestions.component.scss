@@ -4,8 +4,18 @@
     grid-template-columns: repeat(auto-fill, 166px);
 }
 
-.card{
+.our-card-body{
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding-top: 1.25rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 4px;
+}
+
+#innerCard{
     width: 160px;
+    margin-bottom: 6px;
 }
 
 //This sets image size + centers the image within the element. Object-fit stops the image stretching
@@ -13,7 +23,6 @@
     object-fit: none;
     object-position: center; 
     height: 160px;
-    width: 160px;
 }
 
 .card-title{
@@ -29,4 +38,33 @@
     font-family: 'Playfair Display', serif !important;
     font-size: 25px !important;
     line-height: 1.1;
+}
+
+.mat-button-toggle-group{
+    margin-bottom: 1.25rem;
+    margin-right: 1.25rem;
+    margin-left: 1.25rem;
+    float: right;
+}
+
+//Accessing the toggle button group like this seemed to be the only way to set the button height
+.mat-button-toggle-group {
+    margin-left: 7px;
+    height: 36px;
+    align-items: center;
   }
+
+.mat-button-toggle{
+    background-color: #ffffff;
+    color: #ffffff;
+}
+
+.mat-button-toggle:hover {
+    background-color: transparent;
+    color: #ffffff !important;    
+}
+
+.mat-button-toggle-checked {
+    background-color: #96e6a1;
+    color: #96e6a1 !important;
+}

@@ -1,9 +1,10 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { WildlifeResponse } from '../../services/pollinator-suggestions.service';
 import { Subscription } from 'rxjs';
 import { GridResponse } from '../../models/pollinator-visible.model';
 import { MatDialog } from '@angular/material/dialog';
 import { PollinatorDialogComponent } from '../pollinator-dialog/pollinator-dialog.component';
+import { AdviceSave } from '../../models/save-advice.model';
 
 @Component({
   selector: 'app-pollinator-suggestions',
@@ -11,6 +12,12 @@ import { PollinatorDialogComponent } from '../pollinator-dialog/pollinator-dialo
   styleUrls: ['./pollinator-suggestions.component.scss']
 })
 export class PollinatorSuggestionsComponent implements OnInit {
+
+    /*********************************************************************
+   ***********************************************************************
+   **************** MAIN LOGIC TO CHOOSE AND LOAD PLANTS *****************
+   ***********************************************************************
+   ***********************************************************************/
 
   //Subscriptions to wildlife answers data
   private monthsSub: Subscription = new Subscription;
@@ -155,5 +162,68 @@ export class PollinatorSuggestionsComponent implements OnInit {
   ngOnDestroy(){
     //By calling our subscription at this point and unsubscribing, we are preventing memory leaks
     this.monthsSub.unsubscribe();
+  }
+
+  /***********************************************************************
+  ***********************************************************************
+  ************************ LOGIC TO SAVE TO EMAIL ***********************
+  ***********************************************************************
+  ***********************************************************************/
+
+  //Code used to output when someone wants to save a piece of advice
+  private isChecked : boolean = false;
+
+  @Output() newSaveEvent = new EventEmitter();
+  @Output() newRemoveEvent = new EventEmitter();
+
+  // make changes to the array in wildlifeLayout
+  toggleSave(){
+    if(!this.isChecked){
+      this.addNewSave();
+      this.isChecked = true;
+    } 
+    else{
+      this.removeSave();
+      this.isChecked = false;
+    }
+  }
+
+  private removeSave(){
+    this.newRemoveEvent.emit("Make your Garden Flower from Spring until Autumn");
+  }
+
+  private addNewSave() {
+    const saveObj: AdviceSave =
+        {
+          Header: "Make your Garden Flower from Spring until Autumn",
+          Pathname: "/assets/plant_images/Colchicum_autumnale.jpeg",
+          Justification: "It is helpful to have plants flowering in your garden from spring to autumn. Each plant blooms in the month specified and suits your garden, so you can make your garden a home to pollinators all year.",
+          BodyText: "These were the plants that were recommended for you:<br>" + this.getRecommendedPlantsHTML(),
+          Name: "Colchicum autumnale",
+          Username: "Stemonitis",
+          Copyright: "Public Domain",
+          Link: "https://commons.m.wikimedia.org/wiki/File:Colchicum_autumnale.jpg?fbclid=IwAR3znOBrPSSkVfPTMvITNoOQE-1OnQVI2DuhTYuC6IB0apVSwcRDpAte6NU"
+        };
+
+    this.newSaveEvent.emit(saveObj);
+  }
+
+  private getRecommendedPlantsHTML() : String{
+    let ourString = "";
+    for(let i = 0; i < this.displayFlowers.length; i++){
+      ourString = ourString + "<b>" + this.displayFlowers[i][0].Title + "</b><br>";
+      for(let j = 0; j < this.displayFlowers[i].length; j++){
+        ourString = ourString + this.displayFlowers[i][j].LatinName;
+        //If there are common names to list, add them between brackets
+        if(this.displayFlowers[i][j].CommonName != "" && this.displayFlowers[i][j].CommonName != " "){
+          ourString = ourString + " (" + this.displayFlowers[i][j].CommonName + ")<br>";
+        }
+        //If there are none, just add to list
+        else{
+          ourString = ourString + "<br>";
+        }
+      }
+    }
+    return ourString;
   }
 }
