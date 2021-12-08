@@ -1,6 +1,8 @@
 //This sticks the toolbar to the top of the page. There is a box in the layout 
 //component preventing text from overlapping it
 .mat-toolbar{
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
     position: fixed;
     z-index: 100;
 }
