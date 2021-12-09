@@ -38,6 +38,10 @@ import { NearYouComponentComponent } from './pages/wildlife-advice-page/advice-r
 import { AllAnswers } from './pages/wildlife-advice-page/services/all-answers.service';
 import { LocationAnswers } from './pages/wildlife-advice-page/services/location-answer.service';
 import { NotHomeLayoutComponent } from './display/not-home-layout/not-home-layout.component';
+import { AboutMainTextComponent } from './pages/about-page/about-main-text/about-main-text.component';
+import { AboutRewildingTextComponent } from './pages/about-page/about-rewilding-text/about-rewilding-text.component';
+import { AboutPrivacyTextComponent } from './pages/about-page/about-privacy-text/about-privacy-text.component';
+import { AboutResourcesTextComponent } from './pages/about-page/about-resources-text/about-resources-text.component';
 
 @NgModule({
   imports: [
@@ -72,6 +76,10 @@ import { NotHomeLayoutComponent } from './display/not-home-layout/not-home-layou
     FindPostcodeComponent,
     NearYouComponentComponent,
     NotHomeLayoutComponent,
+    AboutMainTextComponent,
+    AboutRewildingTextComponent,
+    AboutPrivacyTextComponent,
+    AboutResourcesTextComponent,
     ],
   entryComponents: [
     PollinatorDialogComponent,

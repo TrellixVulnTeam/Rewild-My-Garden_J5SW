@@ -66,6 +66,18 @@
   .CopyRightText{
     font-size: 12px;
   }
+
+  //Used for our about pages
+  .aboutSection{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  // .aboutSubheader{
+  //   font-size: 25px;
+  //   // font-weight: bold;
+  //   text-align: center;
+  // }
   
   /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
   @media screen and (max-width: 600px) {
