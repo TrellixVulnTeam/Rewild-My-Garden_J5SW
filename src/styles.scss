@@ -100,14 +100,9 @@
 
   /* Hyperlink */
   
-  a {
-    cursor: pointer;
-    color: white;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    opacity: 0.8;
+  /* unvisited link */
+  a:link, a:visited {
+    color: #095484;
   }
 
   html {

@@ -8,7 +8,7 @@
 button{
     //button background css
     width: 100%;
-    height: 90px;
+    height: 70px;
     margin: 10px;
     background-color: rgb(121, 194, 139); /* Green */
     border: none;
@@ -17,14 +17,14 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
+    font-size: 27px;
     line-height: 1.1;
     color: black;
 }
 
 .buttonHolder{
     display: inline-grid;
-    width: 480px;
+    width: 440px;
     max-width: 80%;
 }
 
