@@ -6,8 +6,7 @@
     <!-- Top of results page -->
     <div id="allresults" class="hiddenElem">
       <p *ngIf="responseShow" class="BigSubheader">Ideas for your Garden</p>
-      <!-- Subheader which displays what the user input -->
-      <div [innerHTML]="ourSubheader" class='userInfoHeader'></div>
+      <app-display-user-response></app-display-user-response>
 
       <!-- Our generic advice list -->
       <app-wildlife-advice-generic id="specialAdvice" class="hiddenElem" [adviceGenericObject]="ourSpecialAdvice[0]"></app-wildlife-advice-generic>

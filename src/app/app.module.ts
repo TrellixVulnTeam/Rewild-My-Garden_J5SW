@@ -42,6 +42,8 @@ import { AboutMainTextComponent } from './pages/about-page/about-main-text/about
 import { AboutRewildingTextComponent } from './pages/about-page/about-rewilding-text/about-rewilding-text.component';
 import { AboutPrivacyTextComponent } from './pages/about-page/about-privacy-text/about-privacy-text.component';
 import { AboutResourcesTextComponent } from './pages/about-page/about-resources-text/about-resources-text.component';
+import { EmailSendComponent } from './pages/wildlife-advice-page/email-send/email-send.component';
+import { DisplayUserResponseComponent } from './pages/wildlife-advice-page/advice-response/display-user-response/display-user-response.component';
 
 @NgModule({
   imports: [
@@ -80,6 +82,8 @@ import { AboutResourcesTextComponent } from './pages/about-page/about-resources-
     AboutRewildingTextComponent,
     AboutPrivacyTextComponent,
     AboutResourcesTextComponent,
+    EmailSendComponent,
+    DisplayUserResponseComponent,
     ],
   entryComponents: [
     PollinatorDialogComponent,
