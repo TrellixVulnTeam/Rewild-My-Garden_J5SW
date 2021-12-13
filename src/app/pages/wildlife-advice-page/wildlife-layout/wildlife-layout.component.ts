@@ -28,7 +28,6 @@ export class WildlifeLayoutComponent implements OnInit {
   private ourPollinatorsService: Subscription = new Subscription();
   private ourAdviceService: Subscription = new Subscription();
   private ourInfoService: Subscription = new Subscription();
-  private extraSub: Subscription = new Subscription();
 
   public specialInfoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
   public ourSpecialAdvice: InfoGeneric[] = [this.specialInfoOne];
@@ -86,8 +85,6 @@ export class WildlifeLayoutComponent implements OnInit {
       //Get location from retrievedAnswers
       this.longitude = retrievedAnswers.longitude;
       this.latitude = retrievedAnswers.latitude;
-      // this.ourSubheader = this.getOurSubheader(retrievedAnswers);
-
       document.getElementById('allresults')!.classList.remove('hiddenElem');
       this.multichoiceShow = false;
       this.responseShow = true;
@@ -266,7 +263,6 @@ export class WildlifeLayoutComponent implements OnInit {
     this.ourPollinatorsService.unsubscribe();
     this.ourAdviceService.unsubscribe();
     this.ourInfoService.unsubscribe();
-    this.extraSub.unsubscribe();
     // ******* We were experiencing a problem where, if you navigated away from the advice page and back and then
     //tried to get more advice it would crash the site. This is (presumably?) because there was still data being held by
     //the wildlife-advice-page components, so that when more data was added was inserted into the components the site crashed.
@@ -291,8 +287,7 @@ export class WildlifeLayoutComponent implements OnInit {
 
   /* An array of saved advice is created and passed to all children. When 'save this advice' is clicked in an advice box, it adds a data entry to this
   array. When a user submits their email, this array is wrapped up with the email and location (retrieved from CompleteAnswerSet) and added to the database as geojson.
-  Therefore, it may be useful to generate longitude/latitude in locationInfo.
-  We can also create a InYourLocalArea component which takes the user's location and searches the same database for people who are near enough to give advice.*/
+  Therefore, it may be useful to generate longitude/latitude in locationInfo.*/
 
   public addAdvice(advice: AdviceSave) {
     this.savedAdvice.push(advice);

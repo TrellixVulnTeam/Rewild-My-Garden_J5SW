@@ -16,8 +16,8 @@ export class AllAnswers{
 
     constructor(public wildlifeAnswersService: WildlifeAnswers, public locationAnswersService: LocationAnswers){
         //here we subscribe to the multichoice answers and then the location and turn them into one subscription object
-        this.answersSubMulti = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet) => {
-            this.answersSubLocs = this.locationAnswersService.getAnswerUpdateListener().subscribe((retrievedLocation: BasicLocationData) => {
+        this.answersSubLocs = this.locationAnswersService.getAnswerUpdateListener().subscribe((retrievedLocation: BasicLocationData) => {
+            this.answersSubMulti = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet) => {
                 const allAnswers: CompleteAnswerSet = {
                     soil: retrievedAnswers.soil,
                     ph: retrievedAnswers.ph,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import axios from 'axios';
 import { LocationAnswers } from '../../services/location-answer.service';
@@ -11,6 +11,8 @@ import { osApiEnvironment } from './os-api-env';
 })
 
 export class FindPostcodeComponent implements OnInit {
+
+  @Output() nextQuestion = new EventEmitter();
 
   constructor(public locationAnswersService: LocationAnswers) { }
 
@@ -32,8 +34,10 @@ export class FindPostcodeComponent implements OnInit {
         //******* THIS ONLY WORKS WITH NO SPACE IN POSTCODE
         if(response.data.results[0].GAZETTEER_ENTRY.ID.toUpperCase() === this.postcodeFormControl.value.toUpperCase()){
           document.getElementById('errMessageForm')!.innerHTML = "";
-          //A response is composed of the results from mutliple tick boxes!
+          //A response is composed of the results from multiple tick boxes!
           this.locationAnswersService.addAnswerSet(response.data.results[0].GAZETTEER_ENTRY.GEOMETRY_X, response.data.results[0].GAZETTEER_ENTRY.GEOMETRY_Y);
+          //Notify that we are ready to see the next question
+          this.nextQuestion.emit();
         }
         else{
           //If is in a valid postcode format but the address cannot be found, throw unfound postcode err

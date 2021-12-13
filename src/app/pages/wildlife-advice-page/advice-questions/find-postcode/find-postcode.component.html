@@ -3,12 +3,11 @@
       <mat-label>Postcode</mat-label>
       <input type="postcode" matInput [formControl]="postcodeFormControl"
             placeholder="Ex. SW57NL">
-            <!-- PREVIOUSLY IN ABOVE TO TRIGGER CHANGE ON CLICKING ENTER (change)="onTextChange()" -->
       <!-- mat-hint is being used as err stand in because mat-error couldn't seem to accept custom errors from TS (for our postcode) and 
       I wanted the error messages to look consistent -->
       <mat-hint><strong class="errStandin" id="errMessageForm"></strong></mat-hint>
     </mat-form-field>
   </form>
 
-<button mat-stroked-button color="primary" (click)="saveForm()">Save</button>
+<button mat-stroked-button color="primary" (click)="saveForm()">Next</button>
 
