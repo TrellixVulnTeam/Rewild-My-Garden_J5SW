@@ -1,5 +1,3 @@
-<div class="MC-question-container">
-
 <div class="hiddenQ" id="question-one">
   <label id="multiplechoice-label">What size is your outdoor space?</label>
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
@@ -8,9 +6,8 @@
       {{size}}
     </mat-radio-button>
   </mat-radio-group>
+  <button mat-stroked-button color="primary" class="hiddenQ" id="next-one" (click)="tryNextOne()">Next</button>
 </div>
-
-<button mat-stroked-button color="primary" class="hiddenQ" id="next-one" (click)="tryNextOne()">Next</button>
 
 <div class="hiddenQ" id="question-two">
   <label id="multiplechoice-label">What soil type do you have?</label>
@@ -20,9 +17,9 @@
       {{soilType}}
     </mat-radio-button>
   </mat-radio-group>
+  <button mat-stroked-button color="primary" class="hiddenQ" id="next-two" (click)="tryNextTwo()">Next</button>
 </div>
 
-<button mat-stroked-button color="primary" class="hiddenQ" id="next-two" (click)="tryNextTwo()">Next</button>
 
 <div class="hiddenQ" id="question-three">
   <label id="multiplechoice-label">What soil PH do you have?</label>
@@ -32,9 +29,8 @@
       {{PHType}}
     </mat-radio-button>
   </mat-radio-group>
+  <button mat-stroked-button color="primary" class="hiddenQ" id="next-three" (click)="tryNextThree()">Next</button>
 </div>
-
-<button mat-stroked-button color="primary" class="hiddenQ" id="next-three" (click)="tryNextThree()">Next</button>
 
 <div class="hiddenQ" id="question-four">
   <label id="multiplechoice-label">How shady is your garden?</label>
@@ -44,9 +40,8 @@
       {{shadeType}}
     </mat-radio-button>
   </mat-radio-group>
+  <button mat-stroked-button color="primary" class="hiddenQ" id="next-four" (click)="tryNextFour()">Next</button>
 </div>
-
-<button mat-stroked-button color="primary" class="hiddenQ" id="next-four" (click)="tryNextFour()">Next</button>
  
 <div class="hiddenQ" id="question-five">
   <app-find-postcode (nextQuestion)="tryNextFive()"></app-find-postcode>
@@ -57,22 +52,18 @@
 <div class="hiddenQ" id="question-six">
   <label id="multiplechoice-label">Please select any suggestions that you are particularly interested in.</label>
   <section class="example-section">
-    <mat-checkbox class="personal-choices" [(ngModel)]="childFriendly">ChildFriendly</mat-checkbox>
-    <mat-checkbox class="personal-choices" [(ngModel)]="cheap">Cheap</mat-checkbox>
-    <mat-checkbox class="personal-choices" [(ngModel)]="easy">Easy</mat-checkbox>
-    <mat-checkbox class="personal-choices" [(ngModel)]="renting">Renting</mat-checkbox>
-    <mat-checkbox class="personal-choices" [(ngModel)]="pavedGardens">PavedGardens</mat-checkbox>
+    <p><mat-checkbox class="personal-choices" [(ngModel)]="childFriendly">Child Friendly</mat-checkbox></p>
+    <p><mat-checkbox class="personal-choices" [(ngModel)]="cheap">Cheap</mat-checkbox></p>
+    <p><mat-checkbox class="personal-choices" [(ngModel)]="easy">Easy</mat-checkbox></p>
+    <p><mat-checkbox class="personal-choices" [(ngModel)]="renting">Good for Renters</mat-checkbox></p>
+    <p><mat-checkbox class="personal-choices" [(ngModel)]="pavedGardens">Good for Paved Gardens</mat-checkbox></p>
   </section>
+  <button mat-stroked-button color="primary" class="hiddenQ" id="next-six" (click)="tryNextSixAndSave()">Save</button>
 </div>
-
-<button mat-stroked-button color="primary" class="hiddenQ" id="next-six" (click)="tryNextSixAndSave()">Save</button>
-
-<br>
-<br>
 
 <p id="errMessage"></p>
 
 <br>
+<br>
 
-</div>
 

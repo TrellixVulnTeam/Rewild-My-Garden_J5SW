@@ -137,5 +137,4 @@ export class DisplayUserResponseComponent implements OnInit {
      return tempSubheader;
    }
  }
-
 }

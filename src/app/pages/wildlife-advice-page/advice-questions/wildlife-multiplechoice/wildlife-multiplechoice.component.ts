@@ -8,15 +8,14 @@ import { WildlifeAnswers } from '../../services/multichoice-answers.service';
 })
 
 export class WildlifeMultiplechoiceComponent implements OnInit {
-  //multichoice radio questions
   chosenSoilType: String = "";
-  soilTypes: String[] = ['SoilLight', 'SoilMedium', 'SoilHeavy'];
+  soilTypes: String[] = ['Light Soil', 'Medium-Weight Soil', 'Heavy, Clay Soil'];
   chosenPHType: String = "";
-  PHTypes: String[] = ['PHAcid', 'PHNeutral', 'PHBasicAlkaline'];
+  PHTypes: String[] = ['Acidic Soil', 'Neutral Soil', 'Alkaline Soil'];
   chosenShadeType: String = "";
-  shadeTypes: String[] = ['ShadeNone', 'ShadeSemi', 'ShadeFull'];
+  shadeTypes: String[] = ['No Shade', 'Medium Shade', 'Heavy Shade'];
   chosenSize: String = "";
-  sizes: String[] = ['WindoxBox', 'OutdoorPlantPots', 'SmallGarden', 'LargeGarden', 'Allotment', 'FieldFields'];
+  sizes: String[] = ['A Window Box', 'Plant Pots Outside on a Patio or Balcony', 'A Small Garden', 'A Large Garden', 'An Allotment', 'A Field or Multiple Fields'];
   errMessage: String = "";
 
   //multichoice checkbox question

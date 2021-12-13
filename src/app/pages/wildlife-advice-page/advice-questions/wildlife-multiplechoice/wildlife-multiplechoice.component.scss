@@ -6,4 +6,18 @@
 .hiddenQ{
   display: none;
 }
+
+#question-one, #question-two, #question-three, #question-four, #question-five, #question-six{
+  font-size: 17px;
+  min-height: 280px;
+  padding: 20px;
+}
+
+#next-one, #next-two, #next-three, #next-four, #next-six{
+  float: right;
+}
+
+#errMessage{
+  float: right;
+}
   

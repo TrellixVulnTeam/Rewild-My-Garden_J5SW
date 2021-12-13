@@ -96,6 +96,8 @@ export class WildlifeLayoutComponent implements OnInit {
     this.fetchInfo();
   }
 
+  //********* 'special' message still does not display
+
   private fetchAdvice(){
     this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {
       for(let i = 0; i < retrievedAdvice.length; i++){
