@@ -71,31 +71,7 @@
       <app-near-you-component id="nearYouID"></app-near-you-component>
 
       <!-- Email input section -->
-      <!-- This should be split into a new compoent !! ************** -->
-      <div id="emailBoxID">
-        <div class="card">
-          <div class="card-body">
-            <p class="Subheader">Have Your Advice Emailed to You</p>
-            <p class="card-text">If you want to have the advice you have saved from this page emailed to you, enter your email and click Send.</p>
-
-            <form class="example-form">
-              <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>Enter your email here</mat-label>
-                <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                       placeholder="Ex. pat@example.com">
-                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                  Please enter a valid email address
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                  Please enter your email to have your advice sent to you.
-                </mat-error>
-              </mat-form-field>
-            </form>
-
-            <button mat-stroked-button (click)="processEmailData()" color="primary" mat-button >Send Email</button>
-          </div>
-        </div>
-      </div>
+      <app-email-send [savedAdviceFinal]="savedAdvice" [latitudeFinal]="latitude" [longitudeFinal]="longitude"></app-email-send>
     <br>
     </div>
 </div>
