@@ -76,7 +76,6 @@ export class WildlifeLayoutComponent implements OnInit {
   private hedgehogCountInfo: number = 0;
   private birdCountInfo: number = 0;
   private insectCountInfo: number = 0;
-  private specialCountInfo: number = 0;
 
   private readonly NUM_FIRST_DISPLAY: number = 1;
 
@@ -152,8 +151,11 @@ export class WildlifeLayoutComponent implements OnInit {
     this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
       for(let j = 0; j < retrievedInfo.length; j++){
         if(retrievedInfo[j].Special == "Y"){
-          this.ourSpecialAdvice[this.specialCountInfo] = retrievedInfo[j];
-          this.specialCountInfo++;
+          console.log("hello");
+          console.log(retrievedInfo[j]);
+          //'specialAdvice' is a special case- there is only one piece of advice and it sits outside of the categories
+          this.ourSpecialAdvice[0] = retrievedInfo[j];
+          document.getElementById('specialAdvice')!.classList.remove('hiddenElem');
         }
         if(retrievedInfo[j].Hedgehogs == "Y"){
           this.ourHedgehogInfo[this.hedgehogCountInfo] = retrievedInfo[j];
