@@ -1,47 +1,60 @@
 <div class="hiddenQ" id="question-one">
-  <label id="multiplechoice-label">What size is your outdoor space?</label>
+  <div class="question-labels">
+    <label id="multiplechoice-label">Which of these best describes your garden?</label>
+  </div>
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="space-question" class="radio-question" [(ngModel)]="chosenSize">
     <mat-radio-button class="radio-button" *ngFor="let size of sizes" [value]="size">
       {{size}}
     </mat-radio-button>
   </mat-radio-group>
-  <button mat-stroked-button color="primary" class="hiddenQ" id="next-one" (click)="tryNextOne()">Next</button>
 </div>
+<button mat-stroked-button color="primary" class="hiddenQ" id="next-one" (click)="tryNextOne()">Next</button>
+
 
 <div class="hiddenQ" id="question-two">
-  <label id="multiplechoice-label">What soil type do you have?</label>
+  <div class="question-labels">
+    <label id="multiplechoice-label">What soil type do you have?</label><br>
+    <label id="sub-label">You can find tips to help identify your soil type <a href="https://www.rhs.org.uk/soil-composts-mulches/soil-types">here</a>.</label>
+  </div>
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="soil-question" class="radio-question" [(ngModel)]="chosenSoilType">
     <mat-radio-button class="radio-button" *ngFor="let soilType of soilTypes" [value]="soilType">
       {{soilType}}
     </mat-radio-button>
   </mat-radio-group>
-  <button mat-stroked-button color="primary" class="hiddenQ" id="next-two" (click)="tryNextTwo()">Next</button>
 </div>
+<button mat-stroked-button color="primary" class="hiddenQ" id="next-two" (click)="tryNextTwo()">Next</button>
 
 
 <div class="hiddenQ" id="question-three">
-  <label id="multiplechoice-label">What soil PH do you have?</label>
+  <div class="question-labels">
+    <label id="multiplechoice-label">What soil PH do you have?</label><br>
+    <label id="sub-label">You can find tips to help identify the PH of your soil <a href="https://www.rhs.org.uk/soil-composts-mulches/ph-and-testing-soil">here</a>. You can also look up the approximate PH of your soil at <a href="http://www.landis.org.uk/soilscapes/index.cfm">Soilscapes</a> if you are in England or Wales, or at <a href="http://mapapps2.bgs.ac.uk/ukso/home.html?layer=JHSoilPH">UK Soil Observatory</a> if you are in Scotland. Use of these sites is only recommended if you are on a desktop computer.</label>
+  </div>
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="PH-question" class="radio-question" [(ngModel)]="chosenPHType">
     <mat-radio-button class="radio-button" *ngFor="let PHType of PHTypes" [value]="PHType">
       {{PHType}}
     </mat-radio-button>
   </mat-radio-group>
-  <button mat-stroked-button color="primary" class="hiddenQ" id="next-three" (click)="tryNextThree()">Next</button>
 </div>
+<button mat-stroked-button color="primary" class="hiddenQ" id="next-three" (click)="tryNextThree()">Next</button>
+
 
 <div class="hiddenQ" id="question-four">
+  <div class="question-labels">
   <label id="multiplechoice-label">How shady is your garden?</label>
+  </div>
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="shade-question" class="radio-question" [(ngModel)]="chosenShadeType">
     <mat-radio-button class="radio-button" *ngFor="let shadeType of shadeTypes" [value]="shadeType">
       {{shadeType}}
     </mat-radio-button>
   </mat-radio-group>
-  <button mat-stroked-button color="primary" class="hiddenQ" id="next-four" (click)="tryNextFour()">Next</button>
 </div>
+<button mat-stroked-button color="primary" class="hiddenQ" id="next-four" (click)="tryNextFour()">Next</button>
+
  
 <div class="hiddenQ" id="question-five">
   <app-find-postcode (nextQuestion)="tryNextFive()"></app-find-postcode>
@@ -50,7 +63,9 @@
 <!-- no <button> here as there is a button which is part of app-find-postcode -->
 
 <div class="hiddenQ" id="question-six">
-  <label id="multiplechoice-label">Please select any suggestions that you are particularly interested in.</label>
+  <div class="question-labels">
+  <label id="multiplechoice-label">Please select any options that you are particularly interested in.</label>
+  </div>
   <section class="example-section">
     <p><mat-checkbox class="personal-choices" [(ngModel)]="childFriendly">Child Friendly</mat-checkbox></p>
     <p><mat-checkbox class="personal-choices" [(ngModel)]="cheap">Cheap</mat-checkbox></p>
@@ -58,8 +73,8 @@
     <p><mat-checkbox class="personal-choices" [(ngModel)]="renting">Good for Renters</mat-checkbox></p>
     <p><mat-checkbox class="personal-choices" [(ngModel)]="pavedGardens">Good for Paved Gardens</mat-checkbox></p>
   </section>
-  <button mat-stroked-button color="primary" class="hiddenQ" id="next-six" (click)="tryNextSixAndSave()">Save</button>
 </div>
+<button mat-stroked-button color="primary" class="hiddenQ" id="next-six" (click)="tryNextSixAndSave()">Save</button>
 
 <p id="errMessage"></p>
 

@@ -9,11 +9,11 @@ import { WildlifeAnswers } from '../../services/multichoice-answers.service';
 
 export class WildlifeMultiplechoiceComponent implements OnInit {
   chosenSoilType: String = "";
-  soilTypes: String[] = ['Light Soil', 'Medium-Weight Soil', 'Heavy, Clay Soil'];
+  soilTypes: String[] = ['Light, Sandy Soil', 'Medium-Weight Soil', 'Heavy, Clay Soil', "I Don't Know"];
   chosenPHType: String = "";
-  PHTypes: String[] = ['Acidic Soil', 'Neutral Soil', 'Alkaline Soil'];
+  PHTypes: String[] = ['Acidic Soil', 'Neutral Soil', 'Alkaline Soil', "I Don't Know"];
   chosenShadeType: String = "";
-  shadeTypes: String[] = ['No Shade', 'Medium Shade', 'Heavy Shade'];
+  shadeTypes: String[] = ['No Shade', 'Medium Shade', 'Heavy Shade', 'Multiple Levels of Shadiness'];
   chosenSize: String = "";
   sizes: String[] = ['A Window Box', 'Plant Pots Outside on a Patio or Balcony', 'A Small Garden', 'A Large Garden', 'An Allotment', 'A Field or Multiple Fields'];
   errMessage: String = "";

@@ -33,12 +33,16 @@ export class WildlifeAnswers{
     //******** this currently converts the answers to a database form and then in disaply-user-response it converts them
     //back again. This is an obvious thing to change.
 
-    
+//If a user inputs 'I don't know' just give them medium as this is most likely to be correct. If we have more
+//time at any point, it would be better to give them ALL soil options rather than making a choice for them. *********
 private getSoilString(soil: String) : String{
   if(soil == "Light Soil"){
     return "SoilLight";
   }
   else if(soil == "Medium-Weight Soil"){
+    return "SoilMedium";
+  }
+  else if(soil == "I Don't Know"){
     return "SoilMedium";
   }
   else {
@@ -53,16 +57,23 @@ private getPHString(PH: String): String{
   else if(PH == "Neutral Soil"){
     return "PHNeutral";
   }
+  else if(PH == "I Don't Know"){
+    return "PHNeutral";
+  }
   else {
     return "PHBasicAlkaline";
   }
 }
 
+//********* see note on 'getSoilString' above
 private getShadinessString(shadiness: String): String{
   if(shadiness == "Heavy Shade"){
     return "ShadeFull";
   }
   else if(shadiness == "Medium Shade"){
+    return "ShadeSemi";
+  }
+  else if(shadiness == "Multiple Levels of Shadiness"){
     return "ShadeSemi";
   }
   else {

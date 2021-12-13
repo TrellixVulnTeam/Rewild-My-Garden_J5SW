@@ -1,13 +1,30 @@
-<form class="example-form">
-    <mat-form-field class="example-full-width" appearance="outline">
+<div class="postcode-question">
+  <div class="question-labels">
+    <label id="multiplechoice-label"
+      >Please enter the approximate postcode of the garden for which you need
+      advice.</label> <br>
+    <label id="sub-label"
+      >We will use your postcode to work out how cold your area gets, so that we
+      can see which plants will be able to survive in your garden. We will also
+      use it to let you know if anyone in your local area is taking steps to
+      help wildlife which you can support.</label>
+  </div>
+  <form class="postcode-form">
+    <mat-form-field class="postcode-full-width" appearance="outline">
       <mat-label>Postcode</mat-label>
-      <input type="postcode" matInput [formControl]="postcodeFormControl"
-            placeholder="Ex. SW57NL">
+      <input
+        type="postcode"
+        matInput
+        [formControl]="postcodeFormControl"
+        placeholder="Ex. SW57NL"
+      />
       <!-- mat-hint is being used as err stand in because mat-error couldn't seem to accept custom errors from TS (for our postcode) and 
-      I wanted the error messages to look consistent -->
-      <mat-hint><strong class="errStandin" id="errMessageForm"></strong></mat-hint>
+        I wanted the error messages to look consistent -->
+      <mat-hint
+        ><strong class="errStandin" id="errMessageForm"></strong
+      ></mat-hint>
     </mat-form-field>
   </form>
+</div>
 
 <button mat-stroked-button color="primary" (click)="saveForm()">Next</button>
-
