@@ -99,6 +99,7 @@ router.post('/userData', function (req, res, next) {
 
 // Get other users who are within 
 router.get('/userData', function (req, res, next) {
+  console.log("hello but annoying");
   userData.find(
     {
       geometry: {
@@ -118,6 +119,24 @@ router.get('/userData', function (req, res, next) {
       }
     }
   ); 
+});
+
+router.put('/userDataUpdate', function (req, res, next) {
+  console.log("hello!");
+  //update all instances of that email in the database so the user doesn't get multiple emails if they have filled
+  //in the form more than once
+  userData.updateMany(
+      { "properties.email": req.query.Email } , 
+      { $set: { [req.query.EmailUpdateType] : "true"  } }
+    )
+  .then(function(result, err){
+    if(result){
+      res.send(result);
+    }
+    if(err){
+      console.log(err);
+    }
+  });
 });
 
 // Code for emailing users
