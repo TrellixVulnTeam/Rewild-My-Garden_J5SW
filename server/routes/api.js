@@ -99,7 +99,6 @@ router.post('/userData', function (req, res, next) {
 
 // Get other users who are within 
 router.get('/userData', function (req, res, next) {
-  console.log("hello but annoying");
   userData.find(
     {
       geometry: {
@@ -122,7 +121,6 @@ router.get('/userData', function (req, res, next) {
 });
 
 router.put('/userDataUpdate', function (req, res, next) {
-  console.log("hello!");
   //update all instances of that email in the database so the user doesn't get multiple emails if they have filled
   //in the form more than once
   userData.updateMany(
@@ -161,7 +159,7 @@ const sendMail = (emailInfo, callback) => {
   const mailOptions = {
     from: SENDER_EMAIL,
     to: `<${emailInfo.email}>`,
-    subject: 'Your Rewild My Garden Results',
+    subject: 'Rewild My Garden Update',
     html: `${emailInfo.emailBody}`
   };
   

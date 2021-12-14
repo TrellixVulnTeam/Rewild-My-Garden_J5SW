@@ -25,7 +25,9 @@ export class EmailSendComponent implements OnInit {
   private extraSub: Subscription = new Subscription();
   private userSub: Subscription = new Subscription();
   private hedgehogUserSub: Subscription = new Subscription(); 
+  private pondUserSub: Subscription = new Subscription(); 
   private updateSub: Subscription = new Subscription(); 
+  private updateSubPond: Subscription = new Subscription();
 
   @Input() savedAdviceFinal: AdviceSave[] = [];
   @Input() latitudeFinal: Number = 0;
@@ -36,6 +38,12 @@ export class EmailSendComponent implements OnInit {
   ngOnInit(): void {
   }
 
+    /********************************************************************
+   **********************************************************************
+   ******************************* INIT LOGIC ***************************
+   **********************************************************************
+   ***********************************************************************/
+
   public processEmailData(){
     this.email = this.emailFormControl.value;
     if(this.savedAdviceFinal.length == 0){
@@ -44,10 +52,17 @@ export class EmailSendComponent implements OnInit {
     else{
       this.sendEmail();
       //we are sending updates before we add them to the database- so does not count themselves
-      this.sendUpdateEmails();
+      this.sendHedgehogUpdateEmails();
+      this.sendPondUpdateEmails();
       this.saveUserData();
     }
   }
+
+    /********************************************************************
+   **********************************************************************
+   ******************* SEND ADVICE RESULTS EMAIL ************************
+   **********************************************************************
+   ***********************************************************************/
 
   private sendEmail(){
     const emailContent = { email: this.email, emailBody: this.getEmailContent()};
@@ -78,6 +93,12 @@ export class EmailSendComponent implements OnInit {
     return htmlString;
   }
 
+    /********************************************************************
+   **********************************************************************
+   *************************** SAVE USER'S DATA *************************
+   **********************************************************************
+   ***********************************************************************/
+
   //Triggered by processEmailData() below
   private saveUserData(){
     //Correct order of coordinates in geojson is [longitude, latitude, elevation] https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.1
@@ -103,23 +124,24 @@ export class EmailSendComponent implements OnInit {
     this.extraSub = this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
   }
 
+   /********************************************************************
+  **********************************************************************
+  ******************* SEND LOCAL HEDGEHOG UPDATE EMAILS ****************
+  **********************************************************************
+  ***********************************************************************/
+
   //********** update GDPR statment to say we are saving whether emails have been sent.
-  private sendUpdateEmails(){
-    console.log("in sendUpdateEmails");
+  private sendHedgehogUpdateEmails(){
     this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.CLOSEST + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(
       response => {
         //search for ppl in the area who have asked for updates, and who have not been emailed about hedgehogs before
         for(let i=0; i<response.length; i++){
-          console.log("People nearby: ");
-          console.log(response[i]);
           if((response[i].properties.hedgehogSent != "true") && (response[i].properties.localUpdates == "true")){
-            console.log("not sent hedgehog email, yes to updates");
             //we couldn't return 'true' and 'false' from within a subscription, so we had to make the function itself 
             //observable, and pipe the 'return true', 'return false' information into the observable. This is what 'data'
             //represents here
             this.hedgehogUserSub = this.areThereEnoughHedgehog(response[i]).subscribe(data => {
               if (data == true){
-              console.log("enough local hedgehog holes");
               this.createHedgehogEmail(response[i].properties.email);
               //update the 'hedgehogSent' variable so that each user only recieves one hedgehog email
               this.updateHedgehogSent(response[i].properties.email);
@@ -145,13 +167,10 @@ export class EmailSendComponent implements OnInit {
         }
         //if our original user as put in a hedgehog hole, count as +1, if not, no +1 (the original user is not yet in the db)
         if(this.didOGUserHedgehog() == true){
-          console.log("OG user did hedgehog");
           hedgehogCount++;
         }
-        console.log("hedgehog count: " + hedgehogCount);
         //if >=2, then send email
         if(hedgehogCount >= 2){
-          console.log("enough hedgehogs");
           return true;
         }
         //if there aren't 2 or more people in this vicinity who have saved hedgehog advice, do not send email
@@ -178,17 +197,16 @@ export class EmailSendComponent implements OnInit {
     });
   }
 
-  //********** a failure of this is if they have filled in the form multiple times for different properties - the
+  // a failure of this is if they have filled in the form multiple times for different properties - the
   // email they get won't specify whether we are talking about their garden/allotment etc and they will only get
-  // one email per address- after that their email is taken off the 'potential recipients' list
+  // one email per address- after that their email is taken off the 'potential recipients' list **********
   private getHedgehogEmailContent(): String{
     let htmlString: String = '<head><link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"></head><body>' + 
         '<p style="text-align: center; font-family:' + "'Playfair Display'" + ', serif; font-size: 30px;">Update from Rewild My Garden!</p>' +
         '<p style="text-align: center; font-size: 20px">Someone in your area has put in a hedgehog hole.</p>';
     htmlString = htmlString +"<div>" +
       "<div>" +
-        '<p style="font-family:' + "'Playfair Display'" + ', serif; font-size: 20px; line-height: 1.1;">' + 
-        "Hedgehogs travel about a mile every night to find food. By making sure your fences have holes in " + 
+        '<p> Hedgehogs travel about a mile every night to find food. By making sure your fences have holes in ' + 
         "them, you are more likely to be visited and be part of their night time walks. " + '</p>' +
         "<p>" + "Hedgehogs often get trapped in gardens because fences make it impossible " +
         "for them to roam around. Our data suggests that someone in your " +
@@ -203,8 +221,108 @@ export class EmailSendComponent implements OnInit {
     return htmlString;
   }
 
+  /*********************************************************************
+  **********************************************************************
+  ***** UPDATE DB SO EACH USER ONLY GETS ONE HEDGEHOG UPDATE EMAIL *****
+  **********************************************************************
+  ***********************************************************************/
+
   private updateHedgehogSent(ourEmail: String){
     this.updateSub = this.httpClient.put("http://localhost:3000/api/userDataUpdate?" + "Email=" + ourEmail + "&EmailUpdateType=properties.hedgehogSent", "true").subscribe();
+    // ************ should .subscribe be here?
+  }
+
+     /********************************************************************
+  **********************************************************************
+  ********************* SEND LOCAL POND UPDATE EMAILS *******************
+  **********************************************************************
+  ***********************************************************************/
+
+  //Obviously this is a good example of copy and paste code- this need to be changes when/if we have time ! ********
+  private sendPondUpdateEmails(){
+    this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.USEFUL_PROXIMITY + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(
+      response => {
+        for(let i=0; i<response.length; i++){
+          if((response[i].properties.pondSent != "true") && (response[i].properties.localUpdates == "true")){
+            this.pondUserSub = this.areThereEnoughPond(response[i]).subscribe(data => {
+              if (data == true){
+              this.createPondEmail(response[i].properties.email);
+              this.updatePondSent(response[i].properties.email);
+            }
+          });
+        }
+      }
+    });
+  }
+
+  //***************** ADD ERR TO ALL SUBS
+  private areThereEnoughPond(searchUser: UserDataSave): Observable<boolean>{
+    return this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.USEFUL_PROXIMITY + "&Longitude=" + searchUser.geometry.coordinates[0] + "&Latitude=" + searchUser.geometry.coordinates[1]).pipe(map(
+      response => {
+        let pondCount = 0;
+        for(let j = 0; j < response.length; j++){
+          for(let k = 0; k < response[j].properties.savedAdvice.length; k++){
+            if((response[j].properties.savedAdvice[k].Header == "Put in a Small Water Feature") ||
+            (response[j].properties.savedAdvice[k].Header == "Create a Container Water Feature") ||
+            (response[j].properties.savedAdvice[k].Header == "Put in a Pond")){
+              pondCount++;
+            }
+          }
+        }
+        if(this.didOGUserPond() == true){
+          pondCount++;
+        }
+        if(pondCount >= 2){
+          return true;
+        }
+        return false;
+      }
+    ));
+  }
+
+  private didOGUserPond(): boolean{
+    for(let p = 0; p < this.savedAdviceFinal.length; p++){
+      if((this.savedAdviceFinal[p].Header == "Put in a Small Water Feature") ||
+            (this.savedAdviceFinal[p].Header == "Create a Container Water Feature") ||
+            (this.savedAdviceFinal[p].Header == "Put in a Pond"))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private createPondEmail(ourEmail: String){
+    const emailContent = { email: ourEmail, emailBody: this.getPondEmailContent()};
+    axios.post('http://localhost:3000/api/sendmail', emailContent)
+    .catch(error => {
+        console.error('There was an error!', error);
+    });
+  }
+
+  // a failure of this is if they have filled in the form multiple times for different properties - the
+  // email they get won't specify whether we are talking about their garden/allotment etc and they will only get
+  // one email per address- after that their email is taken off the 'potential recipients' list **********
+  private getPondEmailContent(): String{
+    let htmlString: String = '<head><link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"></head><body>' + 
+        '<p style="text-align: center; font-family:' + "'Playfair Display'" + ', serif; font-size: 30px;">Update from Rewild My Garden!</p>' +
+        '<p style="text-align: center; font-size: 20px">Someone in your area has put in a pond.</p>';
+    htmlString = htmlString +"<div>" +
+      "<div>" + '<p>Put in a pond!' + '</p>'
+      '</div>' +
+      '<br>';
+    htmlString = htmlString + "</body>"
+    return htmlString;
+  }
+
+  /*********************************************************************
+  **********************************************************************
+  ******* UPDATE DB SO EACH USER ONLY GETS ONE POND UPDATE EMAIL ********
+  **********************************************************************
+  ***********************************************************************/
+
+  private updatePondSent(ourEmail: String){
+    this.updateSubPond = this.httpClient.put("http://localhost:3000/api/userDataUpdate?" + "Email=" + ourEmail + "&EmailUpdateType=properties.pondSent", "true").subscribe();
     // ************ should .subscribe be here?
   }
 
@@ -213,6 +331,7 @@ export class EmailSendComponent implements OnInit {
     this.userSub.unsubscribe();
     this.hedgehogUserSub.unsubscribe();
     this.updateSub.unsubscribe();
+    this.pondUserSub.unsubscribe();
   }
 }
 
