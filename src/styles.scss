@@ -11,7 +11,6 @@
 // -narrow screen is 350px to 600px (side bar comes in)
 // -ultra narrow screen is 350px minus (top bar in smaller)
 
-
    /* Global Styles */
 
   * {
@@ -72,12 +71,6 @@
     margin-left: 20px;
     margin-right: 20px;
   }
-
-  // .aboutSubheader{
-  //   font-size: 25px;
-  //   // font-weight: bold;
-  //   text-align: center;
-  // }
   
   /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
   @media screen and (max-width: 600px) {
@@ -91,7 +84,7 @@
   }
 
   /* If the screen size is 350px wide or less, reduce padding*/
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 350px) {
     .CardHolder{
         padding-left: 0;
         padding-right: 0;

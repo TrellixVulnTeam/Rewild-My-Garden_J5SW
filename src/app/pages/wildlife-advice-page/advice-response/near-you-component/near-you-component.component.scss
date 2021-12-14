@@ -42,3 +42,19 @@ div.item img {
 #SingleAdvice0, #SingleAdvice1, #SingleAdvice2 {
     margin: 5px;
 }
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    .card{
+        flex-direction: column;
+    }
+
+    .leftImage {
+        object-fit: fill;
+        height: auto;
+        width: auto;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        border-bottom-left-radius: 0rem;
+    }
+}

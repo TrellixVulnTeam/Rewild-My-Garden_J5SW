@@ -7,11 +7,13 @@
   display: none;
 }
 
+
 #question-one, #question-two, #question-three, #question-four, #question-six{
   font-size: 17px;
   min-height: 350px;
   padding-left: 40px;
-  padding-top: 30px;
+  padding-top: 20px;
+  padding-right: 40px;
 }
 
 .personal-choices{
@@ -49,5 +51,23 @@
 
 .question-labels {
   margin-bottom: 1.3rem;
+}
+
+.wrap-mat-radio-label {
+  white-space: normal;
+}
+
+/* If the screen size is 600px wide or less*/
+@media screen and (max-width: 600px) {
+  #question-one, #question-two, #question-three, #question-four, #question-six{
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-right: 30px;
+    min-height: 400px;
+  }
+
+  #next-one, #next-two, #next-three, #next-four, #next-six{
+    margin-left: 30px;
+  }
 }
   

@@ -6,9 +6,7 @@
             <div>
                 <!-- Display the first flower from our display array -->
                 <mat-card class="card" id="innerCard">
-                    <!-- <mat-card-title> -->
-                        <p class="BodySubtitle"> {{ flower[0].Title }} </p>
-                    <!-- </mat-card-title> -->
+                    <p class="BodySubtitle"> {{ flower[0].Title }} </p>
                     <img mat-card-image alt="Plant_Image" [src]="flower[0].Pathname">
                     <mat-card-content class="plantName">
                         <p> {{ flower[0].LatinName }} </p>

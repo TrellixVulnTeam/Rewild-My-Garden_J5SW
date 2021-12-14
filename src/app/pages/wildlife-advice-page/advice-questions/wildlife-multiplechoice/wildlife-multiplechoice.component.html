@@ -5,7 +5,9 @@
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="space-question" class="radio-question" [(ngModel)]="chosenSize">
     <mat-radio-button class="radio-button" *ngFor="let size of sizes" [value]="size">
+      <span class="wrap-mat-radio-label">
       {{size}}
+      </span>
     </mat-radio-button>
   </mat-radio-group>
 </div>
@@ -20,7 +22,9 @@
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="soil-question" class="radio-question" [(ngModel)]="chosenSoilType">
     <mat-radio-button class="radio-button" *ngFor="let soilType of soilTypes" [value]="soilType">
+      <span class="wrap-mat-radio-label">
       {{soilType}}
+      </span>
     </mat-radio-button>
   </mat-radio-group>
 </div>
@@ -35,7 +39,9 @@
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="PH-question" class="radio-question" [(ngModel)]="chosenPHType">
     <mat-radio-button class="radio-button" *ngFor="let PHType of PHTypes" [value]="PHType">
+      <span class="wrap-mat-radio-label">
       {{PHType}}
+      </span>
     </mat-radio-button>
   </mat-radio-group>
 </div>
@@ -49,7 +55,9 @@
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="shade-question" class="radio-question" [(ngModel)]="chosenShadeType">
     <mat-radio-button class="radio-button" *ngFor="let shadeType of shadeTypes" [value]="shadeType">
+      <span class="wrap-mat-radio-label">
       {{shadeType}}
+      </span>
     </mat-radio-button>
   </mat-radio-group>
 </div>

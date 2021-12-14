@@ -22,6 +22,9 @@ export class WildlifeLayoutComponent implements OnInit {
    **********************************************************************
    ***********************************************************************/
 
+   //********** improve wrap on phones
+   //*********** improve layout for those with very small gardens
+
   public multichoiceShow: boolean = true;
   public responseShow: boolean = false;
 

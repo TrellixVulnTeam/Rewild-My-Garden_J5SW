@@ -33,3 +33,20 @@
     background-color: #96e6a1;
     color: #96e6a1 !important;
 }
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+
+    .card{
+        flex-direction: column;
+    }
+
+    .card img {
+        object-fit: fill;
+        height: auto;
+        width: auto;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        border-bottom-left-radius: 0rem;
+    }
+}
