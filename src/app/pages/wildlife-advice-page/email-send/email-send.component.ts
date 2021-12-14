@@ -4,6 +4,7 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/fo
 import { ErrorStateMatcher } from '@angular/material/core';
 import axios from 'axios';
 import { Subscription } from 'rxjs';
+import { ProximityEnvironment } from '../advice-response/proximity-env';
 import { AdviceSave } from '../models/save-advice.model';
 import { UserDataSave } from '../models/save-user-data.model';
 
@@ -14,7 +15,13 @@ import { UserDataSave } from '../models/save-user-data.model';
 })
 export class EmailSendComponent implements OnInit {
 
+  //the email that the user has submitted
+  private email: String = "";
+  public localUpdates: String = "";
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  matcher = new MyErrorStateMatcher();
   private extraSub: Subscription = new Subscription();
+  private userSub: Subscription = new Subscription();
 
   @Input() savedAdviceFinal: AdviceSave[] = [];
   @Input() latitudeFinal: Number = 0;
@@ -25,17 +32,11 @@ export class EmailSendComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //the email that the user has submitted
-  private email = "";
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  matcher = new MyErrorStateMatcher();
-
   public processEmailData(){
     this.email = this.emailFormControl.value;
-    console.log(this.latitudeFinal);
-    console.log(this.longitudeFinal);
-    console.log(this.savedAdviceFinal);
-    this.sendEmail()
+    this.sendEmail();
+    //we are sending updates before we add them to the database- so does not count themselves
+    this.sendUpdateEmails();
     this.saveUserData();
   }
 
@@ -76,11 +77,16 @@ export class EmailSendComponent implements OnInit {
   //Triggered by processEmailData() below
   private saveUserData(){
     //Correct order of coordinates in geojson is [longitude, latitude, elevation] https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.1
+    console.log(this.localUpdates);
     const geoJsonObj: UserDataSave = {
       "type": "Feature",
       "properties": {
         "email": this.email,
         "savedAdvice": this.savedAdviceFinal,
+        "localUpdates": this.localUpdates,
+        //initial state is 'no emails sent'
+        "hedgehogSent": "false",
+        "pondSent": "false",
       },
       "geometry": {
         "type": "Point",
@@ -94,8 +100,20 @@ export class EmailSendComponent implements OnInit {
     this.extraSub = this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
   }
 
+  //********** update GDPR statment to say we are saving whether emails have been sent.
+  private sendUpdateEmails(){
+    this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.CLOSEST + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(
+      response => {
+        //search for ppl in the area who have asked for updates, and who have not been emailed about hedgehogs before
+        //find THEIR radiuses, and see whether anyone near them has put in a hedgehog hole
+        //if our original user as put in a hedgehog hole, count as +1, if not, no +1 (the original user is not yet in the db)
+        //if >2, then send email
+      });
+  }
+
   ngOnDestroy() {
     this.extraSub.unsubscribe();
+    this.userSub.unsubscribe();
   }
 }
 

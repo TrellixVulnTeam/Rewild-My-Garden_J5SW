@@ -18,6 +18,9 @@ const ourAdvice = new Schema({
 const ourProperties = new Schema({
     "email": {type: String},
     "savedAdvice": {type: [ourAdvice]},
+    "localUpdates": {type: String},
+    "hedgehogSent": {type: String},
+    "pondSent": {type: String},
 });
 
 const ourGeometry = new Schema({

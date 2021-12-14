@@ -5,6 +5,9 @@ export interface UserDataSave {
     "properties": {
       "email": String,
       "savedAdvice": AdviceSave[],
+      "localUpdates": String,
+      "hedgehogSent": String,
+      "pondSent": String,
     },
     "geometry": {
       "type": String,

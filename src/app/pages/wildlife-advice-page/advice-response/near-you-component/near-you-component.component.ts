@@ -5,7 +5,7 @@ import { CompleteAnswerSet } from '../../models/all-answers.model';
 import { AdviceSave } from '../../models/save-advice.model';
 import { UserDataSave } from '../../models/save-user-data.model';
 import { AllAnswers } from '../../services/all-answers.service';
-import { ProximityEnvironment } from './proximity-env';
+import { ProximityEnvironment } from '../proximity-env';
 
 @Component({
   selector: 'app-near-you-component',
