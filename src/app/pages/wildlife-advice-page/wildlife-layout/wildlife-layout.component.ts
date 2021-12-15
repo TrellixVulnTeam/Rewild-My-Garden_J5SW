@@ -25,6 +25,8 @@ export class WildlifeLayoutComponent implements OnInit {
    //********** improve wrap on phones
    //*********** improve layout for those with very small gardens
 
+   //THIS NEEDS CHANGING BECAUSE THE MAXIMUM NO OF PIECES OF ADVICE IS NOW GREATER !!!!
+
   public multichoiceShow: boolean = true;
   public responseShow: boolean = false;
 
@@ -38,7 +40,8 @@ export class WildlifeLayoutComponent implements OnInit {
   public hedgehogAdviceOne: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public hedgehogAdviceTwo: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public hedgehogAdviceThree: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-  public ourHedgehogAdvice: AdviceGeneric[] = [this.hedgehogAdviceOne, this.hedgehogAdviceTwo, this.hedgehogAdviceThree];
+  public hedgehogAdviceFour: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public ourHedgehogAdvice: AdviceGeneric[] = [this.hedgehogAdviceOne, this.hedgehogAdviceTwo, this.hedgehogAdviceThree, this.hedgehogAdviceFour];
   
   public hedgehogInfoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
   public ourHedgehogInfo: InfoGeneric[] = [this.hedgehogInfoOne];
@@ -47,7 +50,9 @@ export class WildlifeLayoutComponent implements OnInit {
   public birdAdviceTwo: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public birdAdviceThree: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public birdAdviceFour: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-  public ourBirdsAdvice: AdviceGeneric[] = [this.birdAdviceOne, this.birdAdviceTwo, this.birdAdviceThree, this.birdAdviceFour];
+  public birdAdviceFive: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public birdAdviceSix: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public ourBirdsAdvice: AdviceGeneric[] = [this.birdAdviceOne, this.birdAdviceTwo, this.birdAdviceThree, this.birdAdviceFour, this.birdAdviceFive, this.birdAdviceSix];
 
   public birdInfoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
   public birdInfoTwo: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
@@ -59,7 +64,13 @@ export class WildlifeLayoutComponent implements OnInit {
   public insectAdviceFour: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public insectAdviceFive: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public insectAdviceSix: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-  public ourInsectsAdvice: AdviceGeneric[] = [this.insectAdviceOne, this.insectAdviceTwo, this.insectAdviceThree, this.insectAdviceFour, this.insectAdviceFive, this.insectAdviceSix];
+  public insectAdviceSeven: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceEight: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceNine: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceTen: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceEleven: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public insectAdviceTwelve: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public ourInsectsAdvice: AdviceGeneric[] = [this.insectAdviceOne, this.insectAdviceTwo, this.insectAdviceThree, this.insectAdviceFour, this.insectAdviceFive, this.insectAdviceSix, this.insectAdviceSeven, this.insectAdviceEight, this.insectAdviceNine, this.insectAdviceTen, this.insectAdviceEleven, this.insectAdviceTwelve];
 
   public insectInfoOne: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
   public insectInfoTwo: InfoGeneric = {"Title": "", "Special": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "BodyText": ""};
@@ -69,7 +80,8 @@ export class WildlifeLayoutComponent implements OnInit {
   public frogAdviceOne: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public frogAdviceTwo: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
   public frogAdviceThree: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
-  public ourFrogsAdvice: AdviceGeneric[] = [this.frogAdviceOne, this.frogAdviceTwo, this.frogAdviceThree];
+  public frogAdviceFour: AdviceGeneric = {"Header": "", "Hedgehogs": "",	"Birds": "", "Insects": "",	"Amphibians": "", "Justification": "", "BodyText": "", "Pathname": "", "Name": "", "Username": "", "Copyright": "", "Link": ""};
+  public ourFrogsAdvice: AdviceGeneric[] = [this.frogAdviceOne, this.frogAdviceTwo, this.frogAdviceThree, this.frogAdviceFour];
 
   private hedgehogCountAdvice: number = 0;
   private birdCountAdvice: number = 0;
@@ -154,8 +166,6 @@ export class WildlifeLayoutComponent implements OnInit {
     this.ourInfoService = this.infoService.getAnswerUpdateListener().subscribe((retrievedInfo: InfoGeneric[]) => {
       for(let j = 0; j < retrievedInfo.length; j++){
         if(retrievedInfo[j].Special == "Y"){
-          console.log("hello");
-          console.log(retrievedInfo[j]);
           //'specialAdvice' is a special case- there is only one piece of advice and it sits outside of the categories
           this.ourSpecialAdvice[0] = retrievedInfo[j];
           document.getElementById('specialAdvice')!.classList.remove('hiddenElem');
@@ -234,7 +244,7 @@ export class WildlifeLayoutComponent implements OnInit {
 
   public seeLessHedgehog(){
     for(let k = this.NUM_FIRST_DISPLAY; k < this.hedgehogCountAdvice; k++){
-      document.getElementById('hedgehomAdviceID' + k)!.classList.add('hiddenElem');
+      document.getElementById('hedgehogAdviceID' + k)!.classList.add('hiddenElem');
     }
     for(let l = 0; l < this.hedgehogCountInfo; l++){
       document.getElementById('HedgehogInfoID' + l)!.classList.add('hiddenElem');
