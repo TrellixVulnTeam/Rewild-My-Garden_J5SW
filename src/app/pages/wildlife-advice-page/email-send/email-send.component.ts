@@ -17,13 +17,22 @@ import { map } from 'rxjs/operators';
 })
 export class EmailSendComponent implements OnInit {
 
+  // a failure of the automatic local are updates is if they have filled in the form multiple times for different properties, the
+  // email they get won't specify whether we are talking about their garden/allotment etc and they will only get
+  // one email per email address- after that their email is taken off the 'potential recipients' list **********
+
+  // If a user clicks 'send email' on the results page multiple times they will end up in the database multiple
+  // times and therefore could trigger an update for themselves- this is an extreme example of a general problem about
+  // this system being a bit of a gesture rather than something that is very thoughtful in the way that it links people.
+
   //the email that the user has submitted
   private email: String = "";
   public localUpdates: String = "";
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   matcher = new MyErrorStateMatcher();
   private extraSub: Subscription = new Subscription();
-  private userSub: Subscription = new Subscription();
+  private userSubOGHedgehog: Subscription = new Subscription();
+  private userSubOGPond: Subscription = new Subscription();
   private hedgehogUserSub: Subscription = new Subscription(); 
   private pondUserSub: Subscription = new Subscription(); 
   private updateSub: Subscription = new Subscription(); 
@@ -93,37 +102,6 @@ export class EmailSendComponent implements OnInit {
     return htmlString;
   }
 
-    /********************************************************************
-   **********************************************************************
-   *************************** SAVE USER'S DATA *************************
-   **********************************************************************
-   ***********************************************************************/
-
-  //Triggered by processEmailData() below
-  private saveUserData(){
-    //Correct order of coordinates in geojson is [longitude, latitude, elevation] https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.1
-    const geoJsonObj: UserDataSave = {
-      "type": "Feature",
-      "properties": {
-        "email": this.email,
-        "savedAdvice": this.savedAdviceFinal,
-        "localUpdates": this.localUpdates,
-        //initial state is 'no emails sent'
-        "hedgehogSent": "false",
-        "pondSent": "false",
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          this.longitudeFinal, this.latitudeFinal
-        ]
-      }
-    };
-    //************* this line may not need to include a .subscribe()
-    //check for err????
-    this.extraSub = this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
-  }
-
    /********************************************************************
   **********************************************************************
   ******************* SEND LOCAL HEDGEHOG UPDATE EMAILS ****************
@@ -132,7 +110,7 @@ export class EmailSendComponent implements OnInit {
 
   //********** update GDPR statment to say we are saving whether emails have been sent.
   private sendHedgehogUpdateEmails(){
-    this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.CLOSEST + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(
+    this.userSubOGHedgehog = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.CLOSEST + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(
       response => {
         //search for ppl in the area who have asked for updates, and who have not been emailed about hedgehogs before
         for(let i=0; i<response.length; i++){
@@ -142,13 +120,13 @@ export class EmailSendComponent implements OnInit {
             //represents here
             this.hedgehogUserSub = this.areThereEnoughHedgehog(response[i]).subscribe(data => {
               if (data == true){
-              this.createHedgehogEmail(response[i].properties.email);
-              //update the 'hedgehogSent' variable so that each user only recieves one hedgehog email
-              this.updateHedgehogSent(response[i].properties.email);
-            }
-          });
+                this.createHedgehogEmail(response[i].properties.email);
+                //update the 'hedgehogSent' variable so that each user only recieves one hedgehog email
+                this.updateHedgehogSent(response[i].properties.email);
+              }
+            });
+          }
         }
-      }
     });
   }
 
@@ -165,7 +143,7 @@ export class EmailSendComponent implements OnInit {
             }
           }
         }
-        //if our original user as put in a hedgehog hole, count as +1, if not, no +1 (the original user is not yet in the db)
+        //if our original user put in a hedgehog hole, count as +1, if not, no +1 (the original user is not yet in the db)
         if(this.didOGUserHedgehog() == true){
           hedgehogCount++;
         }
@@ -197,21 +175,18 @@ export class EmailSendComponent implements OnInit {
     });
   }
 
-  // a failure of this is if they have filled in the form multiple times for different properties - the
-  // email they get won't specify whether we are talking about their garden/allotment etc and they will only get
-  // one email per address- after that their email is taken off the 'potential recipients' list **********
   private getHedgehogEmailContent(): String{
     let htmlString: String = '<head><link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"></head><body>' + 
         '<p style="text-align: center; font-family:' + "'Playfair Display'" + ', serif; font-size: 30px;">Update from Rewild My Garden!</p>' +
-        '<p style="text-align: center; font-size: 20px">Someone in your area has put in a hedgehog hole.</p>';
+        '<p style="text-align: center; font-size: 20px">Multiple people in your area have put in hedgehog holes.</p>';
     htmlString = htmlString +"<div>" +
       "<div>" +
         '<p> Hedgehogs travel about a mile every night to find food. By making sure your fences have holes in ' + 
         "them, you are more likely to be visited and be part of their night time walks. " + '</p>' +
         "<p>" + "Hedgehogs often get trapped in gardens because fences make it impossible " +
-        "for them to roam around. Our data suggests that someone in your " +
-        "neighbourhood has put in a hedgehog hole. That means if you do the same " +
-        "thing, you could potentially help out your local hedgehogs together! Find out how to make a hole and " + 
+        "for them to roam around. Our data suggests that multiple people in your " +
+        "neighbourhood have put in hedgehog holes. That means if you do the same " +
+        "thing, you could potentially create a large habitat for your local hedgehogs! Find out how to make a hole and " + 
         "spread the news to more of your neighbours. Go to www.hedgehogstreet.org for more guidance!" + "</p>" +
         "<p><b>" + "This is a message from Rewild-My-Garden.com. Please email RewildMyGarden@gmail.com if you " + 
         "would like to make sure you don't recieve any more emails from us." + "</b></p>" +
@@ -240,7 +215,7 @@ export class EmailSendComponent implements OnInit {
 
   //Obviously this is a good example of copy and paste code- this need to be changes when/if we have time ! ********
   private sendPondUpdateEmails(){
-    this.userSub = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.USEFUL_PROXIMITY + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(
+    this.userSubOGPond = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.USEFUL_PROXIMITY + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(
       response => {
         for(let i=0; i<response.length; i++){
           if((response[i].properties.pondSent != "true") && (response[i].properties.localUpdates == "true")){
@@ -306,9 +281,32 @@ export class EmailSendComponent implements OnInit {
   private getPondEmailContent(): String{
     let htmlString: String = '<head><link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"></head><body>' + 
         '<p style="text-align: center; font-family:' + "'Playfair Display'" + ', serif; font-size: 30px;">Update from Rewild My Garden!</p>' +
-        '<p style="text-align: center; font-size: 20px">Someone in your area has put in a pond.</p>';
+        '<p style="text-align: center; font-size: 20px">Multiple people in your area have put in a ponds.</p>';
     htmlString = htmlString +"<div>" +
-      "<div>" + '<p>Put in a pond!' + '</p>'
+      "<div>" +         
+      '<p> Natural freshwater ponds are in decline, due to farm run off and silt build up. Even a small garden pond can help make a difference.' + '</p>' +
+      "<p>" + "Our data suggests that multiple people in your neighbourhood have put in ponds. That means if " +
+      "you do the same thing, you could potentially create a large habitat " + 
+      "for frogs and dragonflies in your local area! Being able to travel between garden ponds is great for " +
+      "aquatic animals, because if they are able to get access to multiple ponds, " + 
+      "they are more able to build healthy populations. By putting in a pond, you can also provides pond animals with protection in case a neighbor " +
+      "decides to take out a pond, because your pond can provide your local pond animals with somewhere safe to go. </p>" +
+      "<p> Here are some options for different garden sizes:" + "</p>" +
+      "<p> • Birds and insects need a place to drink or bathe, so if you provide a little bit of water and keep it topped up " + 
+      "and clean you will attract wildlife visitors. Birds need water to drink and bathe all through the year. To make a bath " + 
+      "for birds, put out a shallow dish or container, ideally with slopping sides no more than 5cm deep. If it gets cold, remove " + 
+      "ice so that birds can still get a drink. If you don't have room for a bird bath, even a small amount of water kept topped up " + 
+      "can provide a drink for pollinators. Using a shallow dish with pebbles or marbles will provide a safe place for an insect to " + 
+      "have a drink." + "</p>" +
+      "<p> • You don't need lots of space to make a pond- using a pot or container you can provide help to dragonflies and frogs. " + 
+      "You can find plenty of ideas about how to start you pot pond online. Just make sure your pot isn't porous and doesn't have a " + 
+      "hole in it!  You can find a fun project to create a container pond <a href=\"https://www.rhs.org.uk/ponds/wildlife-container-pond-steps\">here</a>." + "</p>" +
+      "<p> • Put in a full sized pond. Ideally keep it topped up with fresh rainwater (you can catch a lot of water in a water butt fed " + 
+      "from a garden shed downpipe). Site your pond in the sun and away from trees so it doesn't fill up with fallen leaves and provide " + 
+      "a shallow end or a ramp or a pot just below the surface to help wildlife get to the water safely. If you can't fill it with " + 
+      "rainwater, filling it up with a hose is also great!" + "</p>" +
+      "<p><b>" + "This is a message from Rewild-My-Garden.com. Please email RewildMyGarden@gmail.com if you " + 
+      "would like to make sure you don't recieve any more emails from us." + "</b></p>" +
       '</div>' +
       '<br>';
     htmlString = htmlString + "</body>"
@@ -326,11 +324,44 @@ export class EmailSendComponent implements OnInit {
     // ************ should .subscribe be here?
   }
 
+      /********************************************************************
+   **********************************************************************
+   *************************** SAVE USER'S DATA *************************
+   **********************************************************************
+   ***********************************************************************/
+
+  //Triggered by processEmailData() below
+  private saveUserData(){
+    //Correct order of coordinates in geojson is [longitude, latitude, elevation] https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.1
+    const geoJsonObj: UserDataSave = {
+      "type": "Feature",
+      "properties": {
+        "email": this.email,
+        "savedAdvice": this.savedAdviceFinal,
+        "localUpdates": this.localUpdates,
+        //initial state is 'no emails sent'
+        "hedgehogSent": "false",
+        "pondSent": "false",
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          this.longitudeFinal, this.latitudeFinal
+        ]
+      }
+    };
+    //************* this line may not need to include a .subscribe()
+    //check for err????
+    this.extraSub = this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
+  }
+
   ngOnDestroy() {
     this.extraSub.unsubscribe();
-    this.userSub.unsubscribe();
+    this.userSubOGPond.unsubscribe();
+    this.userSubOGHedgehog.unsubscribe();
     this.hedgehogUserSub.unsubscribe();
     this.updateSub.unsubscribe();
+    this.updateSubPond.unsubscribe();
     this.pondUserSub.unsubscribe();
   }
 }
