@@ -29,7 +29,15 @@ export class WildlifeMultiplechoiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //show question one
+    document.getElementById('intro')!.classList.remove('hiddenQ');
+    document.getElementById('next-intro')!.classList.remove('hiddenQ');
+  }
+
+  public startQuestionnaire(){
+    //hide question one
+    document.getElementById('intro')!.classList.add('hiddenQ');
+    document.getElementById('next-intro')!.classList.add('hiddenQ');
+    //show question two
     document.getElementById('question-one')!.classList.remove('hiddenQ');
     document.getElementById('next-one')!.classList.remove('hiddenQ');
   }

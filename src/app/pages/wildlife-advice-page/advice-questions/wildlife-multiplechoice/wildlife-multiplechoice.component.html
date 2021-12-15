@@ -1,3 +1,15 @@
+<div class="hiddenQ" id="intro">
+  <div class="question-labels">
+    <label id="multiplechoice-label">Begin Your Rewilding Journey here</label>
+    <p><br> Fill in six questions about your garden and see personalised advice about how you can manage your space to
+      benefit hedgehogs, insects, birds and amphibians. Whether you have a window box or a large garden and whether
+      you own your garden or are renting, there are many things you can do to help local wildlife. <br><br>
+      Unfortunately you can currently only find advice for gardens in England, Scotland and Wales. 
+    </p>
+  </div>
+</div>
+<button mat-stroked-button color="primary" class="hiddenQ" id="next-intro" (click)="startQuestionnaire()">Next</button>
+
 <div class="hiddenQ" id="question-one">
   <div class="question-labels">
     <label id="multiplechoice-label">Which of these best describes your garden?</label>
@@ -17,7 +29,7 @@
 <div class="hiddenQ" id="question-two">
   <div class="question-labels">
     <label id="multiplechoice-label">What soil type do you have?</label><br>
-    <label id="sub-label">You can find tips to help identify your soil type <a href="https://www.rhs.org.uk/soil-composts-mulches/soil-types">here</a>.</label>
+    <label id="sub-label">You can find tips to help identify your soil type <a href="https://www.rhs.org.uk/soil-composts-mulches/soil-types" target="_blank" rel="noopener noreferrer">here</a>.</label>
   </div>
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="soil-question" class="radio-question" [(ngModel)]="chosenSoilType">
@@ -34,7 +46,7 @@
 <div class="hiddenQ" id="question-three">
   <div class="question-labels">
     <label id="multiplechoice-label">What soil PH do you have?</label><br>
-    <label id="sub-label">You can find tips to help identify the PH of your soil <a href="https://www.rhs.org.uk/soil-composts-mulches/ph-and-testing-soil">here</a>. You can also look up the approximate PH of your soil at <a href="http://www.landis.org.uk/soilscapes/index.cfm">Soilscapes</a> if you are in England or Wales, or at <a href="http://mapapps2.bgs.ac.uk/ukso/home.html?layer=JHSoilPH">UK Soil Observatory</a> if you are in Scotland. Use of these sites is only recommended if you are on a desktop computer.</label>
+    <label id="sub-label">You can find tips to help identify the PH of your soil <a href="https://www.rhs.org.uk/soil-composts-mulches/ph-and-testing-soil" target="_blank" rel="noopener noreferrer">here</a>. You can also look up the approximate PH of your soil at <a href="http://www.landis.org.uk/soilscapes/index.cfm" target="_blank" rel="noopener noreferrer">Soilscapes</a> if you are in England or Wales, or at <a href="http://mapapps2.bgs.ac.uk/ukso/home.html?layer=JHSoilPH" target="_blank" rel="noopener noreferrer">UK Soil Observatory</a> if you are in Scotland. Use of these sites is only recommended if you are on a desktop computer.</label>
   </div>
   <!-- The 'aria-labelledby' attribute takes precedence as the element's text alternative. -->
   <mat-radio-group aria-labelledby="PH-question" class="radio-question" [(ngModel)]="chosenPHType">

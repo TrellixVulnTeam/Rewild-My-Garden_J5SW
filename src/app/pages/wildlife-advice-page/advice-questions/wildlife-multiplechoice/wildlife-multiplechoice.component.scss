@@ -8,7 +8,7 @@
 }
 
 
-#question-one, #question-two, #question-three, #question-four, #question-six{
+#question-one, #question-two, #question-three, #question-four, #question-six, #intro{
   font-size: 17px;
   min-height: 350px;
   padding-left: 40px;
@@ -16,11 +16,16 @@
   padding-right: 40px;
 }
 
+//targeted because the css above was being overwritten by p in styles.scss
+#intro p{
+  font-size: 17px;
+}
+
 .personal-choices{
   font-size: 17px;
 }
 
-#next-one, #next-two, #next-three, #next-four, #next-six{
+#next-one, #next-two, #next-three, #next-four, #next-six, #next-intro{
   height: 43px;
   width: 73px;
   margin-bottom: 20px;
@@ -59,14 +64,14 @@
 
 /* If the screen size is 600px wide or less*/
 @media screen and (max-width: 600px) {
-  #question-one, #question-two, #question-three, #question-four, #question-six{
+  #question-one, #question-two, #question-three, #question-four, #question-six, #intro{
     padding-left: 30px;
     padding-top: 20px;
     padding-right: 30px;
     min-height: 400px;
   }
 
-  #next-one, #next-two, #next-three, #next-four, #next-six{
+  #next-one, #next-two, #next-three, #next-four, #next-six, #next-intro{
     margin-left: 30px;
   }
 }

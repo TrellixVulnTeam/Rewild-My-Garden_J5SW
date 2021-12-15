@@ -11,7 +11,7 @@
       <!-- We have to use innerHTML to access our bodyText so the links work -->
       <div [innerHTML]="ourBodyText"></div>
     <div>
-        <p class="CopyRightText">&copy; Image <a href="{{adviceGenericObject.Link}}">"{{adviceGenericObject.Name}}"</a> by {{adviceGenericObject.Username}}, distributed under {{adviceGenericObject.Copyright}} license.</p>
+        <p class="CopyRightText">&copy; Image <a href="{{adviceGenericObject.Link}}" target="_blank" rel="noopener noreferrer">"{{adviceGenericObject.Name}}"</a> by {{adviceGenericObject.Username}}, distributed under {{adviceGenericObject.Copyright}} license.</p>
     </div>
     </div>
 </mat-dialog-content>
