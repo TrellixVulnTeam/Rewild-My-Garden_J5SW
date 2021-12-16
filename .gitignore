@@ -4,3 +4,4 @@ node_modules
 .env
 src/app/pages/wildlife-advice-page/advice-questions/find-postcode/os-api-env.ts
 src/app/pages/wildlife-advice-page/advice-response/proximity-env.ts
+node_modules
