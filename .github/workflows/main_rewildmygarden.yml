@@ -25,12 +25,12 @@ jobs:
         run: |
           npm install
           npm run build --prod
-        working-directory: .
+        # working-directory: .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: node-app
+          name: deploy_dist
           path: .
 
   deploy:
@@ -44,15 +44,15 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: node-app
+          name: deploy_dist
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'RewildMyGarden'
-          # slot-name: 'Production'
-          publish-profile: $
-          # package: .
-          package: ./dist/Rewild-My-Garden
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3C3B4A0EF11D49E78175D34AD35A5363 }}
+          package: .
+          # package: dist/Rewild-My-Garden
 
