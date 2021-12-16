@@ -52,7 +52,7 @@ jobs:
         with:
           app-name: 'RewildMyGarden'
           # slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3C3B4A0EF11D49E78175D34AD35A5363 }}
+          publish-profile: $
           # package: .
           package: ./dist/Rewild-My-Garden
 
