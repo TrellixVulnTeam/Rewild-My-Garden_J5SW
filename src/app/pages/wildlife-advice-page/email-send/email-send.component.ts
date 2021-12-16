@@ -108,7 +108,6 @@ export class EmailSendComponent implements OnInit {
   **********************************************************************
   ***********************************************************************/
 
-  //********** update GDPR statment to say we are saving whether emails have been sent.
   private sendHedgehogUpdateEmails(){
     this.userSubOGHedgehog = this.httpClient.get<UserDataSave[]>("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.CLOSEST + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(
       response => {
