@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const ProximityEnvironment = {\n  CLOSEST: 500,\n  USEFUL_PROXIMITY: 1000,\n  INSPIRATION_PROXIMITY: 50000\n};","map":null,"metadata":{},"sourceType":"module"}
