@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": "dist/Rewild-My-Garden",
+    "appService.defaultWebAppToDeploy": "/subscriptions/2e80e880-7a7e-49fa-b3bb-02dfc658fa44/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/NewNewAngular"
+}
