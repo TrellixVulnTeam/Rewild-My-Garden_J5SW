@@ -72,6 +72,7 @@ router.get('/infoData', function (req, res, next) {
 
 //Get info box data
 router.get('/minTempData', function (req, res, next) {
+  console.log("tap");
   //This rounds our coordinate up to the nearest coordinate understood by our database
   //Under this system, the coordinate given is rounded up or down to this grid reference it is 
   //closest to. The grids are spread by 5 km or 5000 meters, starting at y=-197500m, x=-197500m.
@@ -82,6 +83,8 @@ router.get('/minTempData', function (req, res, next) {
     const varY = Math.ceil(req.query.y / 5000) * 5000 - 2500;
     minTempData.find({x : varX, y : varY}).then(function(result, err){
     if(result){
+      console.log("tap tap");
+      console.log(result);
       res.send(result);
     }
     if(err){

@@ -28,6 +28,9 @@ export class LocationAnswers{
                 //convert BNG to longtiude/latitude
                 axios.get('https://api.getthedata.com/bng2latlong/' + xAnswer + '/' + yAnswer)
                 .then((longLatresponse) => {
+                    console.log(response);
+                    console.log(xAnswer);
+                    console.log(yAnswer);
                     const longitude: Number = longLatresponse.data.longitude;
                     const latitude: Number = longLatresponse.data.latitude;
                     //this service just fetches our hardiness

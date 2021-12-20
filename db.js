@@ -6,7 +6,8 @@ const {
   MONGO_USERNAME,
   MONGO_PASSWORD,
   MONGO_CLUSTER,
-  MONGO_DB
+  MONGO_DB,
+  DATABASE_URL
 } = process.env;
 
 const options = {
@@ -14,7 +15,7 @@ const options = {
   useNewUrlParser: true
 };
 
-const url = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_CLUSTER}.rimay.mongodb.net/${MONGO_DB}?retryWrites=true&w=majority`;
+const url = `${DATABASE_URL}`;
 
 mongoose.connect(url, options).then(function () {
   console.log('MongoDB is connected');
