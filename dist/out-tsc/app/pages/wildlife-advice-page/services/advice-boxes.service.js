@@ -14,7 +14,7 @@ let AdviceService = class AdviceService {
             const ourGardenSize = retrievedAnswers.gardenSize;
             let ourPersonalisationQuery = this.getPersonalisationString(retrievedAnswers);
             //Then use that data to filter API data for display
-            this.adviceSub = this.httpClient.get("http://localhost:3000/api/adviceData?SizeQueryType="
+            this.adviceSub = this.httpClient.get("https://rewildmygarden-api.azurewebsites.net/api/adviceData?SizeQueryType="
                 + ourGardenSize + "&Size=Y" + ourPersonalisationQuery).subscribe(response => {
                 this.updatedAdvice.next(response);
             }, err => {

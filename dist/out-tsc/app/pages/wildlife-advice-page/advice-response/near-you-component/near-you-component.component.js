@@ -60,7 +60,7 @@ let NearYouComponentComponent = class NearYouComponentComponent {
     }
     setUserDataInspo(proximity) {
         this.userSubOne = this.httpClient
-            .get("http://localhost:3000/api/userData?Distance=" +
+            .get("https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" +
             proximity +
             "&Longitude=" +
             this.longitude +
@@ -110,7 +110,7 @@ let NearYouComponentComponent = class NearYouComponentComponent {
     }
     setUserUsefulClose(proximity) {
         this.userSubTwo = this.httpClient
-            .get("http://localhost:3000/api/userData?Distance=" +
+            .get("https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" +
             proximity +
             "&Longitude=" +
             this.longitude +
@@ -151,7 +151,7 @@ let NearYouComponentComponent = class NearYouComponentComponent {
     }
     setUserDataClose(proximity) {
         this.userSubThree = this.httpClient
-            .get("http://localhost:3000/api/userData?Distance=" +
+            .get("https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" +
             proximity +
             "&Longitude=" +
             this.longitude +

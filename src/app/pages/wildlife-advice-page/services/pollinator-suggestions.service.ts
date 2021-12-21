@@ -275,7 +275,7 @@ export class WildlifeResponse {
     // Responses are all always set to "Y" because we're never testing for something NOT appropriate for a garden (in the the context of what our site does)
     // Because we are cycling through floweringType queries, it is a local variable not a global one
     return (
-      "http://localhost:3000/api/minimalTestDataFilter?" +
+      "https://rewildmygarden-api.azurewebsites.net/api/minimalTestDataFilter?" +
       "SoilQueryType=" +
       this.reqSoilQueryType +
       "&Soil=Y" +

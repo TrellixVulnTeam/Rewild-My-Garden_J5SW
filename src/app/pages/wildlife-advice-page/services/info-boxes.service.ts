@@ -18,7 +18,7 @@ export class InfoService{
         this.answersSub = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
             const ourGardenSize = retrievedAnswers.gardenSize;
             //Then use that data to filter API data for display
-            this.infoSub = this.httpClient.get<InfoGeneric[]>("http://localhost:3000/api/infoData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(
+            this.infoSub = this.httpClient.get<InfoGeneric[]>("https://rewildmygarden-api.azurewebsites.net/api/infoData?SizeQueryType=" + ourGardenSize + "&Size=Y").subscribe(
                 response => {
                 this.updatedInfo.next(response);
             },

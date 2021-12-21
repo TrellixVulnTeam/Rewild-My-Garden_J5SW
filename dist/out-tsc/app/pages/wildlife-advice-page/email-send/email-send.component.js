@@ -57,7 +57,7 @@ let EmailSendComponent = class EmailSendComponent {
    ***********************************************************************/
     sendEmail() {
         const emailContent = { email: this.email, emailBody: this.getEmailContent() };
-        axios.post('http://localhost:3000/api/sendmail', emailContent)
+        axios.post('https://rewildmygarden-api.azurewebsites.net/api/sendmail', emailContent)
             .then(response => {
             alert("An email was sent to " + this.email + ". Happy gardening!");
         })
@@ -87,7 +87,7 @@ let EmailSendComponent = class EmailSendComponent {
    **********************************************************************
    ***********************************************************************/
     sendHedgehogUpdateEmails() {
-        this.userSubOGHedgehog = this.httpClient.get("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.CLOSEST + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(response => {
+        this.userSubOGHedgehog = this.httpClient.get("https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" + ProximityEnvironment.CLOSEST + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(response => {
             //search for ppl in the area who have asked for updates, and who have not been emailed about hedgehogs before
             for (let i = 0; i < response.length; i++) {
                 if ((response[i].properties.hedgehogSent != "true") && (response[i].properties.localUpdates == "true")) {
@@ -108,7 +108,7 @@ let EmailSendComponent = class EmailSendComponent {
     //***************** ADD ERR TO ALL SUBS
     areThereEnoughHedgehog(searchUser) {
         //find THEIR radiuses, and see whether anyone near them has put in a hedgehog hole
-        return this.httpClient.get("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.CLOSEST + "&Longitude=" + searchUser.geometry.coordinates[0] + "&Latitude=" + searchUser.geometry.coordinates[1]).pipe(map(response => {
+        return this.httpClient.get("https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" + ProximityEnvironment.CLOSEST + "&Longitude=" + searchUser.geometry.coordinates[0] + "&Latitude=" + searchUser.geometry.coordinates[1]).pipe(map(response => {
             let hedgehogCount = 0;
             for (let j = 0; j < response.length; j++) {
                 for (let k = 0; k < response[j].properties.savedAdvice.length; k++) {
@@ -140,7 +140,7 @@ let EmailSendComponent = class EmailSendComponent {
     }
     createHedgehogEmail(ourEmail) {
         const emailContent = { email: ourEmail, emailBody: this.getHedgehogEmailContent() };
-        axios.post('http://localhost:3000/api/sendmail', emailContent)
+        axios.post('https://rewildmygarden-api.azurewebsites.net/api/sendmail', emailContent)
             .catch(error => {
             console.error('There was an error!', error);
         });
@@ -171,7 +171,7 @@ let EmailSendComponent = class EmailSendComponent {
     **********************************************************************
     ***********************************************************************/
     updateHedgehogSent(ourEmail) {
-        this.updateSub = this.httpClient.put("http://localhost:3000/api/userDataUpdate?" + "Email=" + ourEmail + "&EmailUpdateType=properties.hedgehogSent", "true").subscribe();
+        this.updateSub = this.httpClient.put("https://rewildmygarden-api.azurewebsites.net/api/userDataUpdate?" + "Email=" + ourEmail + "&EmailUpdateType=properties.hedgehogSent", "true").subscribe();
         // ************ should .subscribe be here?
     }
     /********************************************************************
@@ -181,7 +181,7 @@ let EmailSendComponent = class EmailSendComponent {
  ***********************************************************************/
     //Obviously this is a good example of copy and paste code- this need to be changes when/if we have time ! ********
     sendPondUpdateEmails() {
-        this.userSubOGPond = this.httpClient.get("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.USEFUL_PROXIMITY + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(response => {
+        this.userSubOGPond = this.httpClient.get("https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" + ProximityEnvironment.USEFUL_PROXIMITY + "&Longitude=" + this.longitudeFinal + "&Latitude=" + this.latitudeFinal).subscribe(response => {
             for (let i = 0; i < response.length; i++) {
                 if ((response[i].properties.pondSent != "true") && (response[i].properties.localUpdates == "true")) {
                     this.pondUserSub = this.areThereEnoughPond(response[i]).subscribe(data => {
@@ -196,7 +196,7 @@ let EmailSendComponent = class EmailSendComponent {
     }
     //***************** ADD ERR TO ALL SUBS
     areThereEnoughPond(searchUser) {
-        return this.httpClient.get("http://localhost:3000/api/userData?Distance=" + ProximityEnvironment.USEFUL_PROXIMITY + "&Longitude=" + searchUser.geometry.coordinates[0] + "&Latitude=" + searchUser.geometry.coordinates[1]).pipe(map(response => {
+        return this.httpClient.get("https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" + ProximityEnvironment.USEFUL_PROXIMITY + "&Longitude=" + searchUser.geometry.coordinates[0] + "&Latitude=" + searchUser.geometry.coordinates[1]).pipe(map(response => {
             let pondCount = 0;
             for (let j = 0; j < response.length; j++) {
                 for (let k = 0; k < response[j].properties.savedAdvice.length; k++) {
@@ -228,7 +228,7 @@ let EmailSendComponent = class EmailSendComponent {
     }
     createPondEmail(ourEmail) {
         const emailContent = { email: ourEmail, emailBody: this.getPondEmailContent() };
-        axios.post('http://localhost:3000/api/sendmail', emailContent)
+        axios.post('https://rewildmygarden-api.azurewebsites.net/api/sendmail', emailContent)
             .catch(error => {
             console.error('There was an error!', error);
         });
@@ -276,7 +276,7 @@ let EmailSendComponent = class EmailSendComponent {
     **********************************************************************
     ***********************************************************************/
     updatePondSent(ourEmail) {
-        this.updateSubPond = this.httpClient.put("http://localhost:3000/api/userDataUpdate?" + "Email=" + ourEmail + "&EmailUpdateType=properties.pondSent", "true").subscribe();
+        this.updateSubPond = this.httpClient.put("https://rewildmygarden-api.azurewebsites.net/api/userDataUpdate?" + "Email=" + ourEmail + "&EmailUpdateType=properties.pondSent", "true").subscribe();
         // ************ should .subscribe be here?
     }
     /********************************************************************
@@ -306,7 +306,7 @@ let EmailSendComponent = class EmailSendComponent {
         };
         //************* this line may not need to include a .subscribe()
         //check for err????
-        this.extraSub = this.httpClient.post("http://localhost:3000/api/userData", geoJsonObj).subscribe();
+        this.extraSub = this.httpClient.post("https://rewildmygarden-api.azurewebsites.net/api/userData", geoJsonObj).subscribe();
     }
     ngOnDestroy() {
         this.extraSub.unsubscribe();

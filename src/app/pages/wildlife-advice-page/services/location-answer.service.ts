@@ -22,7 +22,7 @@ export class LocationAnswers{
 
     addAnswerSet(xAnswer: Number, yAnswer: Number){
         //This fetches the hardiness data from our api
-        this.answersSub = this.httpClient.get<BasicLocationData[]>("http://localhost:3000/api/minTempData?x=" + xAnswer + "&y=" + yAnswer).subscribe(
+        this.answersSub = this.httpClient.get<BasicLocationData[]>("https://rewildmygarden-api.azurewebsites.net/api/minTempData?x=" + xAnswer + "&y=" + yAnswer).subscribe(
             response => {
                 //THINK ABOUT THE ERROR CONDITION FOR THIS ************
                 //convert BNG to longtiude/latitude

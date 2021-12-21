@@ -20,7 +20,7 @@ export class AdviceService{
             let ourPersonalisationQuery : String = this.getPersonalisationString(retrievedAnswers);
             //Then use that data to filter API data for display
             this.adviceSub = this.httpClient.get<AdviceGeneric[]>(
-                    "http://localhost:3000/api/adviceData?SizeQueryType=" 
+                    "https://rewildmygarden-api.azurewebsites.net/api/adviceData?SizeQueryType=" 
                     + ourGardenSize + "&Size=Y" + ourPersonalisationQuery).subscribe(
                     response => {
                 this.updatedAdvice.next(response);

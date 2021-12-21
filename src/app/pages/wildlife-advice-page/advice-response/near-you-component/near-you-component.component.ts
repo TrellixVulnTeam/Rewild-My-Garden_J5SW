@@ -77,7 +77,7 @@ export class NearYouComponentComponent implements OnInit {
   private setUserDataInspo(proximity: Number) {
     this.userSubOne = this.httpClient
       .get<UserDataSave[]>(
-        "http://localhost:3000/api/userData?Distance=" +
+        "https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" +
           proximity +
           "&Longitude=" +
           this.longitude +
@@ -138,7 +138,7 @@ export class NearYouComponentComponent implements OnInit {
   private setUserUsefulClose(proximity: Number) {
     this.userSubTwo = this.httpClient
       .get<UserDataSave[]>(
-        "http://localhost:3000/api/userData?Distance=" +
+        "https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" +
           proximity +
           "&Longitude=" +
           this.longitude +
@@ -192,7 +192,7 @@ export class NearYouComponentComponent implements OnInit {
   private setUserDataClose(proximity: Number) {
     this.userSubThree = this.httpClient
       .get<UserDataSave[]>(
-        "http://localhost:3000/api/userData?Distance=" +
+        "https://rewildmygarden-api.azurewebsites.net/api/userData?Distance=" +
           proximity +
           "&Longitude=" +
           this.longitude +

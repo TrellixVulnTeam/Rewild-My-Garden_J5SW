@@ -18,7 +18,7 @@ let LocationAnswers = class LocationAnswers {
     }
     addAnswerSet(xAnswer, yAnswer) {
         //This fetches the hardiness data from our api
-        this.answersSub = this.httpClient.get("http://localhost:3000/api/minTempData?x=" + xAnswer + "&y=" + yAnswer).subscribe(response => {
+        this.answersSub = this.httpClient.get("https://rewildmygarden-api.azurewebsites.net/api/minTempData?x=" + xAnswer + "&y=" + yAnswer).subscribe(response => {
             //THINK ABOUT THE ERROR CONDITION FOR THIS ************
             //convert BNG to longtiude/latitude
             axios.get('https://api.getthedata.com/bng2latlong/' + xAnswer + '/' + yAnswer)
