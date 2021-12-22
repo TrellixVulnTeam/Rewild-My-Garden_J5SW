@@ -7,7 +7,6 @@ let WildlifeInfoGenericComponent = class WildlifeInfoGenericComponent {
     }
     ngOnInit() {
     }
-    //change info file to take out quote marks around 'here' *********
     ngOnChanges(changes) {
         this.ourBodyText = "<b>" + changes.infoGenericObject.currentValue.Title + ":</b>" + " " + changes.infoGenericObject.currentValue.BodyText;
     }

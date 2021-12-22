@@ -35,7 +35,7 @@ let FindPostcodeComponent = class FindPostcodeComponent {
                     document.getElementById('errMessageForm').innerHTML = "Cannot find your postcode.";
                 }
             })
-                //********** Try using error codes to finesse this response **********
+                //********** Try using error codes to finesse this response
                 .catch(error => {
                 //If the API throws an err because entry is not a valid postcode format, throw invalid postcode err
                 document.getElementById('errMessageForm').innerHTML = "Invalid postcode.";

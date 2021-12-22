@@ -233,9 +233,7 @@ let EmailSendComponent = class EmailSendComponent {
             console.error('There was an error!', error);
         });
     }
-    // a failure of this is if they have filled in the form multiple times for different properties - the
-    // email they get won't specify whether we are talking about their garden/allotment etc and they will only get
-    // one email per address- after that their email is taken off the 'potential recipients' list **********
+
     getPondEmailContent() {
         let htmlString = '<head><link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"></head><body>' +
             '<p style="text-align: center; font-family:' + "'Playfair Display'" + ', serif; font-size: 30px;">Update from Rewild My Garden!</p>' +

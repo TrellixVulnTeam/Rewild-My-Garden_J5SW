@@ -22,7 +22,6 @@ export class WildlifeLayoutComponent implements OnInit {
    **********************************************************************
    ***********************************************************************/
 
-   //********** improve wrap on phones
    //*********** improve layout for those with very small gardens
 
    //THIS NEEDS CHANGING BECAUSE THE MAXIMUM NO OF PIECES OF ADVICE IS NOW GREATER !!!!
@@ -109,8 +108,6 @@ export class WildlifeLayoutComponent implements OnInit {
     this.fetchAdvice();
     this.fetchInfo();
   }
-
-  //********* 'special' message still does not display
 
   private fetchAdvice(){
     this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice: AdviceGeneric[]) => {

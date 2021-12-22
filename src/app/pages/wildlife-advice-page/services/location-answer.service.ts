@@ -28,14 +28,19 @@ export class LocationAnswers{
                 //convert BNG to longtiude/latitude
                 axios.get('https://api.getthedata.com/bng2latlong/' + xAnswer + '/' + yAnswer)
                 .then((longLatresponse) => {
-                    console.log(response);
-                    console.log(xAnswer);
-                    console.log(yAnswer);
                     const longitude: Number = longLatresponse.data.longitude;
                     const latitude: Number = longLatresponse.data.latitude;
-                    //this service just fetches our hardiness
-                    const ourLocation: BasicLocationData = {x: xAnswer, y: yAnswer, longitude: longitude, latitude: latitude, hardiness: response[0].hardiness};
-                    this.updatedLocation.next(ourLocation);      
+                    //This is a BIG plaster to protect us from someone from somewhere unusual doing the questionnaire and getting a result from Ordnance Survey map which
+                    //has no equivalent in our Hardiness data. This needs a proper fix but will be fine for now. ************
+                    //8 has been chosen because it's pretty common for the UK
+                    if((response.length == 0) || (response[0].hardiness == "NaN")){
+                        const ourLocation: BasicLocationData = {x: xAnswer, y: yAnswer, longitude: longitude, latitude: latitude, hardiness: "8"};
+                        this.updatedLocation.next(ourLocation);      
+                    }
+                    else{
+                        const ourLocation: BasicLocationData = {x: xAnswer, y: yAnswer, longitude: longitude, latitude: latitude, hardiness: response[0].hardiness};
+                        this.updatedLocation.next(ourLocation);      
+                    }
                 },
                 err => {
                   console.log(err);

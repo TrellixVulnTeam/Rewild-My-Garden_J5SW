@@ -12,9 +12,7 @@ let WildlifeLayoutComponent = class WildlifeLayoutComponent {
          *** LOGIC TO HIDE/UNHIDE PAGE ELEMENTS AND CHOOSE ADVICE/INFO BOXES **
          **********************************************************************
          ***********************************************************************/
-        //********** improve wrap on phones
         //*********** improve layout for those with very small gardens
-        //THIS NEEDS CHANGING BECAUSE THE MAXIMUM NO OF PIECES OF ADVICE IS NOW GREATER !!!!
         this.multichoiceShow = true;
         this.responseShow = false;
         this.ourPollinatorsService = new Subscription();
@@ -92,7 +90,7 @@ let WildlifeLayoutComponent = class WildlifeLayoutComponent {
         this.fetchAdvice();
         this.fetchInfo();
     }
-    //********* 'special' message still does not display
+
     fetchAdvice() {
         this.ourAdviceService = this.adviceService.getAnswerUpdateListener().subscribe((retrievedAdvice) => {
             for (let i = 0; i < retrievedAdvice.length; i++) {

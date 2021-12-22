@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExampleGardensBodyComponent implements OnInit {
 
-  //********** mobile view of this page looks a tiny bit clunky
-
   constructor() { }
 
   ngOnInit(): void {

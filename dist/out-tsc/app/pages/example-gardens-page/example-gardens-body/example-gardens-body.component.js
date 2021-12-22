@@ -1,7 +1,6 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 let ExampleGardensBodyComponent = class ExampleGardensBodyComponent {
-    //********** mobile view of this page looks a tiny bit clunky
     constructor() { }
     ngOnInit() {
     }
