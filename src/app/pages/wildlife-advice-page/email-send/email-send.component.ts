@@ -63,7 +63,8 @@ export class EmailSendComponent implements OnInit {
       //we are sending updates before we add them to the database- so does not count themselves
       this.sendHedgehogUpdateEmails();
       this.sendPondUpdateEmails();
-      this.saveUserData();
+      // COMMENTED OUT AS WE ARE NOT SAVING DATA IN THE PROTOTYPE
+      // this.saveUserData();
     }
   }
 
