@@ -24,10 +24,12 @@ export class LocationAnswers{
         //This fetches the hardiness data from our api
         this.answersSub = this.httpClient.get<BasicLocationData[]>("https://rewildmygarden-api.azurewebsites.net/api/minTempData?x=" + xAnswer + "&y=" + yAnswer).subscribe(
             response => {
+                console.log("hardiness fetched");
                 //THINK ABOUT THE ERROR CONDITION FOR THIS ************
                 //convert BNG to longtiude/latitude
                 axios.get('https://api.getthedata.com/bng2latlong/' + xAnswer + '/' + yAnswer)
                 .then((longLatresponse) => {
+                    console.log("lat + long fetched");
                     const longitude: Number = longLatresponse.data.longitude;
                     const latitude: Number = longLatresponse.data.latitude;
                     //This is a BIG plaster to protect us from someone from somewhere unusual doing the questionnaire and getting a result from Ordnance Survey map which

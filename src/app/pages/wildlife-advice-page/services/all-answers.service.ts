@@ -16,7 +16,9 @@ export class AllAnswers{
     constructor(public wildlifeAnswersService: WildlifeAnswers, public locationAnswersService: LocationAnswers){
         //here we subscribe to the multichoice answers and then the location and turn them into one subscription object
         this.answersSubLocs = this.locationAnswersService.getAnswerUpdateListener().subscribe((retrievedLocation: BasicLocationData) => {
+            console.log("retrieved location");
             this.answersSubMulti = this.wildlifeAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: WildlifeAnswerSet) => {
+                console.log("retrieved other answers");
                 const allAnswers: CompleteAnswerSet = {
                     soil: retrievedAnswers.soil,
                     ph: retrievedAnswers.ph,

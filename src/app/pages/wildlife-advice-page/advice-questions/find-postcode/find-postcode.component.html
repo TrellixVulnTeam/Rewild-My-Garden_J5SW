@@ -25,6 +25,10 @@
       ></mat-hint>
     </mat-form-field>
   </form>
+  <button mat-stroked-button class="findButton" color="primary" (click)="saveForm()">Find Postcode</button>
+  <p id="loading" class="hiddenElem">Finding your hardiness zone ...<br>You will be able to answer the next question as
+  soon as the hardiness zone of your garden has been found. </p>
+  <p id="doneLoading"></p>
 </div>
 
-<button mat-stroked-button color="primary" (click)="saveForm()">Next</button>
+<button mat-stroked-button id="nextButton" class="hiddenElem" color="primary" (click)="getNextQuestion()">Next</button>

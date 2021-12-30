@@ -24,7 +24,6 @@ export class WildlifeLayoutComponent implements OnInit {
 
    //*********** improve layout for those with very small gardens
 
-   //THIS NEEDS CHANGING BECAUSE THE MAXIMUM NO OF PIECES OF ADVICE IS NOW GREATER !!!!
 
   public multichoiceShow: boolean = true;
   public responseShow: boolean = false;
@@ -95,6 +94,7 @@ export class WildlifeLayoutComponent implements OnInit {
 
   constructor(public allAnswersService: AllAnswers, public adviceService: AdviceService, public infoService: InfoService, private httpClient: HttpClient) {
     this.ourPollinatorsService = this.allAnswersService.getAnswerUpdateListener().subscribe((retrievedAnswers: CompleteAnswerSet) => {
+      console.log("all answers retrieved- reveal response");
       //Get location from retrievedAnswers
       this.longitude = retrievedAnswers.longitude;
       this.latitude = retrievedAnswers.latitude;

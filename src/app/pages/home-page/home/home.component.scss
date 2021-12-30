@@ -34,7 +34,7 @@ button{
 }
 
 .home-layout-wrapper{
-    margin-top: 150px;
+    // margin-top: 150px;
     height: auto;
 }
 
@@ -44,9 +44,9 @@ button{
 
 //This stops the title from moving all the elements on the page as it grows and shrinks
 //the top margin of home-layout-wrapper decides the size of this block
-.titleHolder{
-    position: absolute;
-}
+// .titleHolder{
+//     // position: fixed;
+// }
 
 //We've created a special (very similar) PageBody class for this elem so it can have rounded corners
 .PageBodySpecial{
@@ -91,17 +91,17 @@ button{
 }
 
 /* If the screen size is 1150px wide or more*/
-@media screen and (min-width: 1150px) {
-    .home-layout-wrapper{
-      margin-top: 190px;
-    }
-}
+// @media screen and (min-width: 1150px) {
+//     .home-layout-wrapper{
+//       margin-top: 190px;
+//     }
+// }
 
 /* If the screen size is 960px wide or less */
 @media screen and (max-width: 960px) {
-  .home-layout-wrapper{
-    margin-top: 120px;
-  }
+  // .home-layout-wrapper{
+  //   margin-top: 120px;
+  // }
   //When the page gets narrow enough that the vines will be annoying, hide them
   .background-image-left{
     display: none;

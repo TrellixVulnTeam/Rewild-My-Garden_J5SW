@@ -116,9 +116,10 @@ export class WildlifeMultiplechoiceComponent implements OnInit {
   }
 
   //Create 'multiple choice answers object' and send that to wildlife answers service
-  async tryNextSixAndSave(){
+  public tryNextSixAndSave(){
+    console.log("clicked save");
     //This question doesn't have to have an answers, so no checking
-    //A response is composed of the results from mutliple tick boxes!
+    //A response is composed of the results from multiple tick boxes!
     this.wildlifeAnswersService.addAnswerSet(this.chosenSoilType, this.chosenPHType, this.chosenShadeType, this.chosenSize, this.childFriendly, this.cheap, this.easy, this.renting, this.pavedGardens);
   }
 }

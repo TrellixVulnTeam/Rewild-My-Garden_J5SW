@@ -1,3 +1,7 @@
+.hiddenElem{
+  display: none;
+}
+
 .postcode-form {
   min-width: 150px;
   max-width: 500px;
@@ -21,11 +25,16 @@
   padding-right: 40px;
 }
 
-button {
+.findButton{
+  height: 43px;
+  width: 134px;
+  margin-top: 5px;
+}
+
+#nextButton {
   height: 43px;
   width: 73px;
   margin-bottom: 20px;
-  // margin-top: 20px;
   margin-left: 40px;
 }
 
@@ -41,6 +50,10 @@ button {
 
 .question-labels {
   margin-bottom: 1.3rem;
+}
+
+#loading, #doneLoading {
+  margin: 10px;
 }
 
 /* If the screen size is 600px wide or less*/
