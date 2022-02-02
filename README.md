@@ -1,27 +1,14 @@
-# RewildMyGarden
+## Rewild my Garden
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
+The web application was built for the University of Bristol Computer Science Conversion (MSc) course. It was submitted as a final project and is as yet unmarked.
 
-## Development server
+This application was intended to demonstrate to users the wildlife potential of their garden. This was done by giving users advice about what would work effectively in their garden and be appropriate for their circumstances. Site users were asked for their garden size, soil type, soil pH, garden shadiness, location and personal preferences before advice was generated for them. As a result, the guidance given to them was topographically and personally specific.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+User data was also saved to a Geojson MongoDB data set. This made it possible to make extra recommendations to a user based on what was being done by their neighbours and people in their local area. This feature was intended to promote collective decision making, reinforcing both the persuasive and ecological value of the application’s guidance.
 
-## Code scaffolding
+The project’s approach was inspired by persuasive programming research. Within this project collaboration and personalisation are two elements of a broader strategy which focuses on not just educating users, but persuading them. The way these collaborative and personalisation elements are married helps to make this project novel. User surveys conducted during the project indicated that the application was popular. The feedback given for the application’s evaluation was also very positive. The elements of the site which facilitated collaboration were particularly popular and provide a case for more altruistic applications that help facilitate local action to be created in the future.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project is still a 'prototype' and needs work in order to be considered finished. The code for the 'back end' of the project can be found here https://github.com/A-Madeline-Bates/Rewild-My-Garden-API.
 
-## Build
+The website can be found here : https://rewildmygarden.azurewebsites.net. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
